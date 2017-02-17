@@ -1,0 +1,75 @@
+﻿@model IEnumerable<SistemaCalculoweb.Usuario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nombreUsuario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellidoP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellidoM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Perfil.Descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreUsuario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidoP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidoM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Perfil.Descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idTipoUsuario }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idTipoUsuario }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idTipoUsuario })
+        </td>
+    </tr>
+}
+
+</table>

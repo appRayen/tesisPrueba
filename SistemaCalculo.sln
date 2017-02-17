@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCalculo", "SistemaCalculo\SistemaCalculo.csproj", "{3CD09E41-A5C0-498B-B52D-E5B47729A486}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCalculoweb", "SistemaCalculoweb\SistemaCalculoweb.csproj", "{978F47E3-BE1F-4EE2-953F-4150E6EF928D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3CD09E41-A5C0-498B-B52D-E5B47729A486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3CD09E41-A5C0-498B-B52D-E5B47729A486}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3CD09E41-A5C0-498B-B52D-E5B47729A486}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3CD09E41-A5C0-498B-B52D-E5B47729A486}.Release|Any CPU.Build.0 = Release|Any CPU
+		{978F47E3-BE1F-4EE2-953F-4150E6EF928D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{978F47E3-BE1F-4EE2-953F-4150E6EF928D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{978F47E3-BE1F-4EE2-953F-4150E6EF928D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{978F47E3-BE1F-4EE2-953F-4150E6EF928D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

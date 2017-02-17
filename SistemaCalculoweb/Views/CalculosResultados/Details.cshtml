@@ -1,0 +1,98 @@
+﻿@model SistemaCalculoweb.CalculosResultados
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CalculosResultados</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.resultado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.resultado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidadPersonas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidadPersonas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaCalculo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaCalculo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empresa.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empresa.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoActividadBase.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoActividadBase.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoInfraestructura.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoInfraestructura.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoOperacion.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoOperacion.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoServicioBrindado.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoServicioBrindado.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoTicket.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoTicket.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.nombreUsuario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.nombreUsuario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdCalculo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

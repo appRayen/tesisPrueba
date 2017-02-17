@@ -1,0 +1,87 @@
+﻿@model IEnumerable<SistemaCalculoweb.CalculosResultados>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.resultado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidadPersonas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaCalculo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empresa.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoActividadBase.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoInfraestructura.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoOperacion.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoServicioBrindado.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoTicket.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usuario.nombreUsuario)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.resultado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidadPersonas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaCalculo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Empresa.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoActividadBase.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoInfraestructura.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoOperacion.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoServicioBrindado.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoTicket.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Usuario.nombreUsuario)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdCalculo }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdCalculo }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdCalculo })
+        </td>
+    </tr>
+}
+
+</table>
