@@ -44,7 +44,7 @@ namespace SistemaCalculoweb.Controllers
             ViewBag.idTipoInfraestructura = new SelectList(db.TipoInfraestructura, "idTipoInfraesteructura", "descripcion");
             ViewBag.idTipoOperacion = new SelectList(db.TipoOperacion, "idTipoOperacion", "descripcion");
             ViewBag.idTipoServicioBrindado = new SelectList(db.TipoServicioBrindado, "idTipoServicioBrindado", "descripcion");
-            ViewBag.idTipoTicket = new SelectList(db.TipoTicket, "tipoTicket1", "descripcion");
+            ViewBag.idTipoTicket = new SelectList(db.TipoTicket, "tipoTicket", "descripcion");
             ViewBag.idUsuario = new SelectList(db.Usuario, "idTipoUsuario", "nombreUsuario");
             return View();
         }
@@ -68,7 +68,7 @@ namespace SistemaCalculoweb.Controllers
             ViewBag.idTipoInfraestructura = new SelectList(db.TipoInfraestructura, "idTipoInfraesteructura", "descripcion", calculosResultados.idTipoInfraestructura);
             ViewBag.idTipoOperacion = new SelectList(db.TipoOperacion, "idTipoOperacion", "descripcion", calculosResultados.idTipoOperacion);
             ViewBag.idTipoServicioBrindado = new SelectList(db.TipoServicioBrindado, "idTipoServicioBrindado", "descripcion", calculosResultados.idTipoServicioBrindado);
-            ViewBag.idTipoTicket = new SelectList(db.TipoTicket, "tipoTicket1", "descripcion", calculosResultados.idTipoTicket);
+            ViewBag.idTipoTicket = new SelectList(db.TipoTicket, "tipoTicket", "descripcion", calculosResultados.idTipoTicket);
             ViewBag.idUsuario = new SelectList(db.Usuario, "idTipoUsuario", "nombreUsuario", calculosResultados.idUsuario);
             return View(calculosResultados);
         }
@@ -90,7 +90,7 @@ namespace SistemaCalculoweb.Controllers
             ViewBag.idTipoInfraestructura = new SelectList(db.TipoInfraestructura, "idTipoInfraesteructura", "descripcion", calculosResultados.idTipoInfraestructura);
             ViewBag.idTipoOperacion = new SelectList(db.TipoOperacion, "idTipoOperacion", "descripcion", calculosResultados.idTipoOperacion);
             ViewBag.idTipoServicioBrindado = new SelectList(db.TipoServicioBrindado, "idTipoServicioBrindado", "descripcion", calculosResultados.idTipoServicioBrindado);
-            ViewBag.idTipoTicket = new SelectList(db.TipoTicket, "tipoTicket1", "descripcion", calculosResultados.idTipoTicket);
+            ViewBag.idTipoTicket = new SelectList(db.TipoTicket, "tipoTicket", "descripcion", calculosResultados.idTipoTicket);
             ViewBag.idUsuario = new SelectList(db.Usuario, "idTipoUsuario", "nombreUsuario", calculosResultados.idUsuario);
             return View(calculosResultados);
         }
@@ -113,7 +113,7 @@ namespace SistemaCalculoweb.Controllers
             ViewBag.idTipoInfraestructura = new SelectList(db.TipoInfraestructura, "idTipoInfraesteructura", "descripcion", calculosResultados.idTipoInfraestructura);
             ViewBag.idTipoOperacion = new SelectList(db.TipoOperacion, "idTipoOperacion", "descripcion", calculosResultados.idTipoOperacion);
             ViewBag.idTipoServicioBrindado = new SelectList(db.TipoServicioBrindado, "idTipoServicioBrindado", "descripcion", calculosResultados.idTipoServicioBrindado);
-            ViewBag.idTipoTicket = new SelectList(db.TipoTicket, "tipoTicket1", "descripcion", calculosResultados.idTipoTicket);
+            ViewBag.idTipoTicket = new SelectList(db.TipoTicket, "tipoTicket", "descripcion", calculosResultados.idTipoTicket);
             ViewBag.idUsuario = new SelectList(db.Usuario, "idTipoUsuario", "nombreUsuario", calculosResultados.idUsuario);
             return View(calculosResultados);
         }

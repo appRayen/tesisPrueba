@@ -164,7 +164,7 @@ GO
 
 -- Creating table 'TipoTicket'
 CREATE TABLE [dbo].[TipoTicket] (
-    [tipoTicket1] int IDENTITY(1,1) NOT NULL,
+    [tipoTicket] int IDENTITY(1,1) NOT NULL,
     [descripcion] varchar(500)  NULL,
     [estado] smallint  NULL
 );
@@ -236,10 +236,10 @@ ADD CONSTRAINT [PK_TipoServicioBrindado]
     PRIMARY KEY CLUSTERED ([idTipoServicioBrindado] ASC);
 GO
 
--- Creating primary key on [tipoTicket1] in table 'TipoTicket'
+-- Creating primary key on [tipoTicket] in table 'TipoTicket'
 ALTER TABLE [dbo].[TipoTicket]
 ADD CONSTRAINT [PK_TipoTicket]
-    PRIMARY KEY CLUSTERED ([tipoTicket1] ASC);
+    PRIMARY KEY CLUSTERED ([tipoTicket] ASC);
 GO
 
 -- Creating primary key on [idTipoUsuario] in table 'Usuario'
@@ -332,7 +332,7 @@ ALTER TABLE [dbo].[CalculosResultados]
 ADD CONSTRAINT [FK_CalculosResultados_TipoTicket]
     FOREIGN KEY ([idTipoTicket])
     REFERENCES [dbo].[TipoTicket]
-        ([tipoTicket1])
+        ([tipoTicket])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 

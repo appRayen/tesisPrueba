@@ -47,7 +47,7 @@ namespace SistemaCalculoweb.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "tipoTicket1,descripcion,estado")] TipoTicket tipoTicket)
+        public ActionResult Create([Bind(Include = "tipoTicket,descripcion,estado")] TipoTicket tipoTicket)
         {
             if (ModelState.IsValid)
             {
@@ -79,11 +79,11 @@ namespace SistemaCalculoweb.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "tipoTicket1,descripcion,estado")] TipoTicket tipoTicket)
+        public ActionResult Edit([Bind(Include = "tipoTicket,descripcion,estado")] TipoTicket tipoTicket)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tipoTicket).State = EntityState.Modified;
+                db.Entry(tipoTicket).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

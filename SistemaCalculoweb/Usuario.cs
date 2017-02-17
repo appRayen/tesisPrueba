@@ -31,5 +31,7 @@ namespace SistemaCalculoweb
     
         public virtual ICollection<CalculosResultados> CalculosResultados { get; set; }
         public virtual Perfil Perfil { get; set; }
+        public virtual Usuario Usuario1 { get; set; }
+        public virtual Usuario Usuario2 { get; set; }
     }
 }

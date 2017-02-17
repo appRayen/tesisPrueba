@@ -19,7 +19,7 @@ namespace SistemaCalculoweb
             this.CalculosResultados = new HashSet<CalculosResultados>();
         }
     
-        public int tipoTicket1 { get; set; }
+        public int tipoTicket { get; set; }
         public string descripcion { get; set; }
         public Nullable<short> estado { get; set; }
     

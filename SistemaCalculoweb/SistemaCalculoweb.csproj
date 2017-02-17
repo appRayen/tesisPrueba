@@ -338,7 +338,7 @@
     <Content Include="Views\TipoActividadBases\Delete.cshtml" />
     <Content Include="Views\TipoActividadBases\Details.cshtml" />
     <Content Include="Views\TipoActividadBases\Edit.cshtml" />
-    <Content Include="Views\TipoActividadBases\IndexTipoActividadBase.cshtml" />
+    <Content Include="Views\TipoActividadBases\Index.cshtml" />
     <Content Include="Views\CalculosResultados\Create.cshtml" />
     <Content Include="Views\CalculosResultados\Delete.cshtml" />
     <Content Include="Views\CalculosResultados\Details.cshtml" />

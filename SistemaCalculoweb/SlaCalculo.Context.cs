@@ -33,7 +33,7 @@ namespace SistemaCalculoweb
         public DbSet<TipoInfraestructura> TipoInfraestructura { get; set; }
         public DbSet<TipoOperacion> TipoOperacion { get; set; }
         public DbSet<TipoServicioBrindado> TipoServicioBrindado { get; set; }
-        public DbSet<TipoTicket> TipoTicket { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<TipoTicket> TipoTicket { get; set; }
     }
 }

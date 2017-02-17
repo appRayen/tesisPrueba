@@ -13,16 +13,17 @@
         <EntityTypeShape EntityType="CalculoModel.TipoInfraestructura" Width="1.5" PointX="3.75" PointY="14.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CalculoModel.TipoOperacion" Width="1.5" PointX="3.75" PointY="16.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CalculoModel.TipoServicioBrindado" Width="1.5" PointX="5.625" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CalculoModel.TipoTicket" Width="1.5" PointX="3.75" PointY="19.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CalculoModel.Usuario" Width="1.5" PointX="3.75" PointY="21.875" IsExpanded="true" />
         <AssociationConnector Association="CalculoModel.FK_CalculosResultados_Empresa" ManuallyRouted="false" />
         <AssociationConnector Association="CalculoModel.FK_CalculosResultados_TipoActividadBase" ManuallyRouted="false" />
         <AssociationConnector Association="CalculoModel.FK_CalculosResultados_TipoInfraestructura" ManuallyRouted="false" />
         <AssociationConnector Association="CalculoModel.FK_CalculosResultados_TipoOperacion" ManuallyRouted="false" />
         <AssociationConnector Association="CalculoModel.FK_CalculosResultados_TipoServicioBrindado" ManuallyRouted="false" />
-        <AssociationConnector Association="CalculoModel.FK_CalculosResultados_TipoTicket" ManuallyRouted="false" />
         <AssociationConnector Association="CalculoModel.FK_CalculosResultados_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="CalculoModel.FK_Usuario_Perfil" ManuallyRouted="false" />
+        <AssociationConnector Association="CalculoModel.FK_Usuario_Usuario" />
+        <EntityTypeShape EntityType="CalculoModel.TipoTicket" Width="1.5" PointX="3.375" PointY="0.875" />
+        <AssociationConnector Association="CalculoModel.FK_CalculosResultados_TipoTicket" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

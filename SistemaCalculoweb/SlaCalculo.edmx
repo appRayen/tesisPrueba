@@ -4,248 +4,264 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CalculoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="CalculoModelStoreContainer">
-    <EntitySet Name="CalculosResultados" EntityType="CalculoModel.Store.CalculosResultados" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Empresa" EntityType="CalculoModel.Store.Empresa" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Perfil" EntityType="CalculoModel.Store.Perfil" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="sysdiagrams" EntityType="CalculoModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TipoActividadBase" EntityType="CalculoModel.Store.TipoActividadBase" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TipoInfraestructura" EntityType="CalculoModel.Store.TipoInfraestructura" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TipoOperacion" EntityType="CalculoModel.Store.TipoOperacion" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TipoServicioBrindado" EntityType="CalculoModel.Store.TipoServicioBrindado" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TipoTicket" EntityType="CalculoModel.Store.TipoTicket" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Usuario" EntityType="CalculoModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_CalculosResultados_Empresa" Association="CalculoModel.Store.FK_CalculosResultados_Empresa">
-      <End Role="Empresa" EntitySet="Empresa" />
-      <End Role="CalculosResultados" EntitySet="CalculosResultados" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CalculosResultados_TipoActividadBase" Association="CalculoModel.Store.FK_CalculosResultados_TipoActividadBase">
-      <End Role="TipoActividadBase" EntitySet="TipoActividadBase" />
-      <End Role="CalculosResultados" EntitySet="CalculosResultados" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CalculosResultados_TipoInfraestructura" Association="CalculoModel.Store.FK_CalculosResultados_TipoInfraestructura">
-      <End Role="TipoInfraestructura" EntitySet="TipoInfraestructura" />
-      <End Role="CalculosResultados" EntitySet="CalculosResultados" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CalculosResultados_TipoOperacion" Association="CalculoModel.Store.FK_CalculosResultados_TipoOperacion">
-      <End Role="TipoOperacion" EntitySet="TipoOperacion" />
-      <End Role="CalculosResultados" EntitySet="CalculosResultados" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CalculosResultados_TipoServicioBrindado" Association="CalculoModel.Store.FK_CalculosResultados_TipoServicioBrindado">
-      <End Role="TipoServicioBrindado" EntitySet="TipoServicioBrindado" />
-      <End Role="CalculosResultados" EntitySet="CalculosResultados" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CalculosResultados_TipoTicket" Association="CalculoModel.Store.FK_CalculosResultados_TipoTicket">
-      <End Role="TipoTicket" EntitySet="TipoTicket" />
-      <End Role="CalculosResultados" EntitySet="CalculosResultados" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CalculosResultados_Usuario" Association="CalculoModel.Store.FK_CalculosResultados_Usuario">
-      <End Role="Usuario" EntitySet="Usuario" />
-      <End Role="CalculosResultados" EntitySet="CalculosResultados" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Usuario_Perfil" Association="CalculoModel.Store.FK_Usuario_Perfil">
-      <End Role="Perfil" EntitySet="Perfil" />
-      <End Role="Usuario" EntitySet="Usuario" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="CalculosResultados">
-    <Key>
-      <PropertyRef Name="IdCalculo" />
-    </Key>
-    <Property Name="IdCalculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="resultado" Type="decimal" Nullable="true" Precision="18" Scale="0" />
-    <Property Name="cantidadPersonas" Type="int" Nullable="true" />
-    <Property Name="fechaCalculo" Type="datetime" Nullable="true" />
-    <Property Name="idUsuario" Type="int" Nullable="true" />
-    <Property Name="idTipoInfraestructura" Type="int" Nullable="true" />
-    <Property Name="idTipoOperacion" Type="int" Nullable="true" />
-    <Property Name="idTipoTicket" Type="int" Nullable="true" />
-    <Property Name="idTipoServicioBrindado" Type="int" Nullable="true" />
-    <Property Name="idTipoActividadBase" Type="int" Nullable="true" />
-    <Property Name="idEmpresa" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Empresa">
-    <Key>
-      <PropertyRef Name="IdEmpresa" />
-    </Key>
-    <Property Name="IdEmpresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="varchar" Nullable="true" MaxLength="500" />
-    <Property Name="Direccion" Type="varchar" Nullable="true" MaxLength="500" />
-    <Property Name="rut" Type="nchar" Nullable="true" MaxLength="12" />
-    <Property Name="razonSocial" Type="varchar" Nullable="true" MaxLength="500" />
-    <Property Name="estado" Type="smallint" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Perfil">
-    <Key>
-      <PropertyRef Name="IdPerfil" />
-    </Key>
-    <Property Name="IdPerfil" Type="int" Nullable="false" />
-    <Property Name="Descripcion" Type="varchar" Nullable="true" MaxLength="500" />
-    <Property Name="estado" Type="smallint" Nullable="false" />
-    <Property Name="contraseña" Type="varchar(max)" Nullable="true" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" Nullable="true" />
-    <Property Name="definition" Type="varbinary(max)" Nullable="true" />
-  </EntityType>
-  <EntityType Name="TipoActividadBase">
-    <Key>
-      <PropertyRef Name="idTipoActividadBase" />
-    </Key>
-    <Property Name="idTipoActividadBase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="descripcion" Type="varchar" Nullable="true" MaxLength="500" />
-    <Property Name="estado" Type="smallint" Nullable="true" />
-  </EntityType>
-  <EntityType Name="TipoInfraestructura">
-    <Key>
-      <PropertyRef Name="idTipoInfraesteructura" />
-    </Key>
-    <Property Name="idTipoInfraesteructura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="descripcion" Type="varchar" Nullable="true" MaxLength="500" />
-    <Property Name="estado" Type="smallint" Nullable="true" />
-  </EntityType>
-  <EntityType Name="TipoOperacion">
-    <Key>
-      <PropertyRef Name="idTipoOperacion" />
-    </Key>
-    <Property Name="idTipoOperacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="descripcion" Type="varchar" Nullable="true" MaxLength="500" />
-    <Property Name="estado" Type="smallint" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TipoServicioBrindado">
-    <Key>
-      <PropertyRef Name="idTipoServicioBrindado" />
-    </Key>
-    <Property Name="idTipoServicioBrindado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="descripcion" Type="varchar(max)" Nullable="true" />
-    <Property Name="estado" Type="smallint" Nullable="true" />
-  </EntityType>
-  <EntityType Name="TipoTicket">
-    <Key>
-      <PropertyRef Name="tipoTicket1" />
-    </Key>
-    <Property Name="tipoTicket1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="descripcion" Type="varchar" Nullable="true" MaxLength="500" />
-    <Property Name="estado" Type="smallint" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Usuario">
-    <Key>
-      <PropertyRef Name="idTipoUsuario" />
-    </Key>
-    <Property Name="idTipoUsuario" Type="int" Nullable="false" />
-    <Property Name="nombreUsuario" Type="varchar(max)" Nullable="true" />
-    <Property Name="correo" Type="varchar(max)" Nullable="true" />
-    <Property Name="nombre" Type="varchar(max)" Nullable="true" />
-    <Property Name="apellidoP" Type="varchar(max)" Nullable="true" />
-    <Property Name="apellidoM" Type="varchar(max)" Nullable="true" />
-    <Property Name="rut" Type="varchar" Nullable="true" MaxLength="12" />
-    <Property Name="telefono" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="idPerfil" Type="int" Nullable="true" />
-  </EntityType>
-  <Association Name="FK_CalculosResultados_Empresa">
-    <End Role="Empresa" Type="CalculoModel.Store.Empresa" Multiplicity="0..1" />
-    <End Role="CalculosResultados" Type="CalculoModel.Store.CalculosResultados" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Empresa">
-        <PropertyRef Name="IdEmpresa" />
-      </Principal>
-      <Dependent Role="CalculosResultados">
-        <PropertyRef Name="idEmpresa" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CalculosResultados_TipoActividadBase">
-    <End Role="TipoActividadBase" Type="CalculoModel.Store.TipoActividadBase" Multiplicity="0..1" />
-    <End Role="CalculosResultados" Type="CalculoModel.Store.CalculosResultados" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoActividadBase">
-        <PropertyRef Name="idTipoActividadBase" />
-      </Principal>
-      <Dependent Role="CalculosResultados">
-        <PropertyRef Name="idTipoActividadBase" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CalculosResultados_TipoInfraestructura">
-    <End Role="TipoInfraestructura" Type="CalculoModel.Store.TipoInfraestructura" Multiplicity="0..1" />
-    <End Role="CalculosResultados" Type="CalculoModel.Store.CalculosResultados" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoInfraestructura">
-        <PropertyRef Name="idTipoInfraesteructura" />
-      </Principal>
-      <Dependent Role="CalculosResultados">
-        <PropertyRef Name="idTipoInfraestructura" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CalculosResultados_TipoOperacion">
-    <End Role="TipoOperacion" Type="CalculoModel.Store.TipoOperacion" Multiplicity="0..1" />
-    <End Role="CalculosResultados" Type="CalculoModel.Store.CalculosResultados" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoOperacion">
-        <PropertyRef Name="idTipoOperacion" />
-      </Principal>
-      <Dependent Role="CalculosResultados">
-        <PropertyRef Name="idTipoOperacion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CalculosResultados_TipoServicioBrindado">
-    <End Role="TipoServicioBrindado" Type="CalculoModel.Store.TipoServicioBrindado" Multiplicity="0..1" />
-    <End Role="CalculosResultados" Type="CalculoModel.Store.CalculosResultados" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoServicioBrindado">
-        <PropertyRef Name="idTipoServicioBrindado" />
-      </Principal>
-      <Dependent Role="CalculosResultados">
-        <PropertyRef Name="idTipoServicioBrindado" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CalculosResultados_TipoTicket">
-    <End Role="TipoTicket" Type="CalculoModel.Store.TipoTicket" Multiplicity="0..1" />
-    <End Role="CalculosResultados" Type="CalculoModel.Store.CalculosResultados" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoTicket">
-        <PropertyRef Name="tipoTicket1" />
-      </Principal>
-      <Dependent Role="CalculosResultados">
-        <PropertyRef Name="idTipoTicket" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CalculosResultados_Usuario">
-    <End Role="Usuario" Type="CalculoModel.Store.Usuario" Multiplicity="0..1" />
-    <End Role="CalculosResultados" Type="CalculoModel.Store.CalculosResultados" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="idTipoUsuario" />
-      </Principal>
-      <Dependent Role="CalculosResultados">
-        <PropertyRef Name="idUsuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Usuario_Perfil">
-    <End Role="Perfil" Type="CalculoModel.Store.Perfil" Multiplicity="0..1" />
-    <End Role="Usuario" Type="CalculoModel.Store.Usuario" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Perfil">
-        <PropertyRef Name="IdPerfil" />
-      </Principal>
-      <Dependent Role="Usuario">
-        <PropertyRef Name="idPerfil" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="CalculoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CalculosResultados">
+          <Key>
+            <PropertyRef Name="IdCalculo" />
+          </Key>
+          <Property Name="IdCalculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="resultado" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="cantidadPersonas" Type="int" />
+          <Property Name="fechaCalculo" Type="date" />
+          <Property Name="idUsuario" Type="int" />
+          <Property Name="idTipoInfraestructura" Type="int" />
+          <Property Name="idTipoOperacion" Type="int" />
+          <Property Name="idTipoTicket" Type="int" />
+          <Property Name="idTipoServicioBrindado" Type="int" />
+          <Property Name="idTipoActividadBase" Type="int" />
+          <Property Name="idEmpresa" Type="int" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="IdEmpresa" />
+          </Key>
+          <Property Name="IdEmpresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="500" />
+          <Property Name="Direccion" Type="varchar" MaxLength="500" />
+          <Property Name="rut" Type="nchar" MaxLength="12" />
+          <Property Name="razonSocial" Type="varchar" MaxLength="500" />
+          <Property Name="estado" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="IdPerfil" />
+          </Key>
+          <Property Name="IdPerfil" Type="int" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="estado" Type="smallint" Nullable="false" />
+          <Property Name="contraseña" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipoActividadBase">
+          <Key>
+            <PropertyRef Name="idTipoActividadBase" />
+          </Key>
+          <Property Name="idTipoActividadBase" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="estado" Type="smallint" />
+        </EntityType>
+        <EntityType Name="TipoInfraestructura">
+          <Key>
+            <PropertyRef Name="idTipoInfraesteructura" />
+          </Key>
+          <Property Name="idTipoInfraesteructura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="estado" Type="smallint" />
+        </EntityType>
+        <EntityType Name="TipoOperacion">
+          <Key>
+            <PropertyRef Name="idTipoOperacion" />
+          </Key>
+          <Property Name="idTipoOperacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="estado" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoServicioBrindado">
+          <Key>
+            <PropertyRef Name="idTipoServicioBrindado" />
+          </Key>
+          <Property Name="idTipoServicioBrindado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar(max)" />
+          <Property Name="estado" Type="smallint" />
+        </EntityType>
+        <EntityType Name="TipoTicket">
+          <Key>
+            <PropertyRef Name="tipoTicket" />
+          </Key>
+          <Property Name="tipoTicket" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="estado" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idTipoUsuario" />
+          </Key>
+          <Property Name="idTipoUsuario" Type="int" Nullable="false" />
+          <Property Name="nombreUsuario" Type="varchar(max)" />
+          <Property Name="correo" Type="varchar(max)" />
+          <Property Name="nombre" Type="varchar(max)" />
+          <Property Name="apellidoP" Type="varchar(max)" />
+          <Property Name="apellidoM" Type="varchar(max)" />
+          <Property Name="rut" Type="varchar" MaxLength="12" />
+          <Property Name="telefono" Type="varchar" MaxLength="50" />
+          <Property Name="idPerfil" Type="int" />
+        </EntityType>
+        <Association Name="FK_CalculosResultados_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
+          <End Role="CalculosResultados" Type="Self.CalculosResultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="IdEmpresa" />
+            </Principal>
+            <Dependent Role="CalculosResultados">
+              <PropertyRef Name="idEmpresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalculosResultados_TipoActividadBase">
+          <End Role="TipoActividadBase" Type="Self.TipoActividadBase" Multiplicity="0..1" />
+          <End Role="CalculosResultados" Type="Self.CalculosResultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoActividadBase">
+              <PropertyRef Name="idTipoActividadBase" />
+            </Principal>
+            <Dependent Role="CalculosResultados">
+              <PropertyRef Name="idTipoActividadBase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalculosResultados_TipoInfraestructura">
+          <End Role="TipoInfraestructura" Type="Self.TipoInfraestructura" Multiplicity="0..1" />
+          <End Role="CalculosResultados" Type="Self.CalculosResultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoInfraestructura">
+              <PropertyRef Name="idTipoInfraesteructura" />
+            </Principal>
+            <Dependent Role="CalculosResultados">
+              <PropertyRef Name="idTipoInfraestructura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalculosResultados_TipoOperacion">
+          <End Role="TipoOperacion" Type="Self.TipoOperacion" Multiplicity="0..1" />
+          <End Role="CalculosResultados" Type="Self.CalculosResultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoOperacion">
+              <PropertyRef Name="idTipoOperacion" />
+            </Principal>
+            <Dependent Role="CalculosResultados">
+              <PropertyRef Name="idTipoOperacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalculosResultados_TipoServicioBrindado">
+          <End Role="TipoServicioBrindado" Type="Self.TipoServicioBrindado" Multiplicity="0..1" />
+          <End Role="CalculosResultados" Type="Self.CalculosResultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoServicioBrindado">
+              <PropertyRef Name="idTipoServicioBrindado" />
+            </Principal>
+            <Dependent Role="CalculosResultados">
+              <PropertyRef Name="idTipoServicioBrindado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalculosResultados_TipoTicket">
+          <End Role="TipoTicket" Type="Self.TipoTicket" Multiplicity="0..1" />
+          <End Role="CalculosResultados" Type="Self.CalculosResultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTicket">
+              <PropertyRef Name="tipoTicket" />
+            </Principal>
+            <Dependent Role="CalculosResultados">
+              <PropertyRef Name="idTipoTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalculosResultados_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="CalculosResultados" Type="Self.CalculosResultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idTipoUsuario" />
+            </Principal>
+            <Dependent Role="CalculosResultados">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Perfil">
+          <End Role="Perfil" Type="Self.Perfil" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Perfil">
+              <PropertyRef Name="IdPerfil" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idPerfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Usuario1" Type="Self.Usuario" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idTipoUsuario" />
+            </Principal>
+            <Dependent Role="Usuario1">
+              <PropertyRef Name="idTipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CalculoModelStoreContainer">
+          <EntitySet Name="CalculosResultados" EntityType="Self.CalculosResultados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoActividadBase" EntityType="Self.TipoActividadBase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoInfraestructura" EntityType="Self.TipoInfraestructura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoOperacion" EntityType="Self.TipoOperacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoServicioBrindado" EntityType="Self.TipoServicioBrindado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoTicket" EntityType="Self.TipoTicket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CalculosResultados_Empresa" Association="Self.FK_CalculosResultados_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="CalculosResultados" EntitySet="CalculosResultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalculosResultados_TipoActividadBase" Association="Self.FK_CalculosResultados_TipoActividadBase">
+            <End Role="TipoActividadBase" EntitySet="TipoActividadBase" />
+            <End Role="CalculosResultados" EntitySet="CalculosResultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalculosResultados_TipoInfraestructura" Association="Self.FK_CalculosResultados_TipoInfraestructura">
+            <End Role="TipoInfraestructura" EntitySet="TipoInfraestructura" />
+            <End Role="CalculosResultados" EntitySet="CalculosResultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalculosResultados_TipoOperacion" Association="Self.FK_CalculosResultados_TipoOperacion">
+            <End Role="TipoOperacion" EntitySet="TipoOperacion" />
+            <End Role="CalculosResultados" EntitySet="CalculosResultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalculosResultados_TipoServicioBrindado" Association="Self.FK_CalculosResultados_TipoServicioBrindado">
+            <End Role="TipoServicioBrindado" EntitySet="TipoServicioBrindado" />
+            <End Role="CalculosResultados" EntitySet="CalculosResultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalculosResultados_TipoTicket" Association="Self.FK_CalculosResultados_TipoTicket">
+            <End Role="TipoTicket" EntitySet="TipoTicket" />
+            <End Role="CalculosResultados" EntitySet="CalculosResultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalculosResultados_Usuario" Association="Self.FK_CalculosResultados_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="CalculosResultados" EntitySet="CalculosResultados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Perfil" Association="Self.FK_Usuario_Perfil">
+            <End Role="Perfil" EntitySet="Perfil" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Usuario" Association="Self.FK_Usuario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario1" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CalculoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -269,8 +285,8 @@
           <NavigationProperty Name="TipoInfraestructura" Relationship="Self.FK_CalculosResultados_TipoInfraestructura" FromRole="CalculosResultados" ToRole="TipoInfraestructura" />
           <NavigationProperty Name="TipoOperacion" Relationship="Self.FK_CalculosResultados_TipoOperacion" FromRole="CalculosResultados" ToRole="TipoOperacion" />
           <NavigationProperty Name="TipoServicioBrindado" Relationship="Self.FK_CalculosResultados_TipoServicioBrindado" FromRole="CalculosResultados" ToRole="TipoServicioBrindado" />
-          <NavigationProperty Name="TipoTicket" Relationship="Self.FK_CalculosResultados_TipoTicket" FromRole="CalculosResultados" ToRole="TipoTicket" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_CalculosResultados_Usuario" FromRole="CalculosResultados" ToRole="Usuario" />
+          <NavigationProperty Name="TipoTicket" Relationship="CalculoModel.FK_CalculosResultados_TipoTicket" FromRole="CalculosResultados" ToRole="TipoTicket" />
         </EntityType>
         <EntityType Name="Empresa">
           <Key>
@@ -340,15 +356,6 @@
           <Property Name="estado" Type="Int16" />
           <NavigationProperty Name="CalculosResultados" Relationship="Self.FK_CalculosResultados_TipoServicioBrindado" FromRole="TipoServicioBrindado" ToRole="CalculosResultados" />
         </EntityType>
-        <EntityType Name="TipoTicket">
-          <Key>
-            <PropertyRef Name="tipoTicket1" />
-          </Key>
-          <Property Name="tipoTicket1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="estado" Type="Int16" />
-          <NavigationProperty Name="CalculosResultados" Relationship="Self.FK_CalculosResultados_TipoTicket" FromRole="TipoTicket" ToRole="CalculosResultados" />
-        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="idTipoUsuario" />
@@ -364,6 +371,8 @@
           <Property Name="idPerfil" Type="Int32" />
           <NavigationProperty Name="CalculosResultados" Relationship="Self.FK_CalculosResultados_Usuario" FromRole="Usuario" ToRole="CalculosResultados" />
           <NavigationProperty Name="Perfil" Relationship="Self.FK_Usuario_Perfil" FromRole="Usuario" ToRole="Perfil" />
+          <NavigationProperty Name="Usuario1" Relationship="CalculoModel.FK_Usuario_Usuario" FromRole="Usuario" ToRole="Usuario1" />
+          <NavigationProperty Name="Usuario2" Relationship="CalculoModel.FK_Usuario_Usuario" FromRole="Usuario1" ToRole="Usuario" />
         </EntityType>
         <Association Name="FK_CalculosResultados_Empresa">
           <End Role="Empresa" Type="Self.Empresa" Multiplicity="0..1" />
@@ -425,18 +434,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CalculosResultados_TipoTicket">
-          <End Role="TipoTicket" Type="Self.TipoTicket" Multiplicity="0..1" />
-          <End Role="CalculosResultados" Type="Self.CalculosResultados" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoTicket">
-              <PropertyRef Name="tipoTicket1" />
-            </Principal>
-            <Dependent Role="CalculosResultados">
-              <PropertyRef Name="idTipoTicket" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CalculosResultados_Usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
           <End Role="CalculosResultados" Type="Self.CalculosResultados" Multiplicity="*" />
@@ -470,7 +467,6 @@
           <EntitySet Name="TipoInfraestructura" EntityType="Self.TipoInfraestructura" />
           <EntitySet Name="TipoOperacion" EntityType="Self.TipoOperacion" />
           <EntitySet Name="TipoServicioBrindado" EntityType="Self.TipoServicioBrindado" />
-          <EntitySet Name="TipoTicket" EntityType="Self.TipoTicket" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <AssociationSet Name="FK_CalculosResultados_Empresa" Association="Self.FK_CalculosResultados_Empresa">
             <End Role="Empresa" EntitySet="Empresa" />
@@ -492,10 +488,6 @@
             <End Role="TipoServicioBrindado" EntitySet="TipoServicioBrindado" />
             <End Role="CalculosResultados" EntitySet="CalculosResultados" />
           </AssociationSet>
-          <AssociationSet Name="FK_CalculosResultados_TipoTicket" Association="Self.FK_CalculosResultados_TipoTicket">
-            <End Role="TipoTicket" EntitySet="TipoTicket" />
-            <End Role="CalculosResultados" EntitySet="CalculosResultados" />
-          </AssociationSet>
           <AssociationSet Name="FK_CalculosResultados_Usuario" Association="Self.FK_CalculosResultados_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="CalculosResultados" EntitySet="CalculosResultados" />
@@ -504,7 +496,49 @@
             <End Role="Perfil" EntitySet="Perfil" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Usuario" Association="CalculoModel.FK_Usuario_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Usuario1" EntitySet="Usuario" />
+          </AssociationSet>
+          <EntitySet Name="TipoTicket" EntityType="CalculoModel.TipoTicket" />
+          <AssociationSet Name="FK_CalculosResultados_TipoTicket" Association="CalculoModel.FK_CalculosResultados_TipoTicket">
+            <End Role="TipoTicket" EntitySet="TipoTicket" />
+            <End Role="CalculosResultados" EntitySet="CalculosResultados" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Usuario_Usuario">
+          <End Type="CalculoModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="CalculoModel.Usuario" Role="Usuario1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idTipoUsuario" />
+            </Principal>
+            <Dependent Role="Usuario1">
+              <PropertyRef Name="idTipoUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TipoTicket">
+          <Key>
+            <PropertyRef Name="tipoTicket" />
+          </Key>
+          <Property Name="tipoTicket" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int16" />
+          <NavigationProperty Name="CalculosResultados" Relationship="CalculoModel.FK_CalculosResultados_TipoTicket" FromRole="TipoTicket" ToRole="CalculosResultados" />
+        </EntityType>
+        <Association Name="FK_CalculosResultados_TipoTicket">
+          <End Type="CalculoModel.TipoTicket" Role="TipoTicket" Multiplicity="0..1" />
+          <End Type="CalculoModel.CalculosResultados" Role="CalculosResultados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTicket">
+              <PropertyRef Name="tipoTicket" />
+            </Principal>
+            <Dependent Role="CalculosResultados">
+              <PropertyRef Name="idTipoTicket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -597,15 +631,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TipoTicket">
-      <EntityTypeMapping TypeName="IsTypeOf(CalculoModel.TipoTicket)">
-        <MappingFragment StoreEntitySet="TipoTicket">
-          <ScalarProperty Name="tipoTicket1" ColumnName="tipoTicket1" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="estado" ColumnName="estado" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Usuario">
       <EntityTypeMapping TypeName="IsTypeOf(CalculoModel.Usuario)">
         <MappingFragment StoreEntitySet="Usuario">
@@ -621,6 +646,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="TipoTicket">
+            <EntityTypeMapping TypeName="CalculoModel.TipoTicket">
+              <MappingFragment StoreEntitySet="TipoTicket">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="tipoTicket" ColumnName="tipoTicket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

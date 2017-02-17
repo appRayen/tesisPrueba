@@ -31,7 +31,7 @@ namespace SistemaCalculoweb
         public virtual TipoInfraestructura TipoInfraestructura { get; set; }
         public virtual TipoOperacion TipoOperacion { get; set; }
         public virtual TipoServicioBrindado TipoServicioBrindado { get; set; }
-        public virtual TipoTicket TipoTicket { get; set; }
         public virtual Usuario Usuario { get; set; }
+        public virtual TipoTicket TipoTicket { get; set; }
     }
 }
