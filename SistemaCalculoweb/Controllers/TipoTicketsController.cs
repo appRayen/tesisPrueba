@@ -15,6 +15,7 @@ namespace SistemaCalculoweb.Controllers
         private CalculoEntities db = new CalculoEntities();
 
         // GET: TipoTickets
+        [Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             return View(db.TipoTicket.ToList());
@@ -82,7 +83,7 @@ namespace SistemaCalculoweb.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tipoTicket).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(tipoTicket).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

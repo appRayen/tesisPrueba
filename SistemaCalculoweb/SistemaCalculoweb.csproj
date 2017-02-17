@@ -319,11 +319,6 @@
     <Content Include="SlaCalculo.edmx.diagram">
       <DependentUpon>SlaCalculo.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\TipoTickets\Create.cshtml" />
-    <Content Include="Views\TipoTickets\Delete.cshtml" />
-    <Content Include="Views\TipoTickets\Details.cshtml" />
-    <Content Include="Views\TipoTickets\Edit.cshtml" />
-    <Content Include="Views\TipoTickets\Index.cshtml" />
     <Content Include="Views\TipoServicioBrindadoes\Create.cshtml" />
     <Content Include="Views\TipoServicioBrindadoes\Delete.cshtml" />
     <Content Include="Views\TipoServicioBrindadoes\Details.cshtml" />
@@ -343,7 +338,7 @@
     <Content Include="Views\TipoActividadBases\Delete.cshtml" />
     <Content Include="Views\TipoActividadBases\Details.cshtml" />
     <Content Include="Views\TipoActividadBases\Edit.cshtml" />
-    <Content Include="Views\TipoActividadBases\Index.cshtml" />
+    <Content Include="Views\TipoActividadBases\IndexTipoActividadBase.cshtml" />
     <Content Include="Views\CalculosResultados\Create.cshtml" />
     <Content Include="Views\CalculosResultados\Delete.cshtml" />
     <Content Include="Views\CalculosResultados\Details.cshtml" />
@@ -364,6 +359,12 @@
     <Content Include="Views\Usuarios\Details.cshtml" />
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Home\IndexTipoActividadBase.cshtml" />
+    <Content Include="Views\TipoTickets\Create.cshtml" />
+    <Content Include="Views\TipoTickets\Delete.cshtml" />
+    <Content Include="Views\TipoTickets\Details.cshtml" />
+    <Content Include="Views\TipoTickets\Edit.cshtml" />
+    <Content Include="Views\TipoTickets\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
