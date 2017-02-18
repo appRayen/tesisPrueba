@@ -4,22 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Calculo</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @(Html.ActionLink("Nuevo", "Create", new { id = 1 }, new { @class = "btn btn-primary" }))
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.resultado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cantidadPersonas)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fechaCalculo)
-        </th>
+        
         <th>
             @Html.DisplayNameFor(model => model.Empresa.Nombre)
         </th>
@@ -41,20 +33,21 @@
         <th>
             @Html.DisplayNameFor(model => model.Usuario.nombreUsuario)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.resultado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidadPersonas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechaCalculo)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.resultado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cantidadPersonas)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechaCalculo)
-        </td>
+        
         <td>
             @Html.DisplayFor(modelItem => item.Empresa.Nombre)
         </td>
@@ -77,9 +70,18 @@
             @Html.DisplayFor(modelItem => item.Usuario.nombreUsuario)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdCalculo }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdCalculo }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdCalculo })
+            @Html.DisplayFor(modelItem => item.resultado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidadPersonas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechaCalculo, "{0:dd/MM/yyyy}")
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id = item.IdCalculo }, new { @class = "glyphicon glyphicon-pencil" }) |
+            @Html.ActionLink(" ", "Delete", new { id = item.IdCalculo }, new { @class = "glyphicon glyphicon-remove" })
+      
         </td>
     </tr>
 }
