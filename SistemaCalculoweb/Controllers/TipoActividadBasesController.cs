@@ -15,14 +15,14 @@ namespace SistemaCalculoweb.Controllers
         private CalculoEntities db = new CalculoEntities();
 
         // GET: TipoActividadBases
-        [Authorize(Roles = "Administrador")]
+        ////[Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             return View(db.TipoActividadBase.ToList());
         }
 
         // GET: TipoActividadBases/Details/5
-        [Authorize(Roles = "Administrador")]
+       // //[Authorize(Roles = "Administrador")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,7 +38,7 @@ namespace SistemaCalculoweb.Controllers
         }
 
         // GET: TipoActividadBases/Create
-        [Authorize(Roles = "Administrador")]
+       // //[Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
             return View();
@@ -62,7 +62,7 @@ namespace SistemaCalculoweb.Controllers
         }
 
         // GET: TipoActividadBases/Edit/5
-        [Authorize(Roles = "Administrador")]
+       // //[Authorize(Roles = "Administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -94,7 +94,7 @@ namespace SistemaCalculoweb.Controllers
         }
 
         // GET: TipoActividadBases/Delete/5
-        [Authorize(Roles = "Administrador")]
+      //  //[Authorize(Roles = "Administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

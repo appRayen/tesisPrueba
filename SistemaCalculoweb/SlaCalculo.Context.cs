@@ -35,5 +35,8 @@ namespace SistemaCalculoweb
         public DbSet<TipoServicioBrindado> TipoServicioBrindado { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
         public DbSet<TipoTicket> TipoTicket { get; set; }
+        public DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public DbSet<AspNetUsers> AspNetUsers { get; set; }
     }
 }

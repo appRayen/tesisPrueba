@@ -15,7 +15,7 @@ namespace SistemaCalculoweb.Controllers
         private CalculoEntities db = new CalculoEntities();
 
         // GET: TipoServicioBrindadoes
-        [Authorize(Roles = "Administrador")]
+        //[Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             return View(db.TipoServicioBrindado.ToList());

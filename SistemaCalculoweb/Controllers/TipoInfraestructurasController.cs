@@ -15,7 +15,7 @@ namespace SistemaCalculoweb.Controllers
         private CalculoEntities db = new CalculoEntities();
 
         // GET: TipoInfraestructuras
-        [Authorize(Roles = "Administrador")]
+        //[Authorize(Roles = "Administrador")]
         public ActionResult Index()
         {
             return View(db.TipoInfraestructura.ToList());

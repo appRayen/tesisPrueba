@@ -10,108 +10,107 @@ using SistemaCalculoweb;
 
 namespace SistemaCalculoweb.Controllers
 {
-    public class TipoTicketsController : Controller
+    public class AspNetUsersController : Controller
     {
         private CalculoEntities db = new CalculoEntities();
 
-        // GET: TipoTickets
-        //[Authorize(Roles = "Administrador")]
+        // GET: AspNetUsers
         public ActionResult Index()
         {
-            return View(db.TipoTicket.ToList());
+            return View(db.AspNetUsers.ToList());
         }
 
-        // GET: TipoTickets/Details/5
-        public ActionResult Details(int? id)
+        // GET: AspNetUsers/Details/5
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoTicket tipoTicket = db.TipoTicket.Find(id);
-            if (tipoTicket == null)
+            AspNetUsers aspNetUsers = db.AspNetUsers.Find(id);
+            if (aspNetUsers == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoTicket);
+            return View(aspNetUsers);
         }
 
-        // GET: TipoTickets/Create
+        // GET: AspNetUsers/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: TipoTickets/Create
+        // POST: AspNetUsers/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "tipoTicket,descripcion,estado")] TipoTicket tipoTicket)
+        public ActionResult Create([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AspNetUsers aspNetUsers)
         {
             if (ModelState.IsValid)
             {
-                db.TipoTicket.Add(tipoTicket);
+                db.AspNetUsers.Add(aspNetUsers);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(tipoTicket);
+            return View(aspNetUsers);
         }
 
-        // GET: TipoTickets/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: AspNetUsers/Edit/5
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoTicket tipoTicket = db.TipoTicket.Find(id);
-            if (tipoTicket == null)
+            AspNetUsers aspNetUsers = db.AspNetUsers.Find(id);
+            if (aspNetUsers == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoTicket);
+            return View(aspNetUsers);
         }
 
-        // POST: TipoTickets/Edit/5
+        // POST: AspNetUsers/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "tipoTicket,descripcion,estado")] TipoTicket tipoTicket)
+        public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AspNetUsers aspNetUsers)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tipoTicket).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(aspNetUsers).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tipoTicket);
+            return View(aspNetUsers);
         }
 
-        // GET: TipoTickets/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: AspNetUsers/Delete/5
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoTicket tipoTicket = db.TipoTicket.Find(id);
-            if (tipoTicket == null)
+            AspNetUsers aspNetUsers = db.AspNetUsers.Find(id);
+            if (aspNetUsers == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoTicket);
+            return View(aspNetUsers);
         }
 
-        // POST: TipoTickets/Delete/5
+        // POST: AspNetUsers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            TipoTicket tipoTicket = db.TipoTicket.Find(id);
-            db.TipoTicket.Remove(tipoTicket);
+            AspNetUsers aspNetUsers = db.AspNetUsers.Find(id);
+            db.AspNetUsers.Remove(aspNetUsers);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

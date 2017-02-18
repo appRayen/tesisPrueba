@@ -24,7 +24,12 @@
         <AssociationConnector Association="CalculoModel.FK_Usuario_Usuario" />
         <EntityTypeShape EntityType="CalculoModel.TipoTicket" Width="1.5" PointX="3.375" PointY="0.875" />
         <AssociationConnector Association="CalculoModel.FK_CalculosResultados_TipoTicket" />
-      </Diagram>
+        <EntityTypeShape EntityType="CalculoModel.AspNetRoles" Width="1.5" PointX="6.375" PointY="9.125" />
+        <EntityTypeShape EntityType="CalculoModel.AspNetUserLogins" Width="1.5" PointX="10.875" PointY="9" />
+        <EntityTypeShape EntityType="CalculoModel.AspNetUsers" Width="1.5" PointX="8.625" PointY="8" />
+        <AssociationConnector Association="CalculoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CalculoModel.AspNetUserRoles" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
