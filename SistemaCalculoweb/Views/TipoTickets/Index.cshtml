@@ -7,16 +7,14 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @(Html.ActionLink("Nuevo", "Create", new { id = 1 }, new { @class = "btn btn-primary" }))
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.descripcion)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estado)
-        </th>
+        
         <th></th>
     </tr>
 
@@ -25,13 +23,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.descripcion)
         </td>
+       
         <td>
-            @Html.DisplayFor(modelItem => item.estado)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.tipoTicket }) |
-            @Html.ActionLink("Details", "Details", new { id=item.tipoTicket }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.tipoTicket })
+            @Html.ActionLink(" ", "Edit", new { id = item.tipoTicket }, new { @class = "glyphicon glyphicon-pencil" }) |
+            @Html.ActionLink(" ", "Delete", new { id = item.tipoTicket }, new { @class = "glyphicon glyphicon-remove" })
         </td>
     </tr>
 }

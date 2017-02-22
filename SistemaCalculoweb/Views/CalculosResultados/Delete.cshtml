@@ -4,15 +4,14 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>Eliminar</h2>
 
-<h3>Are you sure you want to delete this?</h3>
 <div>
     <h4>CalculosResultados</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.resultado)
+            @Html.LabelFor(model => model.resultado,"Resultado")
         </dt>
 
         <dd>
@@ -20,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.cantidadPersonas)
+            @Html.LabelFor(model => model.cantidadPersonas,"Cantidad de Personas")
         </dt>
 
         <dd>
@@ -28,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.fechaCalculo)
+            @Html.LabelFor(model => model.fechaCalculo,"Fecha de Calculo")
         </dt>
 
         <dd>
@@ -36,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Empresa.Nombre)
+            @Html.LabelFor(model => model.Empresa.Nombre,"Empresa")
         </dt>
 
         <dd>
@@ -44,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TipoActividadBase.descripcion)
+            @Html.LabelFor(model => model.TipoActividadBase.descripcion,"Tipo Actividad Base")
         </dt>
 
         <dd>
@@ -52,7 +51,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TipoInfraestructura.descripcion)
+            @Html.LabelFor(model => model.TipoInfraestructura.descripcion,"Tipo Infraestructura")
         </dt>
 
         <dd>
@@ -60,7 +59,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TipoOperacion.descripcion)
+            @Html.LabelFor(model => model.TipoOperacion.descripcion,"Tipo Operación")
         </dt>
 
         <dd>
@@ -68,7 +67,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TipoServicioBrindado.descripcion)
+            @Html.LabelFor(model => model.TipoServicioBrindado.descripcion,"Tipo Servicio Brindado")
         </dt>
 
         <dd>
@@ -76,7 +75,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TipoTicket.descripcion)
+            @Html.LabelFor(model => model.TipoTicket.descripcion,"Tipo Ticket")
         </dt>
 
         <dd>
@@ -84,7 +83,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Usuario.nombreUsuario)
+            @Html.LabelFor(model => model.Usuario.nombreUsuario,"Usuario")
         </dt>
 
         <dd>
@@ -97,8 +96,9 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Eliminar" class="btn btn-danger btn-sm" />
+            <br />
+            @(Html.ActionLink(" ", "Index", new { id = 1 }, new { @class = "glyphicon glyphicon-arrow-left btn-sm" }))
         </div>
     }
 </div>

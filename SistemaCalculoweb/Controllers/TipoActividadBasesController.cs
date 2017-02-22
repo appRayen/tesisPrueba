@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -119,7 +120,8 @@ namespace SistemaCalculoweb.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [Display(Name = "Descripción")]
+        public string descripcion { get; set; }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
