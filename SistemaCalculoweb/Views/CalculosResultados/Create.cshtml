@@ -95,15 +95,16 @@
                 @Html.ValidationMessageFor(model => model.resultado, "", new { @class = "text-danger" })
             </div>
         </div>
-        <script type="text/javascript">
-    $(function () { // will trigger when the document is ready
-       $('.datepicker').datepicker(); //Initialise any date pickers
-    });
-        </script>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Calculo" class="btn btn-primary btn-sm" />
+             
                 <input type="submit" value="Guardar" class="btn btn-primary btn-sm" />
+               @*@Html.ActionLink("Calcular Resultado", "ProcesoCalculo", "CalculosResultados", new { calculosResultados = @Html.LabelFor(model => model.) }, new { @class = "btn btn-primary btn-sm" })*@
+                <input type="button" id="send" value="Send" />
+               
+
+               
+               
             </div>
         </div>
     </div>
@@ -115,4 +116,13 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(function() {
+        $("#send").click(function() {
+            var idv = $("#idTipoActividadBase").val();
+            $.get('@Url.Action("ProcesoCalculo", "CalculosResultados")', { id: idv });
+            return false;
+        });
+    });
+</script>
 }

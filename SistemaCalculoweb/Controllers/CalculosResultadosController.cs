@@ -70,10 +70,12 @@ namespace SistemaCalculoweb.Controllers
             ViewBag.idTipoServicioBrindado = new SelectList(db.TipoServicioBrindado, "idTipoServicioBrindado", "descripcion", calculosResultados.idTipoServicioBrindado);
             ViewBag.idTipoTicket = new SelectList(db.TipoTicket, "tipoTicket", "descripcion", calculosResultados.idTipoTicket);
             ViewBag.idUsuario = new SelectList(db.Usuario, "idTipoUsuario", "nombreUsuario", calculosResultados.idUsuario);
-            return View(calculosResultados);
+            ViewBag.resultado = 33;
+             return View(calculosResultados);
         }
 
         // GET: CalculosResultados/Edit/5
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -95,6 +97,25 @@ namespace SistemaCalculoweb.Controllers
             return View(calculosResultados);
         }
 
+        public ActionResult ProcesoCalculo(string idtipoAct,string idtipoInfr,
+        {
+            CalculosResultados calculosResultados = new CalculosResultados();
+            calculosResultados.resultado = 33;
+            calculosResultados.idTipoActividadBase = 2;
+            calculosResultados.idTipoInfraestructura = 2;
+            calculosResultados.idTipoOperacion = 1;
+            calculosResultados.idTipoServicioBrindado = 1;
+            calculosResultados.idTipoTicket = 2;
+            ViewBag.idEmpresa = new SelectList(db.Empresa, "IdEmpresa", "Nombre", calculosResultados.idEmpresa);
+            ViewBag.idTipoActividadBase = new SelectList(db.TipoActividadBase, "idTipoActividadBase", "descripcion", calculosResultados.idTipoActividadBase);
+            ViewBag.idTipoInfraestructura = new SelectList(db.TipoInfraestructura, "idTipoInfraesteructura", "descripcion", calculosResultados.idTipoInfraestructura);
+            ViewBag.idTipoOperacion = new SelectList(db.TipoOperacion, "idTipoOperacion", "descripcion", calculosResultados.idTipoOperacion);
+            ViewBag.idTipoServicioBrindado = new SelectList(db.TipoServicioBrindado, "idTipoServicioBrindado", "descripcion", calculosResultados.idTipoServicioBrindado);
+            ViewBag.idTipoTicket = new SelectList(db.TipoTicket, "tipoTicket", "descripcion", calculosResultados.idTipoTicket);
+            ViewBag.idUsuario = new SelectList(db.Usuario, "idTipoUsuario", "nombreUsuario", calculosResultados.idUsuario);
+
+            return View("Create", calculosResultados);
+        }
         // POST: CalculosResultados/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
