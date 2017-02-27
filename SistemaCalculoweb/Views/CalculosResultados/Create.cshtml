@@ -83,6 +83,7 @@
             @Html.LabelFor(model => model.fechaCalculo,"Fecha de Calculo", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.fechaCalculo, new { @class = "form-control datepicker" } )
+
                 @Html.ValidationMessageFor(model => model.fechaCalculo, "", new { @class = "text-danger" })
             </div>
             <div class="form-group input-group-sm">
@@ -99,8 +100,9 @@
             <div class="col-md-offset-2 col-md-10">
              
                 <input type="submit" value="Guardar" class="btn btn-primary btn-sm" />
-               @*@Html.ActionLink("Calcular Resultado", "ProcesoCalculo", "CalculosResultados", new { calculosResultados = @Html.LabelFor(model => model.) }, new { @class = "btn btn-primary btn-sm" })*@
-                <input type="button" id="send" value="Send" />
+
+                <input type="button" id="send" value="Calculo"  class="btn btn-primary"/>
+                @Html.ActionLink("Imprimir", "GeneratePDF", "CalculosResultados", new { @class = "btn btn-primary btn-sm" })
                
 
                
@@ -118,9 +120,14 @@
     @Scripts.Render("~/bundles/jqueryval")
 <script type="text/javascript">
     $(function() {
-        $("#send").click(function() {
-            var idv = $("#idTipoActividadBase").val();
-            $.get('@Url.Action("ProcesoCalculo", "CalculosResultados")', { id: idv });
+        $("#send").click(function () {
+            var idTipoActividadB = $("#idTipoActividadBase").val();
+            var TipoInf = $("#idTipoInfraestructura").val();
+            var TipoO = $("#idTipoOperacion").val();
+            var TipoServicio = $("#idTipoServicioBrindado").val();
+            var TipoT = $("#idTipoTicket").val();
+            var catPer = $("#cantidadPersonas").val();
+            $.get('@Url.Action("ProcesoCalculo", "CalculosResultados")', { idTipoActividadBase: idTipoActividadB, TipoInfraestructura: TipoInf, TipoOperacion: TipoO, TipoServicioBrindado: TipoServicio, TipoTicket: TipoT, cantP:catPer });
             return false;
         });
     });

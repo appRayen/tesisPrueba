@@ -96,16 +96,20 @@ namespace SistemaCalculoweb.Controllers
             ViewBag.idUsuario = new SelectList(db.Usuario, "idTipoUsuario", "nombreUsuario", calculosResultados.idUsuario);
             return View(calculosResultados);
         }
-
-        public ActionResult ProcesoCalculo(string idtipoAct,string idtipoInfr,
+        public ActionResult GeneratePDF()
         {
+            return new Rotativa.MVC.ActionAsPdf("Create");
+        }
+        public ActionResult ProcesoCalculo(string idTipoActividadBase, string TipoInfraestructura, string TipoOperacion, string TipoServicioBrindado, string TipoTicket,string cantP)
+        {
+            Random rm = new Random();
             CalculosResultados calculosResultados = new CalculosResultados();
-            calculosResultados.resultado = 33;
-            calculosResultados.idTipoActividadBase = 2;
-            calculosResultados.idTipoInfraestructura = 2;
-            calculosResultados.idTipoOperacion = 1;
-            calculosResultados.idTipoServicioBrindado = 1;
-            calculosResultados.idTipoTicket = 2;
+            calculosResultados.resultado = rm.Next(1,100);
+            calculosResultados.idTipoActividadBase = int.Parse(idTipoActividadBase.ToString());
+            calculosResultados.idTipoInfraestructura = int.Parse(TipoInfraestructura.ToString());
+            calculosResultados.idTipoOperacion = int.Parse(TipoOperacion.ToString()); 
+            calculosResultados.idTipoServicioBrindado = int.Parse(TipoServicioBrindado.ToString());
+            calculosResultados.idTipoTicket = int.Parse(TipoTicket.ToString()); 
             ViewBag.idEmpresa = new SelectList(db.Empresa, "IdEmpresa", "Nombre", calculosResultados.idEmpresa);
             ViewBag.idTipoActividadBase = new SelectList(db.TipoActividadBase, "idTipoActividadBase", "descripcion", calculosResultados.idTipoActividadBase);
             ViewBag.idTipoInfraestructura = new SelectList(db.TipoInfraestructura, "idTipoInfraesteructura", "descripcion", calculosResultados.idTipoInfraestructura);
@@ -113,7 +117,8 @@ namespace SistemaCalculoweb.Controllers
             ViewBag.idTipoServicioBrindado = new SelectList(db.TipoServicioBrindado, "idTipoServicioBrindado", "descripcion", calculosResultados.idTipoServicioBrindado);
             ViewBag.idTipoTicket = new SelectList(db.TipoTicket, "tipoTicket", "descripcion", calculosResultados.idTipoTicket);
             ViewBag.idUsuario = new SelectList(db.Usuario, "idTipoUsuario", "nombreUsuario", calculosResultados.idUsuario);
-
+            ViewBag.resultado = calculosResultados.resultado;
+            ViewData["Resultado"] = calculosResultados.resultado;
             return View("Create", calculosResultados);
         }
         // POST: CalculosResultados/Edit/5
