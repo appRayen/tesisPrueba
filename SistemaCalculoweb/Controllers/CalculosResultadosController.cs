@@ -100,26 +100,27 @@ namespace SistemaCalculoweb.Controllers
         {
             return new Rotativa.MVC.ActionAsPdf("Create");
         }
-        public ActionResult ProcesoCalculo(string idTipoActividadBase, string TipoInfraestructura, string TipoOperacion, string TipoServicioBrindado, string TipoTicket,string cantP)
+        public string ProcesoCalculo(string idTipoActividadBase, string TipoInfraestructura, string TipoOperacion, string TipoServicioBrindado, string TipoTicket,string cantP)
         {
             Random rm = new Random();
-            CalculosResultados calculosResultados = new CalculosResultados();
-            calculosResultados.resultado = rm.Next(1,100);
-            calculosResultados.idTipoActividadBase = int.Parse(idTipoActividadBase.ToString());
-            calculosResultados.idTipoInfraestructura = int.Parse(TipoInfraestructura.ToString());
-            calculosResultados.idTipoOperacion = int.Parse(TipoOperacion.ToString()); 
-            calculosResultados.idTipoServicioBrindado = int.Parse(TipoServicioBrindado.ToString());
-            calculosResultados.idTipoTicket = int.Parse(TipoTicket.ToString()); 
-            ViewBag.idEmpresa = new SelectList(db.Empresa, "IdEmpresa", "Nombre", calculosResultados.idEmpresa);
-            ViewBag.idTipoActividadBase = new SelectList(db.TipoActividadBase, "idTipoActividadBase", "descripcion", calculosResultados.idTipoActividadBase);
-            ViewBag.idTipoInfraestructura = new SelectList(db.TipoInfraestructura, "idTipoInfraesteructura", "descripcion", calculosResultados.idTipoInfraestructura);
-            ViewBag.idTipoOperacion = new SelectList(db.TipoOperacion, "idTipoOperacion", "descripcion", calculosResultados.idTipoOperacion);
-            ViewBag.idTipoServicioBrindado = new SelectList(db.TipoServicioBrindado, "idTipoServicioBrindado", "descripcion", calculosResultados.idTipoServicioBrindado);
-            ViewBag.idTipoTicket = new SelectList(db.TipoTicket, "tipoTicket", "descripcion", calculosResultados.idTipoTicket);
-            ViewBag.idUsuario = new SelectList(db.Usuario, "idTipoUsuario", "nombreUsuario", calculosResultados.idUsuario);
-            ViewBag.resultado = calculosResultados.resultado;
-            ViewData["Resultado"] = calculosResultados.resultado;
-            return View("Create", calculosResultados);
+            //CalculosResultados calculosResultados = new CalculosResultados();
+            //calculosResultados.resultado = rm.Next(1,100);
+            //calculosResultados.idTipoActividadBase = int.Parse(idTipoActividadBase.ToString());
+            //calculosResultados.idTipoInfraestructura = int.Parse(TipoInfraestructura.ToString());
+            //calculosResultados.idTipoOperacion = int.Parse(TipoOperacion.ToString()); 
+            //calculosResultados.idTipoServicioBrindado = int.Parse(TipoServicioBrindado.ToString());
+            //calculosResultados.idTipoTicket = int.Parse(TipoTicket.ToString()); 
+            //ViewBag.idEmpresa = new SelectList(db.Empresa, "IdEmpresa", "Nombre", calculosResultados.idEmpresa);
+            //ViewBag.idTipoActividadBase = new SelectList(db.TipoActividadBase, "idTipoActividadBase", "descripcion", calculosResultados.idTipoActividadBase);
+            //ViewBag.idTipoInfraestructura = new SelectList(db.TipoInfraestructura, "idTipoInfraesteructura", "descripcion", calculosResultados.idTipoInfraestructura);
+            //ViewBag.idTipoOperacion = new SelectList(db.TipoOperacion, "idTipoOperacion", "descripcion", calculosResultados.idTipoOperacion);
+            //ViewBag.idTipoServicioBrindado = new SelectList(db.TipoServicioBrindado, "idTipoServicioBrindado", "descripcion", calculosResultados.idTipoServicioBrindado);
+            //ViewBag.idTipoTicket = new SelectList(db.TipoTicket, "tipoTicket", "descripcion", calculosResultados.idTipoTicket);
+            //ViewBag.idUsuario = new SelectList(db.Usuario, "idTipoUsuario", "nombreUsuario", calculosResultados.idUsuario);
+            //ViewBag.resultado = calculosResultados.resultado;
+           // ViewData["Resultado"] = calculosResultados.resultado;
+           return rm.Next(1, 100).ToString();
+            //return PartialView("Create", calculosResultados);
         }
         // POST: CalculosResultados/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
