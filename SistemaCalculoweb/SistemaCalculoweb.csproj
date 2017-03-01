@@ -191,10 +191,10 @@
     <Compile Include="AspNetRoles.cs">
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
-    <Compile Include="AspNetUserLogins.cs">
+    <Compile Include="AspNetUsers.cs">
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
-    <Compile Include="AspNetUsers.cs">
+    <Compile Include="CalculoHoras.cs">
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
     <Compile Include="CalculosResultados.cs">
@@ -202,17 +202,21 @@
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
+    <Compile Include="Controllers\CalculoHorasController.cs" />
     <Compile Include="Controllers\CalculosResultadosController.cs" />
     <Compile Include="Controllers\EmpresasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PerfilsController.cs" />
+    <Compile Include="Controllers\ServiciosController.cs" />
+    <Compile Include="Controllers\Servicio_DescripcionController.cs" />
     <Compile Include="Controllers\TipoActividadBasesController.cs" />
     <Compile Include="Controllers\TipoInfraestructurasController.cs" />
     <Compile Include="Controllers\TipoOperacionsController.cs" />
     <Compile Include="Controllers\TipoServicioBrindadoesController.cs" />
     <Compile Include="Controllers\TipoTicketsController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Controllers\Volumen_TicketController.cs" />
     <Compile Include="Empresa.cs">
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
@@ -226,6 +230,12 @@
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios.cs">
+      <DependentUpon>SlaCalculo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Servicio_Descripcion.cs">
+      <DependentUpon>SlaCalculo.tt</DependentUpon>
+    </Compile>
     <Compile Include="SlaCalculo.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -242,9 +252,6 @@
       <DependentUpon>SlaCalculo.edmx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>SlaCalculo.tt</DependentUpon>
-    </Compile>
     <Compile Include="TipoActividadBase.cs">
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
@@ -261,6 +268,9 @@
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuario.cs">
+      <DependentUpon>SlaCalculo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Volumen_Ticket.cs">
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -389,6 +399,26 @@
     <Content Include="Views\AspNetUsers\Details.cshtml" />
     <Content Include="Views\AspNetUsers\Edit.cshtml" />
     <Content Include="Views\AspNetUsers\Index.cshtml" />
+    <Content Include="Views\Volumen_Ticket\Create.cshtml" />
+    <Content Include="Views\Volumen_Ticket\Delete.cshtml" />
+    <Content Include="Views\Volumen_Ticket\Details.cshtml" />
+    <Content Include="Views\Volumen_Ticket\Edit.cshtml" />
+    <Content Include="Views\Volumen_Ticket\Index.cshtml" />
+    <Content Include="Views\Servicios\Create.cshtml" />
+    <Content Include="Views\Servicios\Delete.cshtml" />
+    <Content Include="Views\Servicios\Details.cshtml" />
+    <Content Include="Views\Servicios\Edit.cshtml" />
+    <Content Include="Views\Servicios\Index.cshtml" />
+    <Content Include="Views\Servicio_Descripcion\Create.cshtml" />
+    <Content Include="Views\Servicio_Descripcion\Delete.cshtml" />
+    <Content Include="Views\Servicio_Descripcion\Details.cshtml" />
+    <Content Include="Views\Servicio_Descripcion\Edit.cshtml" />
+    <Content Include="Views\Servicio_Descripcion\Index.cshtml" />
+    <Content Include="Views\CalculoHoras\Create.cshtml" />
+    <Content Include="Views\CalculoHoras\Delete.cshtml" />
+    <Content Include="Views\CalculoHoras\Details.cshtml" />
+    <Content Include="Views\CalculoHoras\Edit.cshtml" />
+    <Content Include="Views\CalculoHoras\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

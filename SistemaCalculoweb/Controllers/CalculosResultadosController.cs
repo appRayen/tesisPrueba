@@ -17,7 +17,7 @@ namespace SistemaCalculoweb.Controllers
         // GET: CalculosResultados
         public ActionResult Index()
         {
-            var calculosResultados = db.CalculosResultados.Include(c => c.Empresa).Include(c => c.TipoActividadBase).Include(c => c.TipoInfraestructura).Include(c => c.TipoOperacion).Include(c => c.TipoServicioBrindado).Include(c => c.TipoTicket).Include(c => c.Usuario);
+            var calculosResultados = db.CalculosResultados.Include(c => c.Empresa).Include(c => c.TipoActividadBase).Include(c => c.TipoInfraestructura).Include(c => c.TipoOperacion).Include(c => c.TipoServicioBrindado).Include(c => c.TipoTicket);
             return View(calculosResultados.ToList());
         }
 

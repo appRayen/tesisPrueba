@@ -12,17 +12,16 @@ namespace SistemaCalculoweb
     using System;
     using System.Collections.Generic;
     
-    public partial class TipoActividadBase
+    public partial class Servicios
     {
-        public TipoActividadBase()
+        public Servicios()
         {
-            this.CalculosResultados = new HashSet<CalculosResultados>();
+            this.Servicio_Descripcion = new HashSet<Servicio_Descripcion>();
         }
     
-        public int idTipoActividadBase { get; set; }
-        public string descripcion { get; set; }
-        public Nullable<short> estado { get; set; }
+        public int Id { get; set; }
+        public string Decripcion { get; set; }
     
-        public virtual ICollection<CalculosResultados> CalculosResultados { get; set; }
+        public virtual ICollection<Servicio_Descripcion> Servicio_Descripcion { get; set; }
     }
 }

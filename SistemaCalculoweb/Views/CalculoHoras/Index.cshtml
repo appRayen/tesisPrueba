@@ -1,0 +1,63 @@
+﻿@model IEnumerable<SistemaCalculoweb.CalculoHoras>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidad_Servicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cantidad_Volumen_Ticket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Resultado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Servicio_Descripcion.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoOperacion.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Volumen_Ticket.Sugerencia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad_Servicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad_Volumen_Ticket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Resultado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Servicio_Descripcion.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoOperacion.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Volumen_Ticket.Sugerencia)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

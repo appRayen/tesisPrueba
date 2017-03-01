@@ -12,17 +12,17 @@ namespace SistemaCalculoweb
     using System;
     using System.Collections.Generic;
     
-    public partial class TipoActividadBase
+    public partial class Volumen_Ticket
     {
-        public TipoActividadBase()
+        public Volumen_Ticket()
         {
-            this.CalculosResultados = new HashSet<CalculosResultados>();
+            this.CalculoHoras = new HashSet<CalculoHoras>();
         }
     
-        public int idTipoActividadBase { get; set; }
-        public string descripcion { get; set; }
-        public Nullable<short> estado { get; set; }
+        public int Id { get; set; }
+        public string Sugerencia { get; set; }
+        public string Descripcion { get; set; }
     
-        public virtual ICollection<CalculosResultados> CalculosResultados { get; set; }
+        public virtual ICollection<CalculoHoras> CalculoHoras { get; set; }
     }
 }
