@@ -20,9 +20,13 @@ namespace SistemaCalculoweb.Controllers
             var calculoHoras = db.CalculoHoras.Include(c => c.Servicio_Descripcion).Include(c => c.TipoOperacion).Include(c => c.Volumen_Ticket);
             return View(calculoHoras.ToList());
         }
-
-        // GET: CalculoHoras/Details/5
-        public ActionResult Details(int? id)
+        public JsonResult LlenarServicio(int id)
+        {
+            ViewBag.Servicios = new SelectList(db.Servicio_Descripcion.Where(i => i.Id_Servicio == id).ToList(), "id", "Descripcion");
+            return Json(new SelectList(db.Servicio_Descripcion.Where(i => i.Id_Servicio == id).ToList(), "id", "Descripcion"));
+        }
+    // GET: CalculoHoras/Details/5
+    public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -42,6 +46,7 @@ namespace SistemaCalculoweb.Controllers
             ViewBag.Id_Servicio_Descripcion = new SelectList(db.Servicio_Descripcion, "Id", "Descripcion");
             ViewBag.Id_Tipo_Operacion = new SelectList(db.TipoOperacion, "idTipoOperacion", "descripcion");
             ViewBag.Id_Volumen_Ticket = new SelectList(db.Volumen_Ticket, "Id", "Sugerencia");
+            ViewBag.Id_servicios = new SelectList(db.Servicios, "Id", "decripcion");
             return View();
         }
 

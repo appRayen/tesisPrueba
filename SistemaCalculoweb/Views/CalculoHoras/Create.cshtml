@@ -1,5 +1,5 @@
 ﻿@model SistemaCalculoweb.CalculoHoras
-@using MVC.CascadeDropDown
+
 @{
     ViewBag.Title = "Create";
 }
@@ -14,15 +14,23 @@
     <div class="form-horizontal">
         <h4>CalculoHoras</h4>
         <hr />
+
+        <div class="form-group">
+        <label class="control-label col-md-2">Servicios</label>
+            <div class="col-md-10">
+                @Html.DropDownList("Id_servicios", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-
-          
             @Html.LabelFor(model => model.Id_Servicio_Descripcion, "Id_Servicio_Descripcion", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Id_Servicio_Descripcion", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Id_Servicio_Descripcion, "", new { @class = "text-danger" })
-            </div>
+                <select name="Id_Servicio_Descripcion1" id="Id_Servicio_Descripcion1" class="form-control">
+                    <option value="">Seleccione uno...</option>
+                </select> 
+                    @Html.ValidationMessageFor(model => model.Id_Servicio_Descripcion, "", new { @class = "text-danger" })
+</div>
         </div>
 
         <div class="form-group">
@@ -79,4 +87,70 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @*<script type="text/javascript">
+        $(function () {
+            $("#Id_servicios").change(function () {
+                var valor
+                valor = $('#Id_servicios option:selected').val();
+                console.log(valor);
+                $.getJSON('@Url.Action("LlenarServicio", "CalculoHoras")', { id: valor }).success(function (Data) {
+                    console.log(data);
+                })
+            })
+
+
+        })
+
+    </script>*@
+<script type="text/javascript">
+        $(document).ready(function () {
+            $("#Id_servicios").change(function () {
+                var valor
+                valor = $('#Id_servicios option:selected').val();
+                console.log(valor);
+                $("#Id_Servicio_Descripcion1").empty();
+                $.ajax({
+                    type: 'POST',
+                    //Llamado al metodo en el controlador
+                    url: '@Url.Action("LlenarServicio", "CalculoHoras")',
+                    dataType: 'json',
+                    //Parametros que se envian al metodo del controlador
+                    data: { id: valor },
+                    //En caso de resultado exitoso
+                    success: function (Data) {
+                        if (Data.length == 0) {
+                            $("#Id_Servicio_Descripcion1").append('<option value=""></option>');
+                        }
+                        else {
+                            //Se agrega el elemento vacio para poder desplegar que seleccione una opcion
+                            $("#Id_Servicio_Descripcion1").append('<option value=""></option>');
+                            $.each(Data, function (i, Data) {
+                                var $option = $('<option>');
+                                $option.val(Data.Value);
+                                $option.html(Data.Text);
+                                //console.log(Data.Text);
+                                $('#Id_Servicio_Descripcion1').append($option);
+                            });
+                            $.each(Data, function (i, Data) {
+                                var $option = $('<option>');
+                                $option.val(Data.Value);
+                                $option.html(Data.Text);
+                                //console.log(Data.Text);
+                                $('#Id_Servicio_Descripcion').append($option);
+                            });
+                            //console.log(Data);
+                        }
+                        //Recargar el plugin para que tenga la funcionalidad del componente
+                       // $("#Id_Servicio_Descripcion").select2({ placeholder: "Select One State", width: "20%" });
+                    },
+                    //Mensaje de error en caso de fallo
+                    error: function (ex) {
+                        alert('Failed to retrieve states.' + ex);
+                    }
+                });
+                return false;
+            })
+            
+        });
+</script>
 }
