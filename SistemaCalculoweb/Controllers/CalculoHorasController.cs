@@ -25,6 +25,11 @@ namespace SistemaCalculoweb.Controllers
             ViewBag.Servicios = new SelectList(db.Servicio_Descripcion.Where(i => i.Id_Servicio == id).ToList(), "id", "Descripcion");
             return Json(new SelectList(db.Servicio_Descripcion.Where(i => i.Id_Servicio == id).ToList(), "id", "Descripcion"));
         }
+        public int ProcesoCalculo(int id)
+        {
+            Random rd = new Random();
+            return rd.Next(1, 100);
+        }
     // GET: CalculoHoras/Details/5
     public ActionResult Details(int? id)
         {

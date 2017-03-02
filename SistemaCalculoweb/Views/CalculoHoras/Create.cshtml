@@ -12,69 +12,110 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>CalculoHoras</h4>
+        <h4>Calculo Horas</h4>
         <hr />
+        <table>
+            <tr>
+                <td class="col-md-4">
+                        <label>Servicios</label>
+                    </td>
+                <td class="col-md-4">
+                    @Html.DropDownList("Id_servicios", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+                <td class="col-md-2">
+                    <label> Descripcion de Servicio</label>
+                   </td>
+                <td class="col-md-2">
+                            <select name="Id_Servicio_Descripcion1" id="Id_Servicio_Descripcion1" class="form-control">
+                                <option value="">Seleccione uno...</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.Id_Servicio_Descripcion, "", new { @class = "text-danger" })
+                </td>
+
+                <td class="col-md-2">
+                    <label>Cantidad</label>
+                      </td>
+                <td class="col-md-2">
+                            @Html.EditorFor(model => model.cantidad_Servicio, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.cantidad_Servicio, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-2"> 
+                        <label>Volumen Ticket</label>
+                  </td>
+                       <td class="col-md-4">
+                            @Html.DropDownList("Id_Volumen_Ticket", null, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Id_Volumen_Ticket, "", new { @class = "text-danger" })
+                </td>
+                <td class="col-md-2">
+                    <label>Cantidad</label>
+                    </td>
+                <td class="col-md-2">
+                            @Html.EditorFor(model => model.Cantidad_Volumen_Ticket, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Cantidad_Volumen_Ticket, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-2">
+                   <label>Tipo Operación</label>
+                </td>
+                <td class="col-md-2">
+                    @Html.DropDownList("Id_Tipo_Operacion", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Id_Tipo_Operacion, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-2">
+                    <label>Resultado</label>
+                 </td>
+                 <td class="col-md-2">
+                            @Html.EditorFor(model => model.Resultado, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Resultado, "", new { @class = "text-danger" })
+                </td>
+                <td class="col-md-2">
+                    <input type="button" id="send" value="Calculo" class="btn btn-primary btn-sm" />
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-offset-4">
+                    <input type="button" id="agregar" value="Agregar" class="btn btn-primary btn-sm" />
+                </td>
+            </tr>
+        </table>
+        <table id="tResultado">
+            <tr>
+                <td class="col-md-2">
+                    Tipo Servicio
+                </td>
+                <td class="col-md-2">
+                    Detalla Servicio
+                </td>
+                <td class="col-md-2">
+                    Cantidad
+                </td>
+                <td class="col-md-2">
+                    Volumen Ticket
+                </td>
+                <td class="col-md-2">
+                    Cantidad
+                </td>
+                <td class="col-md-2">
+                    Tipo de Operación
+                </td>
+                <td class="col-md-2">
+                    Resultado
+                </td>
+            </tr>
+        </table>
 
         <div class="form-group">
-        <label class="control-label col-md-2">Servicios</label>
-            <div class="col-md-10">
-                @Html.DropDownList("Id_servicios", null, htmlAttributes: new { @class = "form-control" })
-            </div>
-        </div>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id_Servicio_Descripcion, "Id_Servicio_Descripcion", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Id_Servicio_Descripcion", null, htmlAttributes: new { @class = "form-control" })
-                <select name="Id_Servicio_Descripcion1" id="Id_Servicio_Descripcion1" class="form-control">
-                    <option value="">Seleccione uno...</option>
-                </select> 
-                    @Html.ValidationMessageFor(model => model.Id_Servicio_Descripcion, "", new { @class = "text-danger" })
-</div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.cantidad_Servicio, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.cantidad_Servicio, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.cantidad_Servicio, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id_Tipo_Operacion, "Id_Tipo_Operacion", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Id_Tipo_Operacion", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Id_Tipo_Operacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Id_Volumen_Ticket, "Id_Volumen_Ticket", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Id_Volumen_Ticket", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Id_Volumen_Ticket, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Cantidad_Volumen_Ticket, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Cantidad_Volumen_Ticket, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Cantidad_Volumen_Ticket, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Resultado, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Resultado, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Resultado, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-2 col-md-4">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
@@ -87,21 +128,45 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    @*<script type="text/javascript">
-        $(function () {
-            $("#Id_servicios").change(function () {
-                var valor
-                valor = $('#Id_servicios option:selected').val();
-                console.log(valor);
-                $.getJSON('@Url.Action("LlenarServicio", "CalculoHoras")', { id: valor }).success(function (Data) {
-                    console.log(data);
-                })
-            })
+<script type="text/javascript">
+    $("#agregar").click(function () {
 
-
-        })
-
-    </script>*@
+        //var f = $("#Id_Servicio_Descripcion1 option:selected").text();
+        //console.log(f);
+        var nuevaFila = "<tr>";
+        nuevaFila += "<td class='col-md-2'>" + $("#Id_servicios option:selected").text(); + "</td>";
+        nuevaFila += "<td class='col-md-2'>" + $("#Id_Servicio_Descripcion1 option:selected").text(); + "</td>";
+        nuevaFila += "<td class='col-md-2'>" + $("#cantidad_Servicio").val(); + "</td>";
+            nuevaFila += "<td class='col-md-2'>" + $("#Id_Volumen_Ticket option:selected").text(); + "</td>";
+            nuevaFila += "<td class='col-md-2'>" + $("#Cantidad_Volumen_Ticket").val(); + "</td>";
+            nuevaFila += "<td class='col-md-2'>" + $("#Id_Tipo_Operacion option:selected").text(); + "</td>";
+            nuevaFila += "<td class='col-md-2'>" + $("#Resultado").val(); + "</td>";
+        nuevaFila += "</tr>";  
+        $("#tResultado").append(nuevaFila);
+    });
+    </script>
+<script type="text/javascript">
+    $(function() {
+        $("#send").click(function () {
+            //var idTipoActividadB = $("#idTipoActividadBase").val();
+            //var TipoInf = $("#idTipoInfraestructura").val();
+            //var TipoO = $("#idTipoOperacion").val();
+            //var TipoServicio = $("#idTipoServicioBrindado").val();
+            //var TipoT = $("#idTipoTicket").val();
+            //var catPer = $("#cantidadPersonas").val();
+            $.get('@Url.Action("ProcesoCalculo", "CalculosResultados")',
+                //{ idTipoActividadBase: idTipoActividadB, TipoInfraestructura: TipoInf, TipoOperacion: TipoO, TipoServicioBrindado: TipoServicio, TipoTicket: TipoT, cantP: catPer }
+                {id:1}
+               ).success(function (data) {
+                   var s = data;
+                  // alert(s);
+                   //alert(data);
+                   $("#Resultado").val(data);
+                });
+            return false;
+        });
+    });
+</script>
 <script type="text/javascript">
         $(document).ready(function () {
             $("#Id_servicios").change(function () {
