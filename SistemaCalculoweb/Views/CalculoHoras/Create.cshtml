@@ -17,10 +17,10 @@
         <table>
             <tr>
                 <td class="col-md-4">
-                        <label>Servicios</label>
+                        <label>Servicio</label>
                     </td>
                 <td class="col-md-4">
-                    @Html.DropDownList("Id_servicios", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("Id_servicios", null,"Seleccione Opción", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 </td>
             </tr>
@@ -28,11 +28,36 @@
             </tr>
             <tr>
                 <td class="col-md-2">
-                    <label> Descripcion de Servicio</label>
+                    <label>Tipo Operación</label>
+                </td>
+                <td class="col-md-2">
+                    @Html.DropDownList("Id_Tipo_Operacion", null, "Seleccione Opción", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Id_Tipo_Operacion, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-2">
+                    <label>Volumen Ticket</label>
+                </td>
+                <td class="col-md-4">
+                    @Html.DropDownList("Id_Volumen_Ticket", null, "Seleccione Opción", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Id_Volumen_Ticket, "", new { @class = "text-danger" })
+                </td>
+                <td class="col-md-2">
+                    <label>Cantidad</label>
+                </td>
+                <td class="col-md-2">
+                    @Html.EditorFor(model => model.Cantidad_Volumen_Ticket, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Cantidad_Volumen_Ticket, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-2">
+                    <label>Dispocitivo</label>
                    </td>
                 <td class="col-md-2">
                             <select name="Id_Servicio_Descripcion1" id="Id_Servicio_Descripcion1" class="form-control">
-                                <option value="">Seleccione uno...</option>
+                                <option value="">Seleccione Opción</option>
                             </select>
                             @Html.ValidationMessageFor(model => model.Id_Servicio_Descripcion, "", new { @class = "text-danger" })
                 </td>
@@ -46,31 +71,6 @@
                 </td>
             </tr>
             <tr>
-                <td class="col-md-2"> 
-                        <label>Volumen Ticket</label>
-                  </td>
-                       <td class="col-md-4">
-                            @Html.DropDownList("Id_Volumen_Ticket", null, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Id_Volumen_Ticket, "", new { @class = "text-danger" })
-                </td>
-                <td class="col-md-2">
-                    <label>Cantidad</label>
-                    </td>
-                <td class="col-md-2">
-                            @Html.EditorFor(model => model.Cantidad_Volumen_Ticket, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Cantidad_Volumen_Ticket, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-2">
-                   <label>Tipo Operación</label>
-                </td>
-                <td class="col-md-2">
-                    @Html.DropDownList("Id_Tipo_Operacion", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Id_Tipo_Operacion, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
                 <td class="col-md-2">
                     <label>Resultado</label>
                  </td>
@@ -79,16 +79,16 @@
                             @Html.ValidationMessageFor(model => model.Resultado, "", new { @class = "text-danger" })
                 </td>
                 <td class="col-md-2">
-                    <input type="button" id="send" value="Calculo" class="btn btn-primary btn-sm" />
+                    <input type="button" id="send" value="Calculo" class="btn btn-info btn-sm" />
                 </td>
             </tr>
             <tr>
                 <td class="col-md-offset-4">
-                    <input type="button" id="agregar" value="Agregar" class="btn btn-primary btn-sm" />
+                    <input type="button" id="agregar" value="Agregar" class="btn btn-success btn-sm center-block" />
                 </td>
             </tr>
         </table>
-        <table id="tResultado">
+        <table id="tResultado" class="table-striped">
             <tr>
                 <td class="col-md-2">
                     Tipo Servicio
@@ -111,13 +111,33 @@
                 <td class="col-md-2">
                     Resultado
                 </td>
+                <td class="col-md-2">
+                    Quitar
+                </td>
             </tr>
         </table>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-4">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Advertencia</h4>
+                </div>
+                <div class="modal-body">
+                    <p>El Dato que decea agregar ya se encuentra en lista.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+
         </div>
     </div>
 }
@@ -128,21 +148,58 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-<script type="text/javascript">
+    <script type="text/javascript">
+        $(function () {
+            $(document).on('click', '.borrar', function (event) {
+                event.preventDefault();
+                $(this).closest('tr').remove();
+            });
+        });
+    </script>
+<script type="text/javascript">  
+    function delete_user(row) {
+        row.closest('tr').remove();
+    }
     $("#agregar").click(function () {
+        //validamos que no se repita ante sde agregar
+        var id_servicio;
+        var descripcion_servcio;
+        id_servicio = $("#Id_servicios option:selected").text;
+        descripcion_servcio = $("#Id_Servicio_Descripcion1 option:selected").text();
+        //recorremos la rabla
+        var table = $("tResultado tbody");
+        var ser;
+        var des;
+        var repetido=0;
+            $('#tResultado tr').each(function () {
 
-        //var f = $("#Id_Servicio_Descripcion1 option:selected").text();
-        //console.log(f);
-        var nuevaFila = "<tr>";
-        nuevaFila += "<td class='col-md-2'>" + $("#Id_servicios option:selected").text(); + "</td>";
-        nuevaFila += "<td class='col-md-2'>" + $("#Id_Servicio_Descripcion1 option:selected").text(); + "</td>";
-        nuevaFila += "<td class='col-md-2'>" + $("#cantidad_Servicio").val(); + "</td>";
-            nuevaFila += "<td class='col-md-2'>" + $("#Id_Volumen_Ticket option:selected").text(); + "</td>";
-            nuevaFila += "<td class='col-md-2'>" + $("#Cantidad_Volumen_Ticket").val(); + "</td>";
-            nuevaFila += "<td class='col-md-2'>" + $("#Id_Tipo_Operacion option:selected").text(); + "</td>";
-            nuevaFila += "<td class='col-md-2'>" + $("#Resultado").val(); + "</td>";
-        nuevaFila += "</tr>";  
-        $("#tResultado").append(nuevaFila);
+                ser = $(this).find("td").eq(0).html();
+                des = $(this).find("td").eq(1).html();
+                if (ser == $("#Id_servicios option:selected").text() && des == $("#Id_Servicio_Descripcion1 option:selected").text())
+                {
+                    repetido = 1;
+                }
+            });
+            if (repetido != 1)
+            {
+                var nuevaFila = "<tr>";
+                nuevaFila += "<td class='col-md-2'>" + $("#Id_servicios option:selected").text(); + "</td>";
+                nuevaFila += "<td class='col-md-2'>" + $("#Id_Servicio_Descripcion1 option:selected").text(); + "</td>";
+                nuevaFila += "<td class='col-md-2'>" + $("#cantidad_Servicio").val(); + "</td>";
+                nuevaFila += "<td class='col-md-2'>" + $("#Id_Volumen_Ticket option:selected").text(); + "</td>";
+                nuevaFila += "<td class='col-md-2'>" + $("#Cantidad_Volumen_Ticket").val(); + "</td>";
+                nuevaFila += "<td class='col-md-2'>" + $("#Id_Tipo_Operacion option:selected").text(); + "</td>";
+                nuevaFila += "<td class='col-md-2'>" + $("#Resultado").val(); + "</td>";
+                nuevaFila += "<td class='col-md-2'><input type='button' class='glyphicon glyphicon-remove' value='borrar' onclick ='delete_user($(this))' /></td>";
+                nuevaFila += "</tr>";
+                $("#tResultado").append(nuevaFila);
+            }
+            else
+            {
+                $("#myModal").modal("show");
+              
+            }
+   
     });
     </script>
 <script type="text/javascript">
@@ -184,11 +241,11 @@
                     //En caso de resultado exitoso
                     success: function (Data) {
                         if (Data.length == 0) {
-                            $("#Id_Servicio_Descripcion1").append('<option value=""></option>');
+                            $("#Id_Servicio_Descripcion1").append('<option value="Seleccione Opción"></option>');
                         }
                         else {
                             //Se agrega el elemento vacio para poder desplegar que seleccione una opcion
-                            $("#Id_Servicio_Descripcion1").append('<option value=""></option>');
+                            $("#Id_Servicio_Descripcion1").append('<option value="">Seleccione Opción</option>');
                             $.each(Data, function (i, Data) {
                                 var $option = $('<option>');
                                 $option.val(Data.Value);
@@ -196,13 +253,7 @@
                                 //console.log(Data.Text);
                                 $('#Id_Servicio_Descripcion1').append($option);
                             });
-                            $.each(Data, function (i, Data) {
-                                var $option = $('<option>');
-                                $option.val(Data.Value);
-                                $option.html(Data.Text);
-                                //console.log(Data.Text);
-                                $('#Id_Servicio_Descripcion').append($option);
-                            });
+                           
                             //console.log(Data);
                         }
                         //Recargar el plugin para que tenga la funcionalidad del componente
