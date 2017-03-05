@@ -194,6 +194,9 @@
     <Compile Include="AspNetUsers.cs">
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Calculo.cs">
+      <DependentUpon>SlaCalculo.tt</DependentUpon>
+    </Compile>
     <Compile Include="CalculoHoras.cs">
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
@@ -338,6 +341,7 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

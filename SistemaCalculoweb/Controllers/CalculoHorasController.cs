@@ -15,6 +15,38 @@ namespace SistemaCalculoweb.Controllers
         private CalculoEntities db = new CalculoEntities();
 
         // GET: CalculoHoras
+        public ActionResult ProcesoGuardado(List<String> values)
+        {
+            //guardar el registro en la tabla calculo y obteren el ID
+            Calculo cal = new Calculo();
+            cal.fecha = DateTime.Now;
+            db.Calculo.Add(cal);
+            db.SaveChanges();
+            int IdCalculo = cal.Id_calculo;
+            //con el Id de Calculo actualizamos la otroa tabla de resultados
+            CalculoHoras calho = new CalculoHoras();
+            //por medio de un foreach recorremos la lista y la guardamos en la tabla
+            foreach (string g in values)
+            {
+
+                string[] infoFila = g.Split(',');
+                if (infoFila[0].ToString().Trim() != "Tipo Servicio")
+                {
+                    calho.Id_servicio = int.Parse(infoFila[0].ToString());
+                    calho.Id_Servicio_Descripcion = int.Parse(infoFila[1].ToString());
+                    calho.cantidad_Servicio = int.Parse(infoFila[2].ToString());
+                    calho.Id_Volumen_Ticket = int.Parse(infoFila[3].ToString());
+                    calho.Cantidad_Volumen_Ticket = int.Parse(infoFila[4].ToString());
+                    calho.Id_Tipo_Operacion = int.Parse(infoFila[5].ToString());
+                    calho.Resultado = int.Parse(infoFila[6].ToString());
+                    calho.Id_calculo = IdCalculo;
+                    db.CalculoHoras.Add(calho);
+                    db.SaveChanges();
+                }
+                
+            }
+            return View();
+        }
         public ActionResult Index()
         {
             var calculoHoras = db.CalculoHoras.Include(c => c.Servicio_Descripcion).Include(c => c.TipoOperacion).Include(c => c.Volumen_Ticket);

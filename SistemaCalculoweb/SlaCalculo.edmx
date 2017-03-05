@@ -37,6 +37,15 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="Calculo">
+          <Key>
+            <PropertyRef Name="Id_calculo" />
+          </Key>
+          <Property Name="Id_calculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="Id_Empresa" Type="int" />
+          <Property Name="id_usuario" Type="int" />
+        </EntityType>
         <EntityType Name="CalculoHoras">
           <Key>
             <PropertyRef Name="Id" />
@@ -48,6 +57,8 @@
           <Property Name="Id_Volumen_Ticket" Type="int" />
           <Property Name="Cantidad_Volumen_Ticket" Type="int" />
           <Property Name="Resultado" Type="int" />
+          <Property Name="Id_servicio" Type="int" />
+          <Property Name="Id_calculo" Type="int" />
         </EntityType>
         <EntityType Name="CalculosResultados">
           <Key>
@@ -162,6 +173,18 @@
           <Property Name="Sugerencia" Type="varchar(max)" />
           <Property Name="Descripcion" Type="varchar(max)" />
         </EntityType>
+        <Association Name="FK_CalculoHoras_Calculo">
+          <End Role="Calculo" Type="Self.Calculo" Multiplicity="0..1" />
+          <End Role="CalculoHoras" Type="Self.CalculoHoras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calculo">
+              <PropertyRef Name="Id_calculo" />
+            </Principal>
+            <Dependent Role="CalculoHoras">
+              <PropertyRef Name="Id_calculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CalculoHoras_Servicio_descripcion">
           <End Role="Servicio_Descripcion" Type="Self.Servicio_Descripcion" Multiplicity="0..1" />
           <End Role="CalculoHoras" Type="Self.CalculoHoras" Multiplicity="*" />
@@ -171,6 +194,18 @@
             </Principal>
             <Dependent Role="CalculoHoras">
               <PropertyRef Name="Id_Servicio_Descripcion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalculoHoras_Servicios">
+          <End Role="Servicios" Type="Self.Servicios" Multiplicity="0..1" />
+          <End Role="CalculoHoras" Type="Self.CalculoHoras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CalculoHoras">
+              <PropertyRef Name="Id_servicio" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -334,10 +369,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SelectCalculos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="CalculoModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Calculo" EntityType="Self.Calculo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CalculoHoras" EntityType="Self.CalculoHoras" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CalculosResultados" EntityType="Self.CalculosResultados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
@@ -351,8 +388,16 @@
           <EntitySet Name="TipoTicket" EntityType="Self.TipoTicket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Volumen_Ticket" EntityType="Self.Volumen_Ticket" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CalculoHoras_Calculo" Association="Self.FK_CalculoHoras_Calculo">
+            <End Role="Calculo" EntitySet="Calculo" />
+            <End Role="CalculoHoras" EntitySet="CalculoHoras" />
+          </AssociationSet>
           <AssociationSet Name="FK_CalculoHoras_Servicio_descripcion" Association="Self.FK_CalculoHoras_Servicio_descripcion">
             <End Role="Servicio_Descripcion" EntitySet="Servicio_Descripcion" />
+            <End Role="CalculoHoras" EntitySet="CalculoHoras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalculoHoras_Servicios" Association="Self.FK_CalculoHoras_Servicios">
+            <End Role="Servicios" EntitySet="Servicios" />
             <End Role="CalculoHoras" EntitySet="CalculoHoras" />
           </AssociationSet>
           <AssociationSet Name="FK_CalculoHoras_TipoOperacion" Association="Self.FK_CalculoHoras_TipoOperacion">
@@ -480,6 +525,16 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="Calculo" EntityType="CalculoModel.Calculo" />
+          <AssociationSet Name="FK_CalculoHoras_Calculo" Association="CalculoModel.FK_CalculoHoras_Calculo">
+            <End Role="Calculo" EntitySet="Calculo" />
+            <End Role="CalculoHoras" EntitySet="CalculoHoras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalculoHoras_Servicios" Association="CalculoModel.FK_CalculoHoras_Servicios">
+            <End Role="Servicios" EntitySet="Servicios" />
+            <End Role="CalculoHoras" EntitySet="CalculoHoras" />
+          </AssociationSet>
+          <FunctionImport Name="SelectCalculos" ReturnType="Collection(CalculoModel.SelectCalculos_Result)" />
         </EntityContainer>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -521,6 +576,10 @@
           <NavigationProperty Name="Servicio_Descripcion" Relationship="CalculoModel.FK_CalculoHoras_Servicio_descripcion" FromRole="CalculoHoras" ToRole="Servicio_Descripcion" />
           <NavigationProperty Name="TipoOperacion" Relationship="CalculoModel.FK_CalculoHoras_TipoOperacion" FromRole="CalculoHoras" ToRole="TipoOperacion" />
           <NavigationProperty Name="Volumen_Ticket" Relationship="CalculoModel.FK_CalculoHoras_VolumenTicket" FromRole="CalculoHoras" ToRole="Volumen_Ticket" />
+          <Property Name="Id_servicio" Type="Int32" />
+          <Property Name="Id_calculo" Type="Int32" />
+          <NavigationProperty Name="Calculo" Relationship="CalculoModel.FK_CalculoHoras_Calculo" FromRole="CalculoHoras" ToRole="Calculo" />
+          <NavigationProperty Name="Servicios" Relationship="CalculoModel.FK_CalculoHoras_Servicios" FromRole="CalculoHoras" ToRole="Servicios" />
         </EntityType>
         <EntityType Name="CalculosResultados">
           <Key>
@@ -583,6 +642,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Decripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Servicio_Descripcion" Relationship="CalculoModel.FK_Servicio_Descripcion_ToTable" FromRole="Servicios" ToRole="Servicio_Descripcion" />
+          <NavigationProperty Name="CalculoHoras" Relationship="CalculoModel.FK_CalculoHoras_Servicios" FromRole="Servicios" ToRole="CalculoHoras" />
         </EntityType>
         <EntityType Name="TipoActividadBase">
           <Key>
@@ -804,6 +864,50 @@
           <End Type="CalculoModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
           <End Type="CalculoModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
         </Association>
+        <EntityType Name="Calculo">
+          <Key>
+            <PropertyRef Name="Id_calculo" />
+          </Key>
+          <Property Name="Id_calculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="Id_Empresa" Type="Int32" />
+          <Property Name="id_usuario" Type="Int32" />
+          <NavigationProperty Name="CalculoHoras" Relationship="CalculoModel.FK_CalculoHoras_Calculo" FromRole="Calculo" ToRole="CalculoHoras" />
+        </EntityType>
+        <Association Name="FK_CalculoHoras_Calculo">
+          <End Type="CalculoModel.Calculo" Role="Calculo" Multiplicity="0..1" />
+          <End Type="CalculoModel.CalculoHoras" Role="CalculoHoras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calculo">
+              <PropertyRef Name="Id_calculo" />
+            </Principal>
+            <Dependent Role="CalculoHoras">
+              <PropertyRef Name="Id_calculo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalculoHoras_Servicios">
+          <End Type="CalculoModel.Servicios" Role="Servicios" Multiplicity="0..1" />
+          <End Type="CalculoModel.CalculoHoras" Role="CalculoHoras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicios">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CalculoHoras">
+              <PropertyRef Name="Id_servicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SelectCalculos_Result">
+          <Property Type="Int32" Name="ID" Nullable="true" />
+          <Property Type="String" Name="Servicio" Nullable="true" />
+          <Property Type="String" Name="Dispocitivo" Nullable="true" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+          <Property Type="String" Name="Volumen_Ticket" Nullable="true" />
+          <Property Type="Int32" Name="Cantidad1" Nullable="true" />
+          <Property Type="String" Name="Tipo_de_Operación" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Resultado" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -839,6 +943,8 @@
           <EntitySetMapping Name="CalculoHoras">
             <EntityTypeMapping TypeName="CalculoModel.CalculoHoras">
               <MappingFragment StoreEntitySet="CalculoHoras">
+                <ScalarProperty Name="Id_calculo" ColumnName="Id_calculo" />
+                <ScalarProperty Name="Id_servicio" ColumnName="Id_servicio" />
                 <ScalarProperty Name="Resultado" ColumnName="Resultado" />
                 <ScalarProperty Name="Cantidad_Volumen_Ticket" ColumnName="Cantidad_Volumen_Ticket" />
                 <ScalarProperty Name="Id_Volumen_Ticket" ColumnName="Id_Volumen_Ticket" />
@@ -982,6 +1088,30 @@
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Calculo">
+            <EntityTypeMapping TypeName="CalculoModel.Calculo">
+              <MappingFragment StoreEntitySet="Calculo">
+                <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+                <ScalarProperty Name="Id_Empresa" ColumnName="Id_Empresa" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="Id_calculo" ColumnName="Id_calculo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SelectCalculos" FunctionName="CalculoModel.Store.SelectCalculos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CalculoModel.SelectCalculos_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Servicio" ColumnName="Servicio" />
+                <ScalarProperty Name="Dispocitivo" ColumnName="Dispocitivo" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Volumen_Ticket" ColumnName="Volumen Ticket" />
+                <ScalarProperty Name="Cantidad1" ColumnName="Cantidad1" />
+                <ScalarProperty Name="Tipo_de_Operación" ColumnName="Tipo de Operación" />
+                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -998,7 +1128,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

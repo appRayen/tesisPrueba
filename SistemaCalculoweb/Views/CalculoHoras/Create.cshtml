@@ -47,7 +47,7 @@
                     <label>Cantidad</label>
                 </td>
                 <td class="col-md-2">
-                    @Html.EditorFor(model => model.Cantidad_Volumen_Ticket, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Cantidad_Volumen_Ticket, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Cantidad" } })
                     @Html.ValidationMessageFor(model => model.Cantidad_Volumen_Ticket, "", new { @class = "text-danger" })
                 </td>
             </tr>
@@ -66,7 +66,7 @@
                     <label>Cantidad</label>
                       </td>
                 <td class="col-md-2">
-                            @Html.EditorFor(model => model.cantidad_Servicio, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.cantidad_Servicio, new { htmlAttributes = new { @class = "form-control", @placeholder ="Ingrese Cantidad" } })
                             @Html.ValidationMessageFor(model => model.cantidad_Servicio, "", new { @class = "text-danger" })
                 </td>
             </tr>
@@ -79,49 +79,89 @@
                             @Html.ValidationMessageFor(model => model.Resultado, "", new { @class = "text-danger" })
                 </td>
                 <td class="col-md-2">
-                    <input type="button" id="send" value="Calculo" class="btn btn-info btn-sm" />
+                    <input type="button" id="calculobtn" value="Calculo" class="btn btn-info btn-sm" />
                 </td>
             </tr>
             <tr>
-                <td class="col-md-offset-4">
+                <td>
                     <input type="button" id="agregar" value="Agregar" class="btn btn-success btn-sm center-block" />
                 </td>
             </tr>
         </table>
-        <table id="tResultado" class="table-striped">
-            <tr>
-                <td class="col-md-2">
-                    Tipo Servicio
-                </td>
-                <td class="col-md-2">
-                    Detalla Servicio
-                </td>
-                <td class="col-md-2">
-                    Cantidad
-                </td>
-                <td class="col-md-2">
-                    Volumen Ticket
-                </td>
-                <td class="col-md-2">
-                    Cantidad
-                </td>
-                <td class="col-md-2">
-                    Tipo de Operación
-                </td>
-                <td class="col-md-2">
-                    Resultado
-                </td>
-                <td class="col-md-2">
-                    Quitar
-                </td>
-            </tr>
-        </table>
+        <br />
+        <br />
+        <br />
+            <table id="tResultado" class="table-striped">
+                <thead>
+                    <tr>
+                        <td class="col-md-2">
+                            Tipo Servicio
+                        </td>
+                        <td class="col-md-2">
+                            Detalla Servicio
+                        </td>
+                        <td class="col-md-2">
+                            Cantidad
+                        </td>
+                        <td class="col-md-2">
+                            Volumen Ticket
+                        </td>
+                        <td class="col-md-2">
+                            Cantidad
+                        </td>
+                        <td class="col-md-2">
+                            Tipo de Operación
+                        </td>
+                        <td class="col-md-2">
+                            Resultado
+                        </td>
+                        <td class="col-md-2">
+                            Acción
+                        </td>
+                    </tr>
+                </thead>
+</table>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-4">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <input type="button" value="send" id="send" class="btn btn-primary" />
             </div>
         </div>
+        <table id="tResultado1" class="table-striped hidden">
+            <thead>
+                <tr>
+                    <td class="col-md-2">
+                        Tipo Servicio
+                    </td>
+                    <td class="col-md-2">
+                        Detalla Servicio
+                    </td>
+                    <td class="col-md-2">
+                        Cantidad
+                    </td>
+                    <td class="col-md-2">
+                        Volumen Ticket
+                    </td>
+                    <td class="col-md-2">
+                        Cantidad
+                    </td>
+                    <td class="col-md-2">
+                        Tipo de Operación
+                    </td>
+                    <td class="col-md-2">
+                        Resultado
+                    </td>
+                    <td class="col-md-2">
+                        Acción
+                    </td>
+                </tr>
+            </thead>
+        </table>
+        
+        <br />
+        <br />
+        <br />
+        
     </div>
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -148,19 +188,36 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
-        $(function () {
-            $(document).on('click', '.borrar', function (event) {
-                event.preventDefault();
-                $(this).closest('tr').remove();
-            });
-        });
-    </script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
 <script type="text/javascript">  
+    $("#send").click(function () {
+        var myTableArray = [];
+        $("table#tResultado1 tr").each(function () {
+            var arrayOfThisRow = [];
+            var tableData = $(this).find('td');
+            if (tableData.length > 0) {
+                tableData.each(function () { arrayOfThisRow.push($(this).text()); });
+                myTableArray.push(arrayOfThisRow);
+            }
+        });
+        console.log(myTableArray);
+        var postData = { values: myTableArray };
+        $.ajax({
+            type: "POST",
+            url: "/CalculoHoras/ProcesoGuardado",
+            data: postData,
+            success: function (data) {
+                //alert(data.Result);
+            },
+            dataType: "json",
+            traditional: true
+        });
+    });
     function delete_user(row) {
         row.closest('tr').remove();
     }
     $("#agregar").click(function () {
+      
         //validamos que no se repita ante sde agregar
         var id_servicio;
         var descripcion_servcio;
@@ -172,7 +229,6 @@
         var des;
         var repetido=0;
             $('#tResultado tr').each(function () {
-
                 ser = $(this).find("td").eq(0).html();
                 des = $(this).find("td").eq(1).html();
                 if (ser == $("#Id_servicios option:selected").text() && des == $("#Id_Servicio_Descripcion1 option:selected").text())
@@ -193,18 +249,27 @@
                 nuevaFila += "<td class='col-md-2'><input type='button' class='glyphicon glyphicon-remove' value='borrar' onclick ='delete_user($(this))' /></td>";
                 nuevaFila += "</tr>";
                 $("#tResultado").append(nuevaFila);
+                var nuevaFila1 = "<tr>";
+                nuevaFila1 += "<td class='col-md-2'>" + $("#Id_servicios").val(); + "</td>";
+                nuevaFila1 += "<td class='col-md-2'>" + $("#Id_Servicio_Descripcion1").val(); + "</td>";
+                nuevaFila1 += "<td class='col-md-2'>" + $("#cantidad_Servicio").val(); + "</td>";
+                nuevaFila1 += "<td class='col-md-2'>" + $("#Id_Volumen_Ticket").val(); + "</td>";
+                nuevaFila1 += "<td class='col-md-2'>" + $("#Cantidad_Volumen_Ticket").val(); + "</td>";
+                nuevaFila1 += "<td class='col-md-2'>" + $("#Id_Tipo_Operacion").val(); + "</td>";
+                nuevaFila1 += "<td class='col-md-2'>" + $("#Resultado").val(); + "</td>";
+                nuevaFila1 += "</tr>";
+                $("#tResultado1").append(nuevaFila1);
+                console.log(nuevaFila1);
             }
             else
             {
                 $("#myModal").modal("show");
               
             }
-   
     });
-    </script>
-<script type="text/javascript">
-    $(function() {
-        $("#send").click(function () {
+    $(function () {
+        $("#calculobtn").click(function () {
+           
             //var idTipoActividadB = $("#idTipoActividadBase").val();
             //var TipoInf = $("#idTipoInfraestructura").val();
             //var TipoO = $("#idTipoOperacion").val();
@@ -213,7 +278,7 @@
             //var catPer = $("#cantidadPersonas").val();
             $.get('@Url.Action("ProcesoCalculo", "CalculosResultados")',
                 //{ idTipoActividadBase: idTipoActividadB, TipoInfraestructura: TipoInf, TipoOperacion: TipoO, TipoServicioBrindado: TipoServicio, TipoTicket: TipoT, cantP: catPer }
-                {id:1}
+              {id:1}
                ).success(function (data) {
                    var s = data;
                   // alert(s);
@@ -223,8 +288,6 @@
             return false;
         });
     });
-</script>
-<script type="text/javascript">
         $(document).ready(function () {
             $("#Id_servicios").change(function () {
                 var valor

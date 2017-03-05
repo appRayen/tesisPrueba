@@ -12,22 +12,20 @@ namespace SistemaCalculoweb
     using System;
     using System.Collections.Generic;
     
-    public partial class TipoOperacion
+    public partial class Calculo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TipoOperacion()
+        public Calculo()
         {
             this.CalculoHoras = new HashSet<CalculoHoras>();
-            this.CalculosResultados = new HashSet<CalculosResultados>();
         }
     
-        public int idTipoOperacion { get; set; }
-        public string descripcion { get; set; }
-        public short estado { get; set; }
+        public int Id_calculo { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<int> Id_Empresa { get; set; }
+        public Nullable<int> id_usuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CalculoHoras> CalculoHoras { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CalculosResultados> CalculosResultados { get; set; }
     }
 }

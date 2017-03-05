@@ -33,6 +33,9 @@
         <AssociationConnector Association="CalculoModel.FK_Servicio_Descripcion_ToTable" />
         <AssociationConnector Association="CalculoModel.FK_Usuario_Usuario" />
         <AssociationConnector Association="CalculoModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="CalculoModel.Calculo" Width="1.5" PointX="6.375" PointY="9.875" />
+        <AssociationConnector Association="CalculoModel.FK_CalculoHoras_Calculo" />
+        <AssociationConnector Association="CalculoModel.FK_CalculoHoras_Servicios" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
