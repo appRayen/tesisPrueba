@@ -535,6 +535,7 @@
             <End Role="CalculoHoras" EntitySet="CalculoHoras" />
           </AssociationSet>
           <FunctionImport Name="SelectCalculos" ReturnType="Collection(CalculoModel.SelectCalculos_Result)" />
+          <FunctionImport Name="SelectCalculo" ReturnType="Collection(CalculoModel.SelectCalculos_Result)" />
         </EntityContainer>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -902,11 +903,11 @@
           <Property Type="Int32" Name="ID" Nullable="true" />
           <Property Type="String" Name="Servicio" Nullable="true" />
           <Property Type="String" Name="Dispocitivo" Nullable="true" />
-          <Property Type="Int32" Name="Cantidad" Nullable="true" />
-          <Property Type="String" Name="Volumen_Ticket" Nullable="true" />
-          <Property Type="Int32" Name="Cantidad1" Nullable="true" />
-          <Property Type="String" Name="Tipo_de_Operación" Nullable="true" MaxLength="500" />
           <Property Type="Int32" Name="Resultado" Nullable="true" />
+          <Property Type="Int32" Name="Cantidad_Dispocitivos" Nullable="true" />
+          <Property Type="String" Name="Volumen_Ticket" Nullable="true" />
+          <Property Type="Int32" Name="Cantidad_Ticket" Nullable="true" />
+          <Property Type="String" Name="Tipo_de_Operación" Nullable="true" MaxLength="500" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1104,11 +1105,21 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Servicio" ColumnName="Servicio" />
                 <ScalarProperty Name="Dispocitivo" ColumnName="Dispocitivo" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="Volumen_Ticket" ColumnName="Volumen Ticket" />
-                <ScalarProperty Name="Cantidad1" ColumnName="Cantidad1" />
-                <ScalarProperty Name="Tipo_de_Operación" ColumnName="Tipo de Operación" />
                 <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectCalculo" FunctionName="CalculoModel.Store.SelectCalculos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CalculoModel.SelectCalculos_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Servicio" ColumnName="Servicio" />
+                <ScalarProperty Name="Dispocitivo" ColumnName="Dispocitivo" />
+                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+                <ScalarProperty Name="Cantidad_Dispocitivos" ColumnName="Cantidad Dispocitivos" />
+                <ScalarProperty Name="Volumen_Ticket" ColumnName="Volumen Ticket" />
+                <ScalarProperty Name="Cantidad_Ticket" ColumnName="Cantidad Ticket" />
+                <ScalarProperty Name="Tipo_de_Operación" ColumnName="Tipo de Operación" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

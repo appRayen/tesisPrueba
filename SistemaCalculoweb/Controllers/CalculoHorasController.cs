@@ -49,8 +49,10 @@ namespace SistemaCalculoweb.Controllers
         }
         public ActionResult Index()
         {
-            var calculoHoras = db.CalculoHoras.Include(c => c.Servicio_Descripcion).Include(c => c.TipoOperacion).Include(c => c.Volumen_Ticket);
-            return View(calculoHoras.ToList());
+   
+                var calculoHoras = db.CalculoHoras.Include(c => c.Servicio_Descripcion).Include(c => c.TipoOperacion).Include(c => c.Volumen_Ticket);
+             //return View(calculoHoras.ToList());
+            return View(db.SelectCalculo());
         }
         public JsonResult LlenarServicio(int id)
         {

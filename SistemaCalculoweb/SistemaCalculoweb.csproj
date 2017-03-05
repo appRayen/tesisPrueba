@@ -233,6 +233,9 @@
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectCalculos_Result.cs">
+      <DependentUpon>SlaCalculo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Servicios.cs">
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
