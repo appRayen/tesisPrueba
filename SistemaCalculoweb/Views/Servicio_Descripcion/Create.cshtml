@@ -1,22 +1,22 @@
 ﻿@model SistemaCalculoweb.Servicio_Descripcion
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Nuevo";
 }
 
-<h2>Create</h2>
+<h2>Nuevo</h2>
 
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>Servicio_Descripcion</h4>
+        <h4>Dispocitivos</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Id_Servicio, "Id_Servicio", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Id_Servicio, "Servicio", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Id_Servicio", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Id_Servicio, "", new { @class = "text-danger" })
@@ -33,14 +33,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Nuevo" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @(Html.ActionLink(" ", "Index", new { id = 1 }, new { @class = "glyphicon glyphicon-arrow-left glyphicon-lg" }))
 </div>
 
 @section Scripts {

@@ -1,24 +1,23 @@
 ﻿@model SistemaCalculoweb.CalculoHoras
 
-@{
-    ViewBag.Title = "Edit";
-}
-
-<h2>Edit</h2>
-
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>CalculoHoras</h4>
+        <h4>Calculo Horas</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Id_Servicio_Descripcion, "Id_Servicio_Descripcion", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Id_servicio, "Servicio", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Id_servicio", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Id_servicio, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Id_Servicio_Descripcion, "Dispocitivo", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Id_Servicio_Descripcion", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Id_Servicio_Descripcion, "", new { @class = "text-danger" })
@@ -34,7 +33,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Id_Tipo_Operacion, "Id_Tipo_Operacion", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Id_Tipo_Operacion, "Tipo Operación", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Id_Tipo_Operacion", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Id_Tipo_Operacion, "", new { @class = "text-danger" })
@@ -42,7 +41,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Id_Volumen_Ticket, "Id_Volumen_Ticket", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Id_Volumen_Ticket, "Volumen Ticket", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Id_Volumen_Ticket", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Id_Volumen_Ticket, "", new { @class = "text-danger" })
@@ -62,21 +61,47 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Resultado, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Resultado, "", new { @class = "text-danger" })
+                <input type="button" id="calculobtn" value="Calculo" class="btn btn-info btn-sm" />
             </div>
         </div>
 
+       
+
+        
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Actualizar" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @(Html.ActionLink(" ", "Index", new { id = 1 }, new { @class = "glyphicon glyphicon-arrow-left glyphicon-lg" }))
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+    <script type="text/javascript">
+          $(function () {
+        $("#calculobtn").click(function () {
+
+            //var idTipoActividadB = $("#idTipoActividadBase").val();
+            //var TipoInf = $("#idTipoInfraestructura").val();
+            //var TipoO = $("#idTipoOperacion").val();
+            //var TipoServicio = $("#idTipoServicioBrindado").val();
+            //var TipoT = $("#idTipoTicket").val();
+            //var catPer = $("#cantidadPersonas").val();
+            $.get('@Url.Action("ProcesoCalculo", "CalculosResultados")',
+                //{ idTipoActividadBase: idTipoActividadB, TipoInfraestructura: TipoInf, TipoOperacion: TipoO, TipoServicioBrindado: TipoServicio, TipoTicket: TipoT, cantP: catPer }
+              {id:1}
+               ).success(function (data) {
+                   var s = data;
+                  // alert(s);
+                   //alert(data);
+                   $("#Resultado").val(data);
+                });
+            return false;
+        });
+    });
+    </script>
+    }

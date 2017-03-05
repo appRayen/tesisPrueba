@@ -11,16 +11,23 @@ namespace SistemaCalculoweb
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class CalculoHoras
     {
         public int Id { get; set; }
+        [DisplayName("Dispocitivos")]
         public Nullable<int> Id_Servicio_Descripcion { get; set; }
+        [DisplayName("Cantidad Servicio")]
         public Nullable<int> cantidad_Servicio { get; set; }
+        [DisplayName("Tipo Operacón")]
         public Nullable<int> Id_Tipo_Operacion { get; set; }
+        [DisplayName("Volumen Ticket")]
         public Nullable<int> Id_Volumen_Ticket { get; set; }
+        [DisplayName("Cantidad Ticket")]
         public Nullable<int> Cantidad_Volumen_Ticket { get; set; }
         public Nullable<int> Resultado { get; set; }
+        [DisplayName("Servicio")]
         public Nullable<int> Id_servicio { get; set; }
         public Nullable<int> Id_calculo { get; set; }
     

@@ -475,8 +475,8 @@
     <Content Include="Views\CalculoHoras\Create.cshtml" />
     <Content Include="Views\CalculoHoras\Delete.cshtml" />
     <Content Include="Views\CalculoHoras\Details.cshtml" />
-    <Content Include="Views\CalculoHoras\Edit.cshtml" />
     <Content Include="Views\CalculoHoras\Index.cshtml" />
+    <Content Include="Views\CalculoHoras\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

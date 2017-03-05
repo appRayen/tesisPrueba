@@ -11,7 +11,8 @@ namespace SistemaCalculoweb
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class TipoOperacion
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,7 @@ namespace SistemaCalculoweb
         }
     
         public int idTipoOperacion { get; set; }
+        [DisplayName("Descripción")]
         public string descripcion { get; set; }
         public short estado { get; set; }
     

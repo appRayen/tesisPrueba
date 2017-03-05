@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -49,10 +50,7 @@ namespace SistemaCalculoweb.Controllers
         }
         public ActionResult Index()
         {
-   
-                var calculoHoras = db.CalculoHoras.Include(c => c.Servicio_Descripcion).Include(c => c.TipoOperacion).Include(c => c.Volumen_Ticket);
-             //return View(calculoHoras.ToList());
-            return View(db.SelectCalculo());
+            return View(db.selectCal());
         }
         public JsonResult LlenarServicio(int id)
         {
@@ -106,6 +104,7 @@ namespace SistemaCalculoweb.Controllers
             ViewBag.Id_Servicio_Descripcion = new SelectList(db.Servicio_Descripcion, "Id", "Descripcion", calculoHoras.Id_Servicio_Descripcion);
             ViewBag.Id_Tipo_Operacion = new SelectList(db.TipoOperacion, "idTipoOperacion", "descripcion", calculoHoras.Id_Tipo_Operacion);
             ViewBag.Id_Volumen_Ticket = new SelectList(db.Volumen_Ticket, "Id", "Sugerencia", calculoHoras.Id_Volumen_Ticket);
+            ViewBag.Id_Volumen = new SelectList(db.Servicios, "Id", "Sugerencia", calculoHoras.Id_servicio);
             return View(calculoHoras);
         }
 
@@ -124,6 +123,7 @@ namespace SistemaCalculoweb.Controllers
             ViewBag.Id_Servicio_Descripcion = new SelectList(db.Servicio_Descripcion, "Id", "Descripcion", calculoHoras.Id_Servicio_Descripcion);
             ViewBag.Id_Tipo_Operacion = new SelectList(db.TipoOperacion, "idTipoOperacion", "descripcion", calculoHoras.Id_Tipo_Operacion);
             ViewBag.Id_Volumen_Ticket = new SelectList(db.Volumen_Ticket, "Id", "Sugerencia", calculoHoras.Id_Volumen_Ticket);
+            ViewBag.Id_servicio = new SelectList(db.Servicios, "Id", "decripcion",calculoHoras.Id_servicio);
             return View(calculoHoras);
         }
 
@@ -143,6 +143,7 @@ namespace SistemaCalculoweb.Controllers
             ViewBag.Id_Servicio_Descripcion = new SelectList(db.Servicio_Descripcion, "Id", "Descripcion", calculoHoras.Id_Servicio_Descripcion);
             ViewBag.Id_Tipo_Operacion = new SelectList(db.TipoOperacion, "idTipoOperacion", "descripcion", calculoHoras.Id_Tipo_Operacion);
             ViewBag.Id_Volumen_Ticket = new SelectList(db.Volumen_Ticket, "Id", "Sugerencia", calculoHoras.Id_Volumen_Ticket);
+            ViewBag.Id_servicios = new SelectList(db.Servicios, "Id", "decripcion", calculoHoras.Id_servicio);
             return View(calculoHoras);
         }
 

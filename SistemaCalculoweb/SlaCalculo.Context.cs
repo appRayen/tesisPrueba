@@ -49,9 +49,14 @@ namespace SistemaCalculoweb
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectCalculos_Result>("SelectCalculos");
         }
     
-        public virtual ObjectResult<SelectCalculos_Result> SelectCalculo()
+        //public virtual ObjectResult<SelectCalculos_Result> SelectCalculo()
+        //{
+        //    return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectCalculos_Result>("SelectCalculo");
+        //}
+    
+        public virtual ObjectResult<SelectCalculos_Result> selectCal()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectCalculos_Result>("SelectCalculo");
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectCalculos_Result>("selectCal");
         }
     }
 }
