@@ -27,32 +27,26 @@ namespace SistemaCalculoweb
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<CalculoHoras> CalculoHoras { get; set; }
-        public virtual DbSet<CalculosResultados> CalculosResultados { get; set; }
         public virtual DbSet<Empresa> Empresa { get; set; }
-        public virtual DbSet<Perfil> Perfil { get; set; }
         public virtual DbSet<Servicio_Descripcion> Servicio_Descripcion { get; set; }
         public virtual DbSet<Servicios> Servicios { get; set; }
-        public virtual DbSet<TipoActividadBase> TipoActividadBase { get; set; }
-        public virtual DbSet<TipoInfraestructura> TipoInfraestructura { get; set; }
         public virtual DbSet<TipoOperacion> TipoOperacion { get; set; }
-        public virtual DbSet<TipoServicioBrindado> TipoServicioBrindado { get; set; }
-        public virtual DbSet<TipoTicket> TipoTicket { get; set; }
-        public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Volumen_Ticket> Volumen_Ticket { get; set; }
         public virtual DbSet<Calculo> Calculo { get; set; }
+        public virtual DbSet<Perfil> Perfil { get; set; }
+        public virtual DbSet<TipoTicket> TipoTicket { get; set; }
+        public virtual DbSet<Usuarios> Usuarios { get; set; }
     
         public virtual ObjectResult<SelectCalculos_Result> SelectCalculos()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectCalculos_Result>("SelectCalculos");
         }
     
-        //public virtual ObjectResult<SelectCalculos_Result> SelectCalculo()
-        //{
-        //    return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectCalculos_Result>("SelectCalculo");
-        //}
+        public virtual ObjectResult<SelectCalculos_Result> SelectCalculo()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectCalculos_Result>("SelectCalculo");
+        }
     
         public virtual ObjectResult<SelectCalculos_Result> selectCal()
         {

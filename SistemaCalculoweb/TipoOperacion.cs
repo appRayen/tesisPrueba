@@ -19,7 +19,6 @@ namespace SistemaCalculoweb
         public TipoOperacion()
         {
             this.CalculoHoras = new HashSet<CalculoHoras>();
-            this.CalculosResultados = new HashSet<CalculosResultados>();
         }
     
         public int idTipoOperacion { get; set; }
@@ -29,7 +28,5 @@ namespace SistemaCalculoweb
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CalculoHoras> CalculoHoras { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CalculosResultados> CalculosResultados { get; set; }
     }
 }

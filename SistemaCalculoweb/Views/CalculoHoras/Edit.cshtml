@@ -91,7 +91,7 @@
             //var TipoServicio = $("#idTipoServicioBrindado").val();
             //var TipoT = $("#idTipoTicket").val();
             //var catPer = $("#cantidadPersonas").val();
-            $.get('@Url.Action("ProcesoCalculo", "CalculosResultados")',
+            $.get('@Url.Action("CalculosResultados", "CalculoHoras")',
                 //{ idTipoActividadBase: idTipoActividadB, TipoInfraestructura: TipoInf, TipoOperacion: TipoO, TipoServicioBrindado: TipoServicio, TipoTicket: TipoT, cantP: catPer }
               {id:1}
                ).success(function (data) {

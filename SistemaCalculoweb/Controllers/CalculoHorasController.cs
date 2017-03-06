@@ -16,6 +16,11 @@ namespace SistemaCalculoweb.Controllers
         private CalculoEntities db = new CalculoEntities();
 
         // GET: CalculoHoras
+        public int CalculosResultados(int id)
+        {
+            Random rd = new Random();
+            return rd.Next(1, 100); 
+        }
         public ActionResult ProcesoGuardado(List<String> values)
         {
             //guardar el registro en la tabla calculo y obteren el ID

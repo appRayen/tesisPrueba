@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using SistemaCalculoweb;
@@ -15,12 +16,33 @@ namespace SistemaCalculoweb.Controllers
         private CalculoEntities db = new CalculoEntities();
 
         // GET: Usuarios
+        public ActionResult recuperarpws(Usuarios usuarios)
+        {
+            if (usuarios.Correo != null && usuarios.Correo != "")
+            {
+                List<Usuarios> us = db.Usuarios.Where(i => i.Correo == usuarios.Correo).ToList();
+                    GMailer.GmailUsername = "miguelrvl@gmail.com";
+                    GMailer.GmailPassword = "lenoxmrv";
+
+                    GMailer mailer = new GMailer();
+                    mailer.ToEmail = us[0].Correo.ToString();
+                    mailer.Subject = "Recuperacion de contraseña";
+                    mailer.Body = "Su contraseña es <br>" + us[0].Contrasenia.ToString();
+                    mailer.IsHtml = true;
+                    mailer.Send();
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(); 
+            }
+            
+        }
         public ActionResult Index()
         {
-            var usuario = db.Usuario.Include(u => u.Perfil);
-            return View(usuario.ToList());
+            var usuarios = db.Usuarios.Include(u => u.Perfil);
+            return View(usuarios.ToList());
         }
-
         // GET: Usuarios/Details/5
         public ActionResult Details(int? id)
         {
@@ -28,12 +50,12 @@ namespace SistemaCalculoweb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuario.Find(id);
-            if (usuario == null)
+            Usuarios usuarios = db.Usuarios.Find(id);
+            if (usuarios == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(usuarios);
         }
 
         // GET: Usuarios/Create
@@ -48,17 +70,17 @@ namespace SistemaCalculoweb.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idTipoUsuario,nombreUsuario,correo,nombre,apellidoP,apellidoM,rut,telefono,idPerfil")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "IdUsuario,Correo,Nombre,ApellidoP,ApellidoM,Rut,Telefono,Contrasenia,idPerfil")] Usuarios usuarios)
         {
             if (ModelState.IsValid)
             {
-                db.Usuario.Add(usuario);
+                db.Usuarios.Add(usuarios);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idPerfil = new SelectList(db.Perfil, "IdPerfil", "Descripcion", usuario.idPerfil);
-            return View(usuario);
+            ViewBag.idPerfil = new SelectList(db.Perfil, "IdPerfil", "Descripcion", usuarios.idPerfil);
+            return View(usuarios);
         }
 
         // GET: Usuarios/Edit/5
@@ -68,13 +90,13 @@ namespace SistemaCalculoweb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuario.Find(id);
-            if (usuario == null)
+            Usuarios usuarios = db.Usuarios.Find(id);
+            if (usuarios == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.idPerfil = new SelectList(db.Perfil, "IdPerfil", "Descripcion", usuario.idPerfil);
-            return View(usuario);
+            ViewBag.idPerfil = new SelectList(db.Perfil, "IdPerfil", "Descripcion", usuarios.idPerfil);
+            return View(usuarios);
         }
 
         // POST: Usuarios/Edit/5
@@ -82,16 +104,16 @@ namespace SistemaCalculoweb.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idTipoUsuario,nombreUsuario,correo,nombre,apellidoP,apellidoM,rut,telefono,idPerfil")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "IdUsuario,Correo,Nombre,ApellidoP,ApellidoM,Rut,Telefono,Contrasenia,idPerfil")] Usuarios usuarios)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(usuario).State = System.Data.Entity.EntityState.Modified;
+                db.Entry(usuarios).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idPerfil = new SelectList(db.Perfil, "IdPerfil", "Descripcion", usuario.idPerfil);
-            return View(usuario);
+            ViewBag.idPerfil = new SelectList(db.Perfil, "IdPerfil", "Descripcion", usuarios.idPerfil);
+            return View(usuarios);
         }
 
         // GET: Usuarios/Delete/5
@@ -101,12 +123,12 @@ namespace SistemaCalculoweb.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuario.Find(id);
-            if (usuario == null)
+            Usuarios usuarios = db.Usuarios.Find(id);
+            if (usuarios == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(usuarios);
         }
 
         // POST: Usuarios/Delete/5
@@ -114,8 +136,8 @@ namespace SistemaCalculoweb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Usuario usuario = db.Usuario.Find(id);
-            db.Usuario.Remove(usuario);
+            Usuarios usuarios = db.Usuarios.Find(id);
+            db.Usuarios.Remove(usuarios);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

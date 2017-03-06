@@ -13,7 +13,7 @@ using SistemaCalculoweb.Models;
 namespace SistemaCalculoweb.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : Controller  
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;

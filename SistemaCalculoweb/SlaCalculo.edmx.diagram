@@ -5,37 +5,23 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f242db7b53d543bf9fe27cc28647be68" Name="Diagram1" ZoomLevel="100">
-        <EntityTypeShape EntityType="CalculoModel.AspNetRoles" Width="1.5" PointX="8.75" PointY="7" />
-        <EntityTypeShape EntityType="CalculoModel.AspNetUsers" Width="1.5" PointX="11" PointY="6" />
         <EntityTypeShape EntityType="CalculoModel.CalculoHoras" Width="1.5" PointX="3" PointY="3.75" />
-        <EntityTypeShape EntityType="CalculoModel.CalculosResultados" Width="1.5" PointX="6" PointY="3.125" />
-        <EntityTypeShape EntityType="CalculoModel.Empresa" Width="1.5" PointX="3.75" PointY="12.875" />
-        <EntityTypeShape EntityType="CalculoModel.Perfil" Width="1.5" PointX="8.75" PointY="1.625" />
+        <EntityTypeShape EntityType="CalculoModel.Empresa" Width="1.5" PointX="0.625" PointY="12" />
         <EntityTypeShape EntityType="CalculoModel.Servicio_Descripcion" Width="1.5" PointX="0.75" PointY="1" />
-        <EntityTypeShape EntityType="CalculoModel.Servicios" Width="1.5" PointX="1.5" PointY="8.125" />
-        <EntityTypeShape EntityType="CalculoModel.TipoActividadBase" Width="1.5" PointX="3.75" PointY="16" />
-        <EntityTypeShape EntityType="CalculoModel.TipoInfraestructura" Width="1.5" PointX="3.75" PointY="18.5" />
-        <EntityTypeShape EntityType="CalculoModel.TipoOperacion" Width="1.5" PointX="0.75" PointY="4.25" />
-        <EntityTypeShape EntityType="CalculoModel.TipoServicioBrindado" Width="1.5" PointX="3.75" PointY="7.75" />
-        <EntityTypeShape EntityType="CalculoModel.TipoTicket" Width="1.5" PointX="3.75" PointY="10.25" />
-        <EntityTypeShape EntityType="CalculoModel.Usuario" Width="1.5" PointX="11" PointY="1" />
-        <EntityTypeShape EntityType="CalculoModel.Volumen_Ticket" Width="1.5" PointX="0.75" PointY="10.625" />
+        <EntityTypeShape EntityType="CalculoModel.Servicios" Width="1.5" PointX="0.5" PointY="3.375" />
+        <EntityTypeShape EntityType="CalculoModel.TipoOperacion" Width="1.5" PointX="0.5" PointY="5.5" />
+        <EntityTypeShape EntityType="CalculoModel.Volumen_Ticket" Width="1.5" PointX="1.25" PointY="8" />
         <AssociationConnector Association="CalculoModel.FK_CalculoHoras_Servicio_descripcion" />
         <AssociationConnector Association="CalculoModel.FK_CalculoHoras_TipoOperacion" />
         <AssociationConnector Association="CalculoModel.FK_CalculoHoras_VolumenTicket" />
-        <AssociationConnector Association="CalculoModel.FK_CalculosResultados_Empresa" />
-        <AssociationConnector Association="CalculoModel.FK_CalculosResultados_TipoActividadBase" />
-        <AssociationConnector Association="CalculoModel.FK_CalculosResultados_TipoInfraestructura" />
-        <AssociationConnector Association="CalculoModel.FK_CalculosResultados_TipoOperacion" />
-        <AssociationConnector Association="CalculoModel.FK_CalculosResultados_TipoServicioBrindado" />
-        <AssociationConnector Association="CalculoModel.FK_CalculosResultados_TipoTicket" />
-        <AssociationConnector Association="CalculoModel.FK_Usuario_Perfil" />
         <AssociationConnector Association="CalculoModel.FK_Servicio_Descripcion_ToTable" />
-        <AssociationConnector Association="CalculoModel.FK_Usuario_Usuario" />
-        <AssociationConnector Association="CalculoModel.AspNetUserRoles" />
-        <EntityTypeShape EntityType="CalculoModel.Calculo" Width="1.5" PointX="6.375" PointY="9.875" />
+        <EntityTypeShape EntityType="CalculoModel.Calculo" Width="1.5" PointX="4.75" PointY="7.625" />
         <AssociationConnector Association="CalculoModel.FK_CalculoHoras_Calculo" />
         <AssociationConnector Association="CalculoModel.FK_CalculoHoras_Servicios" />
+        <EntityTypeShape EntityType="CalculoModel.Perfil" Width="1.5" PointX="5.375" PointY="1.625" />
+        <EntityTypeShape EntityType="CalculoModel.TipoTicket" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="CalculoModel.Usuarios" Width="1.5" PointX="7.625" PointY="1" />
+        <AssociationConnector Association="CalculoModel.FK_Usuarios_Perfil" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

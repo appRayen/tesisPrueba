@@ -6,7 +6,6 @@
 //     Los cambios manuales en este archivo se sobrescribirán si se regenera el código.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace SistemaCalculoweb
 {
     using System;

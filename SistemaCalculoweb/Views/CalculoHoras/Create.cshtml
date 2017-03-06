@@ -124,7 +124,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-4">
-                <input type="button" value="send" id="send" class="btn btn-primary" />
+                <input type="button" value="Guardar" id="send" class="btn btn-primary" />
             </div>
         </div>
         <table id="tResultado1" class="table-striped hidden">
@@ -183,7 +183,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @(Html.ActionLink(" ", "Index", new { id = 1 }, new { @class = "glyphicon glyphicon-arrow-left glyphicon-lg" }))
 </div>
 
 @section Scripts {
@@ -276,7 +276,7 @@
             //var TipoServicio = $("#idTipoServicioBrindado").val();
             //var TipoT = $("#idTipoTicket").val();
             //var catPer = $("#cantidadPersonas").val();
-            $.get('@Url.Action("ProcesoCalculo", "CalculosResultados")',
+            $.get('@Url.Action("CalculosResultados", "CalculoHoras")',
                 //{ idTipoActividadBase: idTipoActividadB, TipoInfraestructura: TipoInf, TipoOperacion: TipoO, TipoServicioBrindado: TipoServicio, TipoTicket: TipoT, cantP: catPer }
               {id:1}
                ).success(function (data) {

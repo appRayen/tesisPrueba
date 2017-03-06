@@ -11,20 +11,13 @@ namespace SistemaCalculoweb
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class TipoTicket
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TipoTicket()
-        {
-            this.CalculosResultados = new HashSet<CalculosResultados>();
-        }
-    
         public int tipoTicket1 { get; set; }
+        [DisplayName("Descripción")]
         public string descripcion { get; set; }
         public Nullable<short> estado { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CalculosResultados> CalculosResultados { get; set; }
     }
 }

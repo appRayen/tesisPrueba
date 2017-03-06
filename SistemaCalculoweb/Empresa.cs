@@ -14,20 +14,11 @@ namespace SistemaCalculoweb
     
     public partial class Empresa
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Empresa()
-        {
-            this.CalculosResultados = new HashSet<CalculosResultados>();
-        }
-    
         public int IdEmpresa { get; set; }
         public string Nombre { get; set; }
         public string Direccion { get; set; }
         public string rut { get; set; }
         public string razonSocial { get; set; }
         public Nullable<short> estado { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CalculosResultados> CalculosResultados { get; set; }
     }
 }

@@ -11,21 +11,21 @@ namespace SistemaCalculoweb
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class Perfil
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Perfil()
         {
-            this.Usuario = new HashSet<Usuario>();
+            this.Usuarios = new HashSet<Usuarios>();
         }
     
         public int IdPerfil { get; set; }
+        [DisplayName("Descripción")]
         public string Descripcion { get; set; }
-        public short estado { get; set; }
-        public string contraseña { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuario> Usuario { get; set; }
+        public virtual ICollection<Usuarios> Usuarios { get; set; }
     }
 }

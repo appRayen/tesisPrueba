@@ -1,37 +1,35 @@
-﻿@model IEnumerable<SistemaCalculoweb.Usuario>
+﻿@model IEnumerable<SistemaCalculoweb.Usuarios>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Usuarios";
 }
 
-<h2>Index</h2>
+<h2>Usuarios</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @(Html.ActionLink("Nuevo", "Create", new { id = 1 }, new { @class = "btn btn-primary" }))
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nombreUsuario)
+            @Html.DisplayNameFor(model => model.Correo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.correo)
+            @Html.DisplayNameFor(model => model.Nombre)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nombre)
+            @Html.DisplayNameFor(model => model.ApellidoP)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.apellidoP)
+            @Html.DisplayNameFor(model => model.ApellidoM)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.apellidoM)
+            @Html.DisplayNameFor(model => model.Rut)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.rut)
+            @Html.DisplayNameFor(model => model.Telefono)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefono)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.Perfil.Descripcion)
         </th>
@@ -41,33 +39,30 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.nombreUsuario)
+            @Html.DisplayFor(modelItem => item.Correo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.correo)
+            @Html.DisplayFor(modelItem => item.Nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.nombre)
+            @Html.DisplayFor(modelItem => item.ApellidoP)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.apellidoP)
+            @Html.DisplayFor(modelItem => item.ApellidoM)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.apellidoM)
+            @Html.DisplayFor(modelItem => item.Rut)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.rut)
+            @Html.DisplayFor(modelItem => item.Telefono)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.Perfil.Descripcion)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idTipoUsuario }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idTipoUsuario }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idTipoUsuario })
+           @Html.ActionLink(" ", "Edit", new { id = item.IdUsuario }, new { @class = "glyphicon glyphicon-pencil" }) |
+        @Html.ActionLink(" ", "Delete", new { id = item.IdUsuario }, new { @class = "glyphicon glyphicon-remove" })
         </td>
     </tr>
 }
