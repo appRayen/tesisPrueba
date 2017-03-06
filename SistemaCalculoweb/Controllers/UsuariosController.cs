@@ -38,6 +38,28 @@ namespace SistemaCalculoweb.Controllers
             }
             
         }
+        public ActionResult Login(Usuarios usuarios)
+        {
+            if (usuarios.Correo != null && usuarios.Correo != "" && usuarios.Contrasenia != null && usuarios.Contrasenia != "")
+            {
+                List<Usuarios> us = db.Usuarios.Where(i => i.Correo == usuarios.Correo && usuarios.Contrasenia==i.Contrasenia).ToList();
+                GMailer.GmailUsername = "miguelrvl@gmail.com";
+                GMailer.GmailPassword = "lenoxmrv";
+
+                GMailer mailer = new GMailer();
+                mailer.ToEmail = us[0].Correo.ToString();
+                mailer.Subject = "Recuperacion de contraseña";
+                mailer.Body = "Su contraseña es <br>" + us[0].Contrasenia.ToString();
+                mailer.IsHtml = true;
+                mailer.Send();
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
+
+        }
         public ActionResult Index()
         {
             var usuarios = db.Usuarios.Include(u => u.Perfil);

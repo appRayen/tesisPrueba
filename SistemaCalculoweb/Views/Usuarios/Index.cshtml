@@ -3,68 +3,76 @@
 @{
     ViewBag.Title = "Usuarios";
 }
+@if (Session["Usuario"] == null)
+{
+@Html.ActionLink("No esta autorizao para ver esta pagina", "Index", "Home")
+}
+else
+{
+    <h2>Usuarios</h2>
 
-<h2>Usuarios</h2>
+    <p>
+        @(Html.ActionLink("Nuevo", "Create", new { id = 1 }, new { @class = "btn btn-primary" }))
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Correo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApellidoP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApellidoM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
 
-<p>
-    @(Html.ActionLink("Nuevo", "Create", new { id = 1 }, new { @class = "btn btn-primary" }))
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Correo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApellidoP)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApellidoM)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rut)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefono)
-        </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Perfil.Descripcion)
+            </th>
+            <th></th>
+        </tr>
 
-        <th>
-            @Html.DisplayNameFor(model => model.Perfil.Descripcion)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApellidoP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApellidoM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Correo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApellidoP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApellidoM)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rut)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Perfil.Descripcion)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.IdUsuario }, new { @class = "glyphicon glyphicon-pencil" }) |
+                @Html.ActionLink(" ", "Delete", new { id = item.IdUsuario }, new { @class = "glyphicon glyphicon-remove" })
+            </td>
+        </tr>
+        }
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Perfil.Descripcion)
-        </td>
-        <td>
-           @Html.ActionLink(" ", "Edit", new { id = item.IdUsuario }, new { @class = "glyphicon glyphicon-pencil" }) |
-        @Html.ActionLink(" ", "Delete", new { id = item.IdUsuario }, new { @class = "glyphicon glyphicon-remove" })
-        </td>
-    </tr>
+    </table>
 }
 
-</table>
