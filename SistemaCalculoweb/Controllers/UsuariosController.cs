@@ -21,8 +21,8 @@ namespace SistemaCalculoweb.Controllers
             if (usuarios.Correo != null && usuarios.Correo != "")
             {
                 List<Usuarios> us = db.Usuarios.Where(i => i.Correo == usuarios.Correo).ToList();
-                    GMailer.GmailUsername = "miguelrvl@gmail.com";
-                    GMailer.GmailPassword = "lenoxmrv";
+                    GMailer.GmailUsername = "sacp.noreply@gmail.com";
+                    GMailer.GmailPassword = "sacpnoreply$";
 
                     GMailer mailer = new GMailer();
                     mailer.ToEmail = us[0].Correo.ToString();
