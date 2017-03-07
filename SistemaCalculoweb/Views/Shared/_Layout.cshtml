@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title - SACP</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -19,21 +19,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Sistema Calculo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("SACP", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <div class="container-fluid">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                Mantenedor de Datos
+                                Mantenedor Datos Calculo
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Mantenedor de Tipo Servicio", "index", "Servicios")</li>
-                                <li>@Html.ActionLink("Mantenedor de Servicio Descripción", "index", "Servicio_Descripcion")</li>
-                                <li>@Html.ActionLink("Mantenedor de Tipo Operacion", "index", "TipoOperacions")</li>
-                                <li>@Html.ActionLink("Mantenedor de Volumen de Ticket", "index", "Volumen_Ticket")</li>
+                                <li>@Html.ActionLink("Mantenedor Tipo Servicio", "index", "Servicios")</li>
+                                <li>@Html.ActionLink("Mantenedor Servicio Descripción", "index", "Servicio_Descripcion")</li>
+                                <li>@Html.ActionLink("Mantenedor Tipo Operacion", "index", "TipoOperacions")</li>
+                                <li>@Html.ActionLink("Mantenedor Volumen de Ticket", "index", "Volumen_Ticket")</li>
                                 @*<li>@Html.ActionLink("Mantenedor de Tipo Ticket", "index", "TipoTickets")</li>*@
                             </ul>
                         </li>
@@ -43,7 +43,7 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Registro de Usuario", "Index", "Usuarios")</li>                                
+                                <li>@Html.ActionLink("Mantenedor de Usuarios", "Index", "Usuarios")</li>                                
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -52,7 +52,7 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Datos de Calculo Horas", "Index", "CalculoHoras")</li>
+                                <li>@Html.ActionLink("Calculo Horas", "Index", "CalculoHoras")</li>
 
                             </ul>
                         </li>
