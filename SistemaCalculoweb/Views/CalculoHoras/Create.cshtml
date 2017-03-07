@@ -99,6 +99,7 @@ using (Html.BeginForm())
         <br />
         <br />
         <br />
+        <div id="Grilla" >
             <table id="tResultado" class="table-striped">
                 <thead>
                     <tr>
@@ -128,13 +129,15 @@ using (Html.BeginForm())
                         </td>
                     </tr>
                 </thead>
-</table>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-4">
-                <input type="button" value="Guardar" id="send" class="btn btn-primary" />
+            </table>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-4">
+                    <input type="button" value="Guardar" id="send" class="btn btn-primary" />
+                </div>
             </div>
         </div>
+
+       
         <table id="tResultado1" class="table-striped hidden">
             <thead>
                 <tr>
@@ -179,16 +182,17 @@ using (Html.BeginForm())
                     <h4 class="modal-title">Advertencia</h4>
                 </div>
                 <div class="modal-body">
-                    <p>El Dato que decea agregar ya se encuentra en lista.</p>
+                    <p>El Dato que desea agregar ya se encuentra en lista.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
-
+            
         </div>
     </div>
-}
+   
+    }
 
 <div>
     @(Html.ActionLink(" ", "Index", new { id = 1 }, new { @class = "glyphicon glyphicon-arrow-left glyphicon-lg" }))
@@ -215,17 +219,28 @@ using (Html.BeginForm())
             url: "/CalculoHoras/ProcesoGuardado",
             data: postData,
             success: function (data) {
-                //alert(data.Result);
+
+                var url = '@Url.Action("Index", "CalculoHoras", new { id = 1 })';
+                console.log(url);
+               // window.location.href = url;
+            },error: function (ex) {
+                var url = '@Url.Action("Index", "CalculoHoras", new { id = 1 })';
+                console.log(url);
+                window.location.href = url;
             },
             dataType: "json",
             traditional: true
         });
+
     });
     function delete_user(row) {
         row.closest('tr').remove();
+        if ($('#miTabla >tbody >tr').length == 1) {
+            $("#Grilla").hide();
+        }
     }
     $("#agregar").click(function () {
-      
+        
         //validamos que no se repita ante sde agregar
         var id_servicio;
         var descripcion_servcio;
@@ -246,6 +261,7 @@ using (Html.BeginForm())
             });
             if (repetido != 1)
             {
+                $("#Grilla").show();
                 var nuevaFila = "<tr>";
                 nuevaFila += "<td class='col-md-2'>" + $("#Id_servicios option:selected").text(); + "</td>";
                 nuevaFila += "<td class='col-md-2'>" + $("#Id_Servicio_Descripcion1 option:selected").text(); + "</td>";
@@ -254,7 +270,7 @@ using (Html.BeginForm())
                 nuevaFila += "<td class='col-md-2'>" + $("#Cantidad_Volumen_Ticket").val(); + "</td>";
                 nuevaFila += "<td class='col-md-2'>" + $("#Id_Tipo_Operacion option:selected").text(); + "</td>";
                 nuevaFila += "<td class='col-md-2'>" + $("#Resultado").val(); + "</td>";
-                nuevaFila += "<td class='col-md-2'><input type='button' class='glyphicon glyphicon-remove' value='borrar' onclick ='delete_user($(this))' /></td>";
+                nuevaFila += "<td class='col-md-2'><button type='button' class='glyphicon glyphicon-remove' value='borrar' onclick ='delete_user($(this))' /></td>";
                 nuevaFila += "</tr>";
                 $("#tResultado").append(nuevaFila);
                 var nuevaFila1 = "<tr>";
@@ -296,7 +312,13 @@ using (Html.BeginForm())
             return false;
         });
     });
-        $(document).ready(function () {
+    $(document).ready(function () {
+        if ($('#miTabla >tbody >tr').length >1) {
+            $("#Grilla").show();
+        }
+        else {
+            $("#Grilla").hide();
+        };
             $("#Id_servicios").change(function () {
                 var valor
                 valor = $('#Id_servicios option:selected').val();

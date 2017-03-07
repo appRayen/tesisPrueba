@@ -51,7 +51,7 @@ namespace SistemaCalculoweb.Controllers
                 }
                 
             }
-            return View();
+            return RedirectToAction("Index", "CalculoHoras");
         }
         public ActionResult Index()
         {
@@ -129,6 +129,7 @@ namespace SistemaCalculoweb.Controllers
             ViewBag.Id_Tipo_Operacion = new SelectList(db.TipoOperacion, "idTipoOperacion", "descripcion", calculoHoras.Id_Tipo_Operacion);
             ViewBag.Id_Volumen_Ticket = new SelectList(db.Volumen_Ticket, "Id", "Sugerencia", calculoHoras.Id_Volumen_Ticket);
             ViewBag.Id_servicio = new SelectList(db.Servicios, "Id", "decripcion",calculoHoras.Id_servicio);
+            ViewBag.Id_calculo = new SelectList(db.Calculo, "Id", "decripcion", calculoHoras.Id_calculo);
             return View(calculoHoras);
         }
 
@@ -137,7 +138,7 @@ namespace SistemaCalculoweb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Id_Servicio_Descripcion,cantidad_Servicio,Id_Tipo_Operacion,Id_Volumen_Ticket,Cantidad_Volumen_Ticket,Resultado")] CalculoHoras calculoHoras)
+        public ActionResult Edit([Bind(Include = "Id,Id_Servicio_Descripcion,cantidad_Servicio,Id_Tipo_Operacion,Id_Volumen_Ticket,Cantidad_Volumen_Ticket,Resultado,Id_servicios,Id_calculo")] CalculoHoras calculoHoras)
         {
             if (ModelState.IsValid)
             {
