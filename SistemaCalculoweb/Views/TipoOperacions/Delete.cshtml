@@ -3,7 +3,15 @@
 @{
     ViewBag.Title = "Delete";
 }
-
+@if (Session["Usuario"] == null)
+{
+    <br />
+    <br />
+    <br />
+    @Html.ActionLink("Favor Iniciar sesión para visualizar contenido ", "Login", "Usuarios")
+}
+else
+{
 <h2>Eliminar</h2>
 
 <div>
@@ -19,7 +27,8 @@
         </dd>
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
@@ -29,3 +38,4 @@
         </div>
     }
 </div>
+}

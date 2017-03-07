@@ -3,14 +3,22 @@
 @{
     ViewBag.Title = "Edit";
 }
-
+@if (Session["Usuario"] == null)
+{
+    <br />
+    <br />
+    <br />
+    @Html.ActionLink("Favor Iniciar sesión para visualizar contenido ", "Login", "Usuarios")
+}
+else
+{
 <h2>Actualizar</h2>
 
 
-@using (Html.BeginForm())
-{
+    using (Html.BeginForm())
+    {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Dispocitivos</h4>
         <hr />
@@ -39,7 +47,7 @@
             </div>
         </div>
     </div>
-}
+    }
 
 <div>
     @(Html.ActionLink(" ", "Index", new { id = 1 }, new { @class = "glyphicon glyphicon-arrow-left glyphicon-lg" }))
@@ -47,4 +55,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+}
 }

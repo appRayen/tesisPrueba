@@ -3,11 +3,19 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@if (Session["Usuario"] == null)
+{
+    <br />
+    <br />
+    <br />
+    @Html.ActionLink("Favor Iniciar sesión para visualizar contenido ", "Login", "Usuarios")
+}
+else
+{
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Nuevo", "Create",new { id = 1 }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Nuevo", "Create", new { id = 1 }, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -20,7 +28,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.descripcion)
@@ -36,3 +45,4 @@
 }
 
 </table>
+}

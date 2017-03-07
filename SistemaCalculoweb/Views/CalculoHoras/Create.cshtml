@@ -4,13 +4,21 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
 
-
-@using (Html.BeginForm()) 
+@if (Session["Usuario"] == null)
 {
+    <br />
+    <br />
+    <br />
+    @Html.ActionLink("Favor Iniciar sesión para visualizar contenido ", "Login", "Usuarios")
+}
+else
+{
+using (Html.BeginForm())
+{
+
     @Html.AntiForgeryToken()
-    
+        <h2>Nuevo Calculo</h2>
     <div class="form-horizontal">
         <h4>Calculo Horas</h4>
         <hr />
@@ -20,7 +28,7 @@
                         <label>Servicio</label>
                     </td>
                 <td class="col-md-4">
-                    @Html.DropDownList("Id_servicios", null,"Seleccione Opción", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("Id_servicios", null, "Seleccione Opción", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 </td>
             </tr>
@@ -66,7 +74,7 @@
                     <label>Cantidad</label>
                       </td>
                 <td class="col-md-2">
-                            @Html.EditorFor(model => model.cantidad_Servicio, new { htmlAttributes = new { @class = "form-control", @placeholder ="Ingrese Cantidad" } })
+                            @Html.EditorFor(model => model.cantidad_Servicio, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Cantidad" } })
                             @Html.ValidationMessageFor(model => model.cantidad_Servicio, "", new { @class = "text-danger" })
                 </td>
             </tr>
@@ -332,4 +340,5 @@
             
         });
 </script>
+}
 }

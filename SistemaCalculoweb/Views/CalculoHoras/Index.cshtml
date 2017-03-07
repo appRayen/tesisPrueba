@@ -3,7 +3,18 @@
 @{
     ViewBag.Title = "Editar";
 }
-
+@if (Session["Usuario"] == null)
+{
+    <br />
+    <br />
+    <br />
+    @Html.ActionLink("Favor Iniciar sesión para visualizar contenido ", "Login", "Usuarios")
+}
+else
+{
+<br />
+<br />
+<br />
 <p>
     @(Html.ActionLink("Nuevo", "Create", new { id = 1 }, new { @class = "btn btn-primary" }))
 </p>
@@ -36,7 +47,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.ID)
@@ -70,3 +82,4 @@
 }
 
 </table>
+}

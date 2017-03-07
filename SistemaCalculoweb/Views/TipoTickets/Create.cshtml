@@ -5,10 +5,18 @@
 }
 
 <h2>Nuevo</h2>
-
-
-@using (Html.BeginForm()) 
+@if (Session["Usuario"] == null)
 {
+    <br />
+    <br />
+    <br />
+    @Html.ActionLink("Favor Iniciar sesión para visualizar contenido ", "Login", "Usuarios")
+}
+else
+{
+
+    using (Html.BeginForm())
+    {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -37,7 +45,7 @@
             </div>
         </div>
     </div>
-}
+    }
 
 <div>
     @(Html.ActionLink(" ", "Index", new { id = 1 }, new { @class = "glyphicon glyphicon-arrow-left glyphicon-lg" }))
@@ -45,4 +53,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+}
 }

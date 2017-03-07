@@ -1,9 +1,17 @@
 ﻿@model SistemaCalculoweb.CalculoHoras
-
-@using (Html.BeginForm())
+@if (Session["Usuario"] == null)
 {
+    <br />
+    <br />
+    <br />
+    @Html.ActionLink("Favor Iniciar sesión para visualizar contenido ", "Login", "Usuarios")
+}
+else
+{
+    using (Html.BeginForm())
+    {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Calculo Horas</h4>
         <hr />
@@ -74,7 +82,7 @@
             </div>
         </div>
     </div>
-}
+    }
 
 <div>
     @(Html.ActionLink(" ", "Index", new { id = 1 }, new { @class = "glyphicon glyphicon-arrow-left glyphicon-lg" }))
@@ -105,3 +113,4 @@
     });
     </script>
     }
+}

@@ -5,7 +5,10 @@
 }
 @if (Session["Usuario"] == null)
 {
-@Html.ActionLink("No esta autorizao para ver esta pagina", "Index", "Home")
+<br />
+<br />
+<br />
+@Html.ActionLink("Favor Iniciar sesión para visualizar contenido ", "Login", "Usuarios")
 }
 else
 {

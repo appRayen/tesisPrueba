@@ -3,7 +3,15 @@
 @{
     ViewBag.Title = "Tipo de Servicio";
 }
-
+@if (Session["Usuario"] == null)
+{
+    <br />
+    <br />
+    <br />
+    @Html.ActionLink("Favor Iniciar sesión para visualizar contenido ", "Login", "Usuarios")
+}
+else
+{
 <h2>Servicios</h2>
 
 <p>
@@ -17,7 +25,8 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Decripcion)
@@ -30,3 +39,4 @@
 }
 
 </table>
+}

@@ -3,14 +3,22 @@
 @{
     ViewBag.Title = "Editar";
 }
-
+@if (Session["Usuario"] == null)
+{
+    <br />
+    <br />
+    <br />
+    @Html.ActionLink("Favor Iniciar sesión para visualizar contenido ", "Login", "Usuarios")
+}
+else
+{
 <h2>Actualizar</h2>
 
 
-@using (Html.BeginForm())
+using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Servicios</h4>
         <hr />
@@ -39,4 +47,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+}
 }
