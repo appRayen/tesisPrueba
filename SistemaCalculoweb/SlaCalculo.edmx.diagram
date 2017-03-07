@@ -7,7 +7,7 @@
       <Diagram DiagramId="f242db7b53d543bf9fe27cc28647be68" Name="Diagram1" ZoomLevel="100">
         <EntityTypeShape EntityType="CalculoModel.CalculoHoras" Width="1.5" PointX="3" PointY="3.75" />
         <EntityTypeShape EntityType="CalculoModel.Empresa" Width="1.5" PointX="0.625" PointY="12" />
-        <EntityTypeShape EntityType="CalculoModel.Servicio_Descripcion" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="CalculoModel.Servicio_Descripcion" Width="1.5" PointX="0.625" PointY="0.5" />
         <EntityTypeShape EntityType="CalculoModel.Servicios" Width="1.5" PointX="0.5" PointY="3.375" />
         <EntityTypeShape EntityType="CalculoModel.TipoOperacion" Width="1.5" PointX="0.5" PointY="5.5" />
         <EntityTypeShape EntityType="CalculoModel.Volumen_Ticket" Width="1.5" PointX="1.25" PointY="8" />

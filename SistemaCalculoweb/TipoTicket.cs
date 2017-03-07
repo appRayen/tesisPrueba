@@ -11,12 +11,10 @@ namespace SistemaCalculoweb
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-
+    
     public partial class TipoTicket
     {
         public int tipoTicket1 { get; set; }
-        [DisplayName("Descripción")]
         public string descripcion { get; set; }
         public Nullable<short> estado { get; set; }
     }

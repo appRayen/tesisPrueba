@@ -53,6 +53,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Servicio" Type="int" />
           <Property Name="Descripcion" Type="varchar(max)" />
+          <Property Name="Referencia" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Servicios">
           <Key>
@@ -60,6 +61,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Decripcion" Type="varchar(max)" />
+          <Property Name="Referencia" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="TipoOperacion">
           <Key>
@@ -68,6 +70,7 @@
           <Property Name="idTipoOperacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="descripcion" Type="varchar" MaxLength="500" />
           <Property Name="estado" Type="smallint" Nullable="false" />
+          <Property Name="Referencia" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="TipoTicket">
           <Key>
@@ -310,6 +313,7 @@
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CalculoHoras" Relationship="CalculoModel.FK_CalculoHoras_Servicio_descripcion" FromRole="Servicio_Descripcion" ToRole="CalculoHoras" />
           <NavigationProperty Name="Servicios" Relationship="CalculoModel.FK_Servicio_Descripcion_ToTable" FromRole="Servicio_Descripcion" ToRole="Servicios" />
+          <Property Name="Referencia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Servicios">
           <Key>
@@ -319,6 +323,7 @@
           <Property Name="Decripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Servicio_Descripcion" Relationship="CalculoModel.FK_Servicio_Descripcion_ToTable" FromRole="Servicios" ToRole="Servicio_Descripcion" />
           <NavigationProperty Name="CalculoHoras" Relationship="CalculoModel.FK_CalculoHoras_Servicios" FromRole="Servicios" ToRole="CalculoHoras" />
+          <Property Name="Referencia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TipoOperacion">
           <Key>
@@ -328,6 +333,7 @@
           <Property Name="descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="estado" Type="Int16" Nullable="false" />
           <NavigationProperty Name="CalculoHoras" Relationship="CalculoModel.FK_CalculoHoras_TipoOperacion" FromRole="TipoOperacion" ToRole="CalculoHoras" />
+          <Property Name="Referencia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Volumen_Ticket">
           <Key>
@@ -510,6 +516,7 @@
           <EntitySetMapping Name="Servicio_Descripcion">
             <EntityTypeMapping TypeName="CalculoModel.Servicio_Descripcion">
               <MappingFragment StoreEntitySet="Servicio_Descripcion">
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Id_Servicio" ColumnName="Id_Servicio" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -519,6 +526,7 @@
           <EntitySetMapping Name="Servicios">
             <EntityTypeMapping TypeName="CalculoModel.Servicios">
               <MappingFragment StoreEntitySet="Servicios">
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
                 <ScalarProperty Name="Decripcion" ColumnName="Decripcion" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -527,6 +535,7 @@
           <EntitySetMapping Name="TipoOperacion">
             <EntityTypeMapping TypeName="CalculoModel.TipoOperacion">
               <MappingFragment StoreEntitySet="TipoOperacion">
+                <ScalarProperty Name="Referencia" ColumnName="Referencia" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="idTipoOperacion" ColumnName="idTipoOperacion" />

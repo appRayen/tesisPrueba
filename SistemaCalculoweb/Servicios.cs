@@ -25,6 +25,8 @@ namespace SistemaCalculoweb
         public int Id { get; set; }
         [DisplayName("Descripción")]
         public string Decripcion { get; set; }
+        [DisplayName("Referencia")]
+        public string Referencia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Servicio_Descripcion> Servicio_Descripcion { get; set; }

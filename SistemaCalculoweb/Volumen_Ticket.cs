@@ -22,6 +22,7 @@ namespace SistemaCalculoweb
         }
     
         public int Id { get; set; }
+        [DisplayName("Referencia")]
         public string Sugerencia { get; set; }
         [DisplayName("Descripción")]
         public string Descripcion { get; set; }

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SistemaCalculoweb.TipoOperacion>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Mantenedor Tipo de Operación";
 }
 @if (Session["Usuario"] == null)
 {
@@ -12,7 +12,7 @@
 }
 else
 {
-<h2>Index</h2>
+<h2>Mantenedor Tipo de Operación</h2>
 
 <p>
     @Html.ActionLink("Nuevo", "Create", new { id = 1 }, new { @class = "btn btn-primary" })

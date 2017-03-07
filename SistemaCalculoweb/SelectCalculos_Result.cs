@@ -6,6 +6,7 @@
 //     Los cambios manuales en este archivo se sobrescribirán si se regenera el código.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
 namespace SistemaCalculoweb
 {
     using System;
@@ -19,9 +20,9 @@ namespace SistemaCalculoweb
         public Nullable<int> Resultado { get; set; }
         [DisplayName("Cantidad Dispocitivos")]
         public Nullable<int> Cantidad_Dispocitivos { get; set; }
-        [DisplayName("Volumen de Ticket")]
+        [DisplayName("Requerimientos")]
         public string Volumen_Ticket { get; set; }
-        [DisplayName("Cantidad Ticket")]
+        [DisplayName("Cantidad Requerimientos")]
         public Nullable<int> Cantidad_Ticket { get; set; }
         [DisplayName("Tipo Operación")]
         public string Tipo_de_Operación { get; set; }
