@@ -259,6 +259,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content1\bootstrap.css" />
+    <Content Include="Content1\bootstrap.min.css" />
+    <Content Include="Content1\css\select2.css" />
+    <Content Include="Content1\css\select2.min.css" />
+    <Content Include="Content1\Site.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\select2.css" />
