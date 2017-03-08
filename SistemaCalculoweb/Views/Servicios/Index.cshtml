@@ -22,6 +22,9 @@ else
         <th>
             @Html.DisplayNameFor(model => model.Decripcion)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Referencia)
+        </th>
         <th></th>
     </tr>
 
@@ -30,6 +33,9 @@ else
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Decripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Referencia)
         </td>
         <td>
             @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "glyphicon glyphicon-pencil" }) |

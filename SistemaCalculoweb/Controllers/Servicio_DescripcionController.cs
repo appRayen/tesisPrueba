@@ -39,7 +39,7 @@ namespace SistemaCalculoweb.Controllers
         // GET: Servicio_Descripcion/Create
         public ActionResult Create()
         {
-            ViewBag.Id_Servicio = new SelectList(db.Servicios, "Id", "Decripcion");
+            ViewBag.Id_Servicio = new SelectList(db.Servicios, "Id", "Decripcion","Referencia");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace SistemaCalculoweb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Id_Servicio,Descripcion")] Servicio_Descripcion servicio_Descripcion)
+        public ActionResult Create([Bind(Include = "Id,Id_Servicio,Descripcion,Referencia")] Servicio_Descripcion servicio_Descripcion)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace SistemaCalculoweb.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Id_Servicio = new SelectList(db.Servicios, "Id", "Decripcion", servicio_Descripcion.Id_Servicio);
+            ViewBag.Id_Servicio = new SelectList(db.Servicios, "Id", "Decripcion", "Referencia", servicio_Descripcion.Id_Servicio);
             return View(servicio_Descripcion);
         }
 
@@ -82,7 +82,7 @@ namespace SistemaCalculoweb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Id_Servicio,Descripcion")] Servicio_Descripcion servicio_Descripcion)
+        public ActionResult Edit([Bind(Include = "Id,Id_Servicio,Descripcion,Referencia")] Servicio_Descripcion servicio_Descripcion)
         {
             if (ModelState.IsValid)
             {

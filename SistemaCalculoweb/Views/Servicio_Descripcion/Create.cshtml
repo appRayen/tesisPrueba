@@ -12,7 +12,8 @@
 }
 else
 {
-<h2>Nuevo</h2>
+<h2>Mantenedor Tipo de Dispositivos</h2>
+<h3>Nuevo</h3>
 
 
     using (Html.BeginForm())
@@ -20,7 +21,6 @@ else
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Dispocitivos</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -36,6 +36,13 @@ else
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Referencia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Referencia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Referencia, "", new { @class = "text-danger" })
             </div>
         </div>
 

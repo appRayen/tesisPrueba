@@ -22,9 +22,9 @@ else
         <th>
             @Html.DisplayNameFor(model => model.descripcion)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.estado)
-        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Referencia)
+        </th>
         <th></th>
     </tr>
 
@@ -34,9 +34,9 @@ else
         <td>
             @Html.DisplayFor(modelItem => item.descripcion)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.estado)
-        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Referencia)
+        </td>
         <td>
             @Html.ActionLink(" ", "Edit", new { id = item.idTipoOperacion }, new { @class = "glyphicon glyphicon-pencil" }) |
             @Html.ActionLink(" ", "Delete", new { id = item.idTipoOperacion }, new { @class = "glyphicon glyphicon-remove" })

@@ -19,84 +19,96 @@ using (Html.BeginForm())
 
     @Html.AntiForgeryToken()
         <h2>Nuevo Calculo</h2>
-    <div class="form-horizontal">
-        <h4>Calculo Horas</h4>
         <hr />
-        <table>
-            <tr>
-                <td class="col-md-4">
-                        <label>Servicio</label>
-                    </td>
-                <td class="col-md-4">
-                    @Html.DropDownList("Id_servicios", null, "Seleccione Opción", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-            </tr>
-            <tr>
-                <td class="col-md-2">
-                    <label>Tipo Operación</label>
-                </td>
-                <td class="col-md-2">
-                    @Html.DropDownList("Id_Tipo_Operacion", null, "Seleccione Opción", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Id_Tipo_Operacion, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-2">
-                    <label>Volumen Ticket</label>
-                </td>
-                <td class="col-md-4">
-                    @Html.DropDownList("Id_Volumen_Ticket", null, "Seleccione Opción", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.Id_Volumen_Ticket, "", new { @class = "text-danger" })
-                </td>
-                <td class="col-md-2">
-                    <label>Cantidad</label>
-                </td>
-                <td class="col-md-2">
-                    @Html.EditorFor(model => model.Cantidad_Volumen_Ticket, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Cantidad" } })
-                    @Html.ValidationMessageFor(model => model.Cantidad_Volumen_Ticket, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-2">
-                    <label>Dispocitivo</label>
-                   </td>
-                <td class="col-md-2">
-                            <select name="Id_Servicio_Descripcion1" id="Id_Servicio_Descripcion1" class="form-control">
-                                <option value="">Seleccione Opción</option>
-                            </select>
-                            @Html.ValidationMessageFor(model => model.Id_Servicio_Descripcion, "", new { @class = "text-danger" })
-                </td>
-
-                <td class="col-md-2">
-                    <label>Cantidad</label>
-                      </td>
-                <td class="col-md-2">
-                            @Html.EditorFor(model => model.cantidad_Servicio, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Cantidad" } })
-                            @Html.ValidationMessageFor(model => model.cantidad_Servicio, "", new { @class = "text-danger" })
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-2">
-                    <label>Resultado</label>
-                 </td>
-                 <td class="col-md-2">
-                            @Html.EditorFor(model => model.Resultado, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Resultado, "", new { @class = "text-danger" })
-                </td>
-                <td class="col-md-2">
-                    <input type="button" id="calculobtn" value="Calculo" class="btn btn-info btn-sm" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="button" id="agregar" value="Agregar" class="btn btn-success btn-sm center-block" />
-                </td>
-            </tr>
-        </table>
-        <br />
+        <div class="well well-lg">
+            <div class="panel-body">
+                <div class="col-md-8 col-md-offset-2">
+                    <table>
+                        <tr>
+                            <td>
+                                <label>Servicio</label>
+                            </td>
+                            <td>
+                                @Html.DropDownList("Id_servicios", null, "Seleccione Opción", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Dispocitivo</label>
+                            </td>
+                            <td>
+                                <select name="Id_Servicio_Descripcion1" id="Id_Servicio_Descripcion1" class="form-control">
+                                    <option value="">Seleccione Opción</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.Id_Servicio_Descripcion, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                <label>Cantidad</label>
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.cantidad_Servicio, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Cantidad" } })
+                                @Html.ValidationMessageFor(model => model.cantidad_Servicio, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Tipo Operación</label>
+                            </td>
+                            <td>
+                                @Html.DropDownList("Id_Tipo_Operacion", null, "Seleccione Opción", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Id_Tipo_Operacion, "", new { @class = "text-danger" })
+                            </td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Requerimientos</label>
+                            </td>
+                            <td>
+                                @Html.DropDownList("Id_Volumen_Ticket", null, "Seleccione Opción", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Id_Volumen_Ticket, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                <label>Cantidad Requerimientos</label>
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.Cantidad_Volumen_Ticket, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Cantidad" } })
+                                @Html.ValidationMessageFor(model => model.Cantidad_Volumen_Ticket, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Resultado</label>
+                            </td>
+                            <td>
+                                @Html.EditorFor(model => model.Resultado, new { htmlAttributes = new { @class = "form-control" ,disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.Resultado, "", new { @class = "text-danger" })
+                            </td>
+                            <td>
+                                <input type="button" id="calculobtn" value="Calculo" class="btn btn-info btn-sm" />
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td><input type="button" id="agregar" value="Agregar" class="btn btn-success btn-sm center-block" /></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
         <br />
         <br />
         <div id="Grilla" >
@@ -137,7 +149,7 @@ using (Html.BeginForm())
             </div>
         </div>
 
-       
+
         <table id="tResultado1" class="table-striped hidden">
             <thead>
                 <tr>
@@ -168,12 +180,11 @@ using (Html.BeginForm())
                 </tr>
             </thead>
         </table>
-        
+
         <br />
         <br />
         <br />
-        
-    </div>
+
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">

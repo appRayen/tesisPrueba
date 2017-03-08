@@ -46,7 +46,7 @@ namespace SistemaCalculoweb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Sugerencia,Descripcion")] Volumen_Ticket volumen_Ticket)
+        public ActionResult Create([Bind(Include = "Id,Sugerencia,Descripcion,Referencia")] Volumen_Ticket volumen_Ticket)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace SistemaCalculoweb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Sugerencia,Descripcion")] Volumen_Ticket volumen_Ticket)
+        public ActionResult Edit([Bind(Include = "Id,Sugerencia,Descripcion,Referencia")] Volumen_Ticket volumen_Ticket)
         {
             if (ModelState.IsValid)
             {
