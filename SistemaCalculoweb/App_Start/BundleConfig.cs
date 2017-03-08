@@ -23,7 +23,7 @@ namespace SistemaCalculoweb
                       "~/Scripts1/bootstrap.js",
                       "~/Scripts1/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Contentr/css").Include(
                       "~/Content1/bootstrap.css",
                       "~/Content1/site.css"));
         }
