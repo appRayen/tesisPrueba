@@ -187,6 +187,10 @@
           </ReferentialConstraint>
         </Association>
         <Function Name="SelectCalculos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SelectCalculosPar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="id_serivicio" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="CalculoModelStoreContainer">
           <EntitySet Name="Calculo" EntityType="Self.Calculo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CalculoHoras" EntityType="Self.CalculoHoras" Schema="dbo" store:Type="Tables" />
@@ -273,6 +277,14 @@
             <End Role="Perfil" EntitySet="Perfil" />
             <End Role="Usuarios" EntitySet="Usuarios" />
           </AssociationSet>
+          <FunctionImport Name="SelectCalculosPar" ReturnType="Collection(CalculoModel.SelectCalculosPar_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="id_serivicio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SelectCalculoPar" ReturnType="Collection(CalculoModel.SelectCalculosPar_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="id_serivicio" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="CalculoHoras">
           <Key>
@@ -480,6 +492,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="SelectCalculosPar_Result">
+          <Property Type="Int32" Name="ID" Nullable="true" />
+          <Property Type="String" Name="Servicio" Nullable="true" />
+          <Property Type="String" Name="Dispocitivo" Nullable="true" />
+          <Property Type="Int32" Name="Cantidad_Dispocitivos" Nullable="true" />
+          <Property Type="String" Name="Volumen_Ticket" Nullable="true" />
+          <Property Type="Int32" Name="Cantidad_Ticket" Nullable="true" />
+          <Property Type="String" Name="Tipo_de_Operación" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Resultado" Nullable="true" />
+          <Property Type="Int32" Name="IDBUSQUEDA" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -628,6 +651,36 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SelectCalculosPar" FunctionName="CalculoModel.Store.SelectCalculosPar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CalculoModel.SelectCalculosPar_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Servicio" ColumnName="Servicio" />
+                <ScalarProperty Name="Dispocitivo" ColumnName="Dispocitivo" />
+                <ScalarProperty Name="Cantidad_Dispocitivos" ColumnName="Cantidad Dispocitivos" />
+                <ScalarProperty Name="Volumen_Ticket" ColumnName="Volumen Ticket" />
+                <ScalarProperty Name="Cantidad_Ticket" ColumnName="Cantidad Ticket" />
+                <ScalarProperty Name="Tipo_de_Operación" ColumnName="Tipo de Operación" />
+                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+                <ScalarProperty Name="IDBUSQUEDA" ColumnName="IDBUSQUEDA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SelectCalculoPar" FunctionName="CalculoModel.Store.SelectCalculosPar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CalculoModel.SelectCalculosPar_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Servicio" ColumnName="Servicio" />
+                <ScalarProperty Name="Dispocitivo" ColumnName="Dispocitivo" />
+                <ScalarProperty Name="Cantidad_Dispocitivos" ColumnName="Cantidad_Dispocitivos" />
+                <ScalarProperty Name="Volumen_Ticket" ColumnName="Volumen_Ticket" />
+                <ScalarProperty Name="Cantidad_Ticket" ColumnName="Cantidad_Ticket" />
+                <ScalarProperty Name="Tipo_de_Operación" ColumnName="Tipo_de_Operación" />
+                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+                <ScalarProperty Name="IDBUSQUEDA" ColumnName="IDBUSQUEDA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

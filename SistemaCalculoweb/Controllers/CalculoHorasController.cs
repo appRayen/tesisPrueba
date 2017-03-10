@@ -21,19 +21,21 @@ namespace SistemaCalculoweb.Controllers
             Random rd = new Random();
             return rd.Next(1, 100); 
         }
+        public ActionResult Pdf()
+        {
+            return new Rotativa.MVC.ActionAsPdf("Reporte");
+        }
         public ActionResult Reporte(string id, string servicio)
         {
+            ViewBag.Id_Servicio = new SelectList(db.Servicios, "Id", "Decripcion");
+            ViewBag.ID = new SelectList(db.CalculoHoras, "Id_calculo", "Id_calculo");
             if (id !=null && id!="" && servicio!=null && servicio!="")
             {
-                return View();
-                
+                return View("Reporte",(db.SelectCalculosPar(int.Parse(id.ToString()), int.Parse(servicio.ToString()))));
             }
             else
             {
-              ViewBag.Id_Servicio = new SelectList(db.Servicios, "Id", "Decripcion");
-              ViewBag.ID = new SelectList(db.CalculoHoras, "Id_calculo", "Id_calculo");
-                return View(db.selectCal());
-             
+                return View(db.SelectCalculosPar(0,0));
             }
         }
         public ActionResult ProcesoGuardado(List<String> values)

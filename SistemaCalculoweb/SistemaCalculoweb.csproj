@@ -220,6 +220,9 @@
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelectCalculosPar_Result.cs">
+      <DependentUpon>SlaCalculo.tt</DependentUpon>
+    </Compile>
     <Compile Include="SelectCalculos_Result.cs">
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
@@ -408,7 +411,6 @@
       <DependentUpon>SlaCalculo.edmx</DependentUpon>
       <LastGenOutput>SlaCalculo.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="SlaCalculo.edmx.sql" />
     <Content Include="SlaCalculo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SlaCalculo.edmx</DependentUpon>

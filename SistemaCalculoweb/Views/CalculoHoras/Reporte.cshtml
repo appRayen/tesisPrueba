@@ -1,9 +1,9 @@
-﻿@model IEnumerable<SistemaCalculoweb.SelectCalculos_Result>
+﻿@model IEnumerable<SistemaCalculoweb.SelectCalculosPar_Result>
 
 @{
     ViewBag.Title = "Reporte";
 }
-@*@if (Session["Usuario"] == null)
+@if (Session["Usuario"] == null)
 {
     <br />
     <br />
@@ -11,7 +11,7 @@
     @Html.ActionLink("Favor Iniciar sesión para visualizar contenido ", "Login", "Usuarios")
 }
 else
-{*@
+{
     <br />
     <br />
     <br />
@@ -21,6 +21,8 @@ else
         <td>@Html.DropDownList("ID", null, htmlAttributes: new { @class = "form-control" })</td>
     <td>Servicio</td>
     <td>@Html.DropDownList("Id_Servicio", null, htmlAttributes: new { @class = "form-control" })</td>
+    <td><input type="submit" id ="Actualizar" value="Actualizar" class="btn btn-primary btn-sm" /></td>
+        <td><a href="@Url.Action("Pdf","CalculoHoras")" class="btn btn-success" target="_blank">Exportar</a></td>
     </tr>
     </table>
     <table class="table">
@@ -84,4 +86,16 @@ else
         }
 
     </table>
-@* } *@
+ } 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">  
+        $("#Actualizar").click(function () {
+            var iden=$("#ID").val();
+            var ser=$("#Id_Servicio").val();
+            $.get('@Url.Action("Reporte", "CalculoHoras")',
+               {id:iden,servicio:ser}).success( function (Data) {})
+            })
+    </script>
+    }

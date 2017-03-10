@@ -52,5 +52,31 @@ namespace SistemaCalculoweb
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectCalculos_Result>("selectCal");
         }
+    
+        public virtual ObjectResult<SelectCalculosPar_Result> SelectCalculosPar(Nullable<int> id, Nullable<int> id_serivicio)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var id_serivicioParameter = id_serivicio.HasValue ?
+                new ObjectParameter("id_serivicio", id_serivicio) :
+                new ObjectParameter("id_serivicio", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectCalculosPar_Result>("SelectCalculosPar", idParameter, id_serivicioParameter);
+        }
+    
+        public virtual ObjectResult<SelectCalculosPar_Result> SelectCalculoPar(Nullable<int> id, Nullable<int> id_serivicio)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var id_serivicioParameter = id_serivicio.HasValue ?
+                new ObjectParameter("id_serivicio", id_serivicio) :
+                new ObjectParameter("id_serivicio", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectCalculosPar_Result>("SelectCalculoPar", idParameter, id_serivicioParameter);
+        }
     }
 }

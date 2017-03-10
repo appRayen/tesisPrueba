@@ -29,7 +29,7 @@ namespace SistemaCalculoweb
         [DisplayName("Dispocitivos")]
         public Nullable<int> Id_servicio { get; set; }
         public Nullable<int> Id_calculo { get; set; }
-    
+
         public virtual Servicio_Descripcion Servicio_Descripcion { get; set; }
         public virtual TipoOperacion TipoOperacion { get; set; }
         public virtual Volumen_Ticket Volumen_Ticket { get; set; }
