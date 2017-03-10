@@ -21,6 +21,21 @@ namespace SistemaCalculoweb.Controllers
             Random rd = new Random();
             return rd.Next(1, 100); 
         }
+        public ActionResult Reporte(string id, string servicio)
+        {
+            if (id !=null && id!="" && servicio!=null && servicio!="")
+            {
+                return View();
+                
+            }
+            else
+            {
+              ViewBag.Id_Servicio = new SelectList(db.Servicios, "Id", "Decripcion");
+              ViewBag.ID = new SelectList(db.CalculoHoras, "Id_calculo", "Id_calculo");
+                return View(db.selectCal());
+             
+            }
+        }
         public ActionResult ProcesoGuardado(List<String> values)
         {
             //guardar el registro en la tabla calculo y obteren el ID
@@ -91,7 +106,7 @@ namespace SistemaCalculoweb.Controllers
             ViewBag.Id_servicios = new SelectList(db.Servicios, "Id", "decripcion");
             return View();
         }
-
+    
         // POST: CalculoHoras/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

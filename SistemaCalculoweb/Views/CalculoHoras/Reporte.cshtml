@@ -1,0 +1,87 @@
+﻿@model IEnumerable<SistemaCalculoweb.SelectCalculos_Result>
+
+@{
+    ViewBag.Title = "Reporte";
+}
+@*@if (Session["Usuario"] == null)
+{
+    <br />
+    <br />
+    <br />
+    @Html.ActionLink("Favor Iniciar sesión para visualizar contenido ", "Login", "Usuarios")
+}
+else
+{*@
+    <br />
+    <br />
+    <br />
+    <table class="table">
+    <tr>
+    <td>ID</td>
+        <td>@Html.DropDownList("ID", null, htmlAttributes: new { @class = "form-control" })</td>
+    <td>Servicio</td>
+    <td>@Html.DropDownList("Id_Servicio", null, htmlAttributes: new { @class = "form-control" })</td>
+    </tr>
+    </table>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Servicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dispocitivo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad_Dispocitivos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Volumen_Ticket)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad_Ticket)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo_de_Operación)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Resultado)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Servicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dispocitivo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad_Dispocitivos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Volumen_Ticket)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad_Ticket)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tipo_de_Operación)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resultado)
+            </td>
+
+        </tr>
+        }
+
+    </table>
+@* } *@
