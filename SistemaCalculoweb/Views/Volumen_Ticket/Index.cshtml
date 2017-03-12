@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SistemaCalculoweb.Volumen_Ticket>
 
 @{
-    ViewBag.Title = "Mantenedor Tipo de Requerimientos";
+    ViewBag.Title = "Tipo de Requerimientos";
 }
 @if (Session["Usuario"] == null)
 {
@@ -12,7 +12,7 @@
 }
 else
 {
-<h2>Mantenedor Tipo de Requerimientos</h2>
+<h2>Tipo de Requerimientos</h2>
 
 <p>
     @(Html.ActionLink("Nuevo", "Create", new { id = 1 }, new { @class = "btn btn-primary" }))

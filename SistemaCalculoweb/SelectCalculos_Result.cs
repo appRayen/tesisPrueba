@@ -16,9 +16,10 @@ namespace SistemaCalculoweb
     {
         public Nullable<int> ID { get; set; }
         public string Servicio { get; set; }
+        [DisplayName("Dispositivos")]
         public string Dispocitivo { get; set; }
         public Nullable<int> Resultado { get; set; }
-        [DisplayName("Cantidad Dispocitivos")]
+        [DisplayName("Cantidad Dispositivos")]
         public Nullable<int> Cantidad_Dispocitivos { get; set; }
         [DisplayName("Requerimientos")]
         public string Volumen_Ticket { get; set; }

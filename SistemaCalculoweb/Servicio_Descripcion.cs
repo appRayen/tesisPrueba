@@ -22,7 +22,7 @@ namespace SistemaCalculoweb
         }
 
         public int Id { get; set; }
-        [DisplayName("Dispocitivos")]
+        [DisplayName("Dispositivos")]
         public Nullable<int> Id_Servicio { get; set; }
         [DisplayName("Descripción")]
         public string Descripcion { get; set; }

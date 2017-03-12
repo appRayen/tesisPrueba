@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SistemaCalculoweb;
+using Rotativa;
 
 namespace SistemaCalculoweb.Controllers
 {
@@ -19,25 +20,34 @@ namespace SistemaCalculoweb.Controllers
         public int CalculosResultados(int id)
         {
             Random rd = new Random();
-            return rd.Next(1, 100); 
+            return rd.Next(1, 100);
         }
         public ActionResult Pdf()
         {
-            return new Rotativa.MVC.ActionAsPdf("Reporte");
+            List<SelectCalculosPar_Result> lista = db.SelectCalculosPar(0, 0).ToList();
+            //return Rotativa.MVC.ViewAsPdf("",lista);
+            return new Rotativa.MVC.ViewAsPdf("Impresion", lista);
         }
         public ActionResult Reporte(string id, string servicio)
         {
             ViewBag.Id_Servicio = new SelectList(db.Servicios, "Id", "Decripcion");
             ViewBag.ID = new SelectList(db.CalculoHoras, "Id_calculo", "Id_calculo");
+
             if (id !=null && id!="" && servicio!=null && servicio!="")
             {
-                return View("Reporte",(db.SelectCalculosPar(int.Parse(id.ToString()), int.Parse(servicio.ToString()))));
+                return View(db.SelectCalculosPar(int.Parse(id.ToString()), int.Parse(servicio.ToString())).ToList());
+               // return View("Reporte",(db.SelectCalculosPar(int.Parse(id.ToString()), int.Parse(servicio.ToString()))));
             }
             else
             {
-                return View(db.SelectCalculosPar(0,0));
+               // return PartialView("Reporte", db.SelectCalculosPar(0,0).ToList());
+                return View(db.SelectCalculosPar(0,0).ToList());
             }
         }
+        public JsonResult grillaFiltrada(string id, string servicio)
+        {
+            return Json(db.SelectCalculosPar(int.Parse(id.ToString()), int.Parse(servicio.ToString())).ToList());
+         }
         public ActionResult ProcesoGuardado(List<String> values)
         {
             //guardar el registro en la tabla calculo y obteren el ID

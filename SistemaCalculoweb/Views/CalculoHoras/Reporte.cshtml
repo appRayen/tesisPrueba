@@ -1,7 +1,8 @@
-﻿@model IEnumerable<SistemaCalculoweb.SelectCalculosPar_Result>
-
+﻿@model List<SistemaCalculoweb.SelectCalculosPar_Result>
 @{
     ViewBag.Title = "Reporte";
+    
+
 }
 @if (Session["Usuario"] == null)
 {
@@ -12,9 +13,11 @@
 }
 else
 {
+   
     <br />
     <br />
     <br />
+    @Html.AntiForgeryToken()
     <table class="table">
     <tr>
     <td>ID</td>
@@ -22,34 +25,34 @@ else
     <td>Servicio</td>
     <td>@Html.DropDownList("Id_Servicio", null, htmlAttributes: new { @class = "form-control" })</td>
     <td><input type="submit" id ="Actualizar" value="Actualizar" class="btn btn-primary btn-sm" /></td>
-        <td><a href="@Url.Action("Pdf","CalculoHoras")" class="btn btn-success" target="_blank">Exportar</a></td>
+        <td><a href="@Url.Action("Pdf", "CalculoHoras")" class="btn btn-success" target="_blank">Exportar</a></td>
     </tr>
     </table>
-    <table class="table">
+    <table class="table" id="tablaResultado">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ID)
+                ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Servicio)
+               Servicio
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Dispocitivo)
+               Dispocitivo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cantidad_Dispocitivos)
+                Cantidad Dispocitivos
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Volumen_Ticket)
+                Requerimientos
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cantidad_Ticket)
+                Cantidad Requerimientos
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tipo_de_Operación)
+                Tipo Operación
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Resultado)
+                Resultado
             </th>
             <th></th>
         </tr>
@@ -86,16 +89,53 @@ else
         }
 
     </table>
- } 
+    }
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">  
         $("#Actualizar").click(function () {
             var iden=$("#ID").val();
-            var ser=$("#Id_Servicio").val();
-            $.get('@Url.Action("Reporte", "CalculoHoras")',
-               {id:iden,servicio:ser}).success( function (Data) {})
+            var ser = $("#Id_Servicio").val();
+            $("#tablaResultado").empty();
+            var col = "<tr><td>ID</td><td>Servicio</td><td>Dispocitivo</td><td>Cantidad Dispocitivos</td><td>Requerimientos</td><td>Cantidad Requerimientos</td><td>Tipo Operación</td><td>Resultado</td></tr>";
+            $('#tablaResultado').append(col);
+                 $.ajax({
+                     type: 'POST',
+                     //Llamado al metodo en el controlador
+                     url: '@Url.Action("grillaFiltrada", "CalculoHoras")',
+                     dataType: 'json',
+                     //Parametros que se envian al metodo del controlador
+                     data: { id: iden, servicio:ser },
+                     //En caso de resultado exitoso
+                     success: function (Data) {
+                         if (Data.length == 0) {
+                             console.log("LLego 0");
+                         }
+                         else {
+                             //Se agrega el elemento vacio para poder desplegar que seleccione una opcion
+                             console.log(Data);
+                          
+                             $.each(Data, function (i, Data) {
+                                 var nuevaFila = "<tr>";
+                                 nuevaFila += "<td>" + Data["ID"] + "</td>";
+                                 nuevaFila += "<td>" + Data["Servicio"] + "</td>";
+                                 nuevaFila += "<td>" + Data["Dispocitivo"] + "</td>";
+                                 nuevaFila += "<td>" + Data["Cantidad_Dispocitivos"] + "</td>";
+                                 nuevaFila += "<td>" + Data["Volumen_Ticket"] + "</td>";
+                                 nuevaFila += "<td>" + Data["Cantidad_Ticket"] + "</td>";
+                                 nuevaFila += "<td>" + Data["Tipo_de_Operación"] + "</td>";
+                                 nuevaFila += "<td>" + Data["Resultado"] + "</td>";
+                                 nuevaFila +="</tr>"
+                                 $('#tablaResultado').append(nuevaFila);
+                             });
+                         }
+                     },
+                     error: function (ex) {
+                         alert('Failed to retrieve states.' + ex);
+                     }
+                 });
             })
     </script>
     }

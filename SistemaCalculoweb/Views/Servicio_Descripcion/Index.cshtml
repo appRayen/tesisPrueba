@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SistemaCalculoweb.Servicio_Descripcion>
 
 @{
-    ViewBag.Title = "Mantenedor Tipo de Dispositivos";
+    ViewBag.Title = "Tipo de Dispositivos";
 }
 @if (Session["Usuario"] == null)
 {
@@ -12,7 +12,7 @@
 }
 else
 {
-<h2>Mantenedor Tipo de Dispositivos</h2>
+<h2>Tipo de Dispositivos</h2>
     
 <p>
     @(Html.ActionLink("Nuevo", "Create", new { id = 1 }, new { @class = "btn btn-primary" }))

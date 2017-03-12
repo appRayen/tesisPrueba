@@ -1,0 +1,68 @@
+﻿
+@model List<SistemaCalculoweb.SelectCalculosPar_Result>
+@{
+    ViewBag.Title = "Reporte";
+
+
+}
+<table class="table" id="tablaResultado">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Servicio
+        </th>
+        <th>
+            Dispocitivo
+        </th>
+        <th>
+            Cantidad Dispocitivos
+        </th>
+        <th>
+            Requerimientos
+        </th>
+        <th>
+            Cantidad Requerimientos
+        </th>
+        <th>
+            Tipo Operación
+        </th>
+        <th>
+            Resultado
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Servicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dispocitivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad_Dispocitivos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Volumen_Ticket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cantidad_Ticket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tipo_de_Operación)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Resultado)
+        </td>
+
+    </tr>
+    }
+
+</table>
