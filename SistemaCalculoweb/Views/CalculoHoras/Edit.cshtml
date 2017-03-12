@@ -93,15 +93,15 @@ else
           $(function () {
         $("#calculobtn").click(function () {
 
-            //var idTipoActividadB = $("#idTipoActividadBase").val();
-            //var TipoInf = $("#idTipoInfraestructura").val();
-            //var TipoO = $("#idTipoOperacion").val();
-            //var TipoServicio = $("#idTipoServicioBrindado").val();
-            //var TipoT = $("#idTipoTicket").val();
-            //var catPer = $("#cantidadPersonas").val();
+             var dispositivo = $("#Id_Servicio_Descripcion").val();
+            var cantDis = $("#cantidad_Servicio").val();
+            var requerimiento = $("#Id_Volumen_Ticket").val();
+            var cantReq = $("#Cantidad_Volumen_Ticket").val();
+            var TipoOpe = $("#Id_Tipo_Operacion").val();
+            var res= "dis: "+dispositivo+", cantdis: "+cantDis+", req: "+requerimiento+", cantreq: "+cantReq+", tope: "+TipoOpe;
+            console.log(res);
             $.get('@Url.Action("CalculosResultados", "CalculoHoras")',
-                //{ idTipoActividadBase: idTipoActividadB, TipoInfraestructura: TipoInf, TipoOperacion: TipoO, TipoServicioBrindado: TipoServicio, TipoTicket: TipoT, cantP: catPer }
-              {id:1}
+                { dis: dispositivo, cantdis: cantDis, req: requerimiento, cantreq: cantReq, tope: TipoOpe }
                ).success(function (data) {
                    var s = data;
                   // alert(s);

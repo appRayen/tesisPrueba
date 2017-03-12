@@ -78,6 +78,7 @@ using (Html.BeginForm())
                             <td>
                                 @Html.EditorFor(model => model.Cantidad_Volumen_Ticket, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ingrese Cantidad" } })
                                 @Html.ValidationMessageFor(model => model.Cantidad_Volumen_Ticket, "", new { @class = "text-danger" })
+
                             </td>
                         </tr>
                         <tr>
@@ -261,11 +262,14 @@ using (Html.BeginForm())
         var table = $("tResultado tbody");
         var ser;
         var des;
+        var req;
         var repetido=0;
             $('#tResultado tr').each(function () {
                 ser = $(this).find("td").eq(0).html();
                 des = $(this).find("td").eq(1).html();
-                if (ser == $("#Id_servicios option:selected").text() && des == $("#Id_Servicio_Descripcion1 option:selected").text())
+                req = $(this).find("td").eq(3).html();
+                console.log(req);
+                if (ser == $("#Id_servicios option:selected").text() && req == $("#Id_Volumen_Ticket option:selected").text() && des == $("#Id_Servicio_Descripcion1 option:selected").text())
                 {
                     repetido = 1;
                 }
@@ -305,15 +309,15 @@ using (Html.BeginForm())
     $(function () {
         $("#calculobtn").click(function () {
            
-            //var idTipoActividadB = $("#idTipoActividadBase").val();
-            //var TipoInf = $("#idTipoInfraestructura").val();
-            //var TipoO = $("#idTipoOperacion").val();
-            //var TipoServicio = $("#idTipoServicioBrindado").val();
-            //var TipoT = $("#idTipoTicket").val();
-            //var catPer = $("#cantidadPersonas").val();
+            var dispositivo = $("#Id_Servicio_Descripcion1").val();
+            var cantDis = $("#cantidad_Servicio").val();
+            var requerimiento = $("#Id_Volumen_Ticket").val();
+            var cantReq = $("#Cantidad_Volumen_Ticket").val();
+            var TipoOpe = $("#Id_Tipo_Operacion").val();
+            var res= "dis: "+dispositivo+", cantdis: "+cantDis+", req: "+requerimiento+", cantreq: "+cantReq+", tope: "+TipoOpe;
+            console.log(res);
             $.get('@Url.Action("CalculosResultados", "CalculoHoras")',
-                //{ idTipoActividadBase: idTipoActividadB, TipoInfraestructura: TipoInf, TipoOperacion: TipoO, TipoServicioBrindado: TipoServicio, TipoTicket: TipoT, cantP: catPer }
-              {id:1}
+                { dis: dispositivo, cantdis: cantDis, req: requerimiento, cantreq: cantReq, tope: TipoOpe }
                ).success(function (data) {
                    var s = data;
                   // alert(s);

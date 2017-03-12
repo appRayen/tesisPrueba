@@ -47,7 +47,7 @@ namespace SistemaCalculoweb.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idTipoOperacion,descripcion,estado,Referencia")] TipoOperacion tipoOperacion)
+        public ActionResult Create([Bind(Include = "idTipoOperacion,descripcion,estado,Referencia,HH")] TipoOperacion tipoOperacion)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace SistemaCalculoweb.Controllers
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idTipoOperacion,descripcion,estado,Referencia")] TipoOperacion tipoOperacion)
+        public ActionResult Edit([Bind(Include = "idTipoOperacion,descripcion,estado,Referencia,HH")] TipoOperacion tipoOperacion)
         {
             if (ModelState.IsValid)
             {

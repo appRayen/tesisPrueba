@@ -48,7 +48,7 @@ namespace SistemaCalculoweb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Id_Servicio,Descripcion,Referencia")] Servicio_Descripcion servicio_Descripcion)
+        public ActionResult Create([Bind(Include = "Id,Id_Servicio,Descripcion,Referencia,HH")] Servicio_Descripcion servicio_Descripcion)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace SistemaCalculoweb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Id_Servicio,Descripcion,Referencia")] Servicio_Descripcion servicio_Descripcion)
+        public ActionResult Edit([Bind(Include = "Id,Id_Servicio,Descripcion,Referencia,HH")] Servicio_Descripcion servicio_Descripcion)
         {
             if (ModelState.IsValid)
             {

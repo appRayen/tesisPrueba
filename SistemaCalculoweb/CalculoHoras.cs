@@ -15,18 +15,18 @@ namespace SistemaCalculoweb
     public partial class CalculoHoras
     {
         public int Id { get; set; }
-        [DisplayName("Dispocitivos")]
+        [DisplayName("Dispositivos")]
         public Nullable<int> Id_Servicio_Descripcion { get; set; }
         [DisplayName("Cantidad Servicio")]
         public Nullable<int> cantidad_Servicio { get; set; }
-        [DisplayName("Tipo Operacón")]
+        [DisplayName("Tipo Operación")]
         public Nullable<int> Id_Tipo_Operacion { get; set; }
         [DisplayName("Requerimientos")]
         public Nullable<int> Id_Volumen_Ticket { get; set; }
         [DisplayName("Cantidad Requerimientos")]
         public Nullable<int> Cantidad_Volumen_Ticket { get; set; }
         public Nullable<int> Resultado { get; set; }
-        [DisplayName("Dispocitivos")]
+        [DisplayName("Dispositivos")]
         public Nullable<int> Id_servicio { get; set; }
         public Nullable<int> Id_calculo { get; set; }
 

@@ -54,6 +54,7 @@
           <Property Name="Id_Servicio" Type="int" />
           <Property Name="Descripcion" Type="varchar(max)" />
           <Property Name="Referencia" Type="varchar(max)" />
+          <Property Name="HH" Type="int" />
         </EntityType>
         <EntityType Name="Servicios">
           <Key>
@@ -71,6 +72,7 @@
           <Property Name="descripcion" Type="varchar" MaxLength="500" />
           <Property Name="estado" Type="smallint" Nullable="false" />
           <Property Name="Referencia" Type="varchar(max)" />
+          <Property Name="HH" Type="int" />
         </EntityType>
         <EntityType Name="TipoTicket">
           <Key>
@@ -101,6 +103,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Sugerencia" Type="varchar(max)" />
           <Property Name="Descripcion" Type="varchar(max)" />
+          <Property Name="HH" Type="int" />
         </EntityType>
         <Association Name="FK_CalculoHoras_Calculo">
           <End Role="Calculo" Type="Self.Calculo" Multiplicity="0..1" />
@@ -326,6 +329,7 @@
           <NavigationProperty Name="CalculoHoras" Relationship="CalculoModel.FK_CalculoHoras_Servicio_descripcion" FromRole="Servicio_Descripcion" ToRole="CalculoHoras" />
           <NavigationProperty Name="Servicios" Relationship="CalculoModel.FK_Servicio_Descripcion_ToTable" FromRole="Servicio_Descripcion" ToRole="Servicios" />
           <Property Name="Referencia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HH" Type="Int32" />
         </EntityType>
         <EntityType Name="Servicios">
           <Key>
@@ -346,6 +350,7 @@
           <Property Name="estado" Type="Int16" Nullable="false" />
           <NavigationProperty Name="CalculoHoras" Relationship="CalculoModel.FK_CalculoHoras_TipoOperacion" FromRole="TipoOperacion" ToRole="CalculoHoras" />
           <Property Name="Referencia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HH" Type="Int32" />
         </EntityType>
         <EntityType Name="Volumen_Ticket">
           <Key>
@@ -355,6 +360,7 @@
           <Property Name="Sugerencia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CalculoHoras" Relationship="CalculoModel.FK_CalculoHoras_VolumenTicket" FromRole="Volumen_Ticket" ToRole="CalculoHoras" />
+          <Property Name="HH" Type="Int32" />
         </EntityType>
         <Association Name="FK_CalculoHoras_Servicio_descripcion">
           <End Type="CalculoModel.Servicio_Descripcion" Role="Servicio_Descripcion" Multiplicity="0..1" />
@@ -539,6 +545,7 @@
           <EntitySetMapping Name="Servicio_Descripcion">
             <EntityTypeMapping TypeName="CalculoModel.Servicio_Descripcion">
               <MappingFragment StoreEntitySet="Servicio_Descripcion">
+                <ScalarProperty Name="HH" ColumnName="HH" />
                 <ScalarProperty Name="Referencia" ColumnName="Referencia" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Id_Servicio" ColumnName="Id_Servicio" />
@@ -558,6 +565,7 @@
           <EntitySetMapping Name="TipoOperacion">
             <EntityTypeMapping TypeName="CalculoModel.TipoOperacion">
               <MappingFragment StoreEntitySet="TipoOperacion">
+                <ScalarProperty Name="HH" ColumnName="HH" />
                 <ScalarProperty Name="Referencia" ColumnName="Referencia" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
@@ -568,6 +576,7 @@
           <EntitySetMapping Name="Volumen_Ticket">
             <EntityTypeMapping TypeName="CalculoModel.Volumen_Ticket">
               <MappingFragment StoreEntitySet="Volumen_Ticket">
+                <ScalarProperty Name="HH" ColumnName="HH" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Sugerencia" ColumnName="Sugerencia" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

@@ -17,10 +17,16 @@ namespace SistemaCalculoweb.Controllers
         private CalculoEntities db = new CalculoEntities();
 
         // GET: CalculoHoras
-        public int CalculosResultados(int id)
+        public int CalculosResultados(int dis,int cantdis,int req,int cantreq,int tope)
         {
-            Random rd = new Random();
-            return rd.Next(1, 100);
+            //buscamos la cantidad de dispocitivos
+            List<Servicio_Descripcion> ser = db.Servicio_Descripcion.Where(i => i.Id == dis).ToList();
+            List<Volumen_Ticket> vol = db.Volumen_Ticket.Where(i => i.Id == req).ToList();
+            List<TipoOperacion> to = db.TipoOperacion.Where(i => i.idTipoOperacion == tope).ToList();
+            int hhDis = int.Parse(cantdis.ToString()) * int.Parse(ser[0].HH.ToString());
+            int hhReq = int.Parse(cantreq.ToString()) * int.Parse(vol[0].HH.ToString());
+            int RES = (hhDis+hhReq+int.Parse(to[0].HH.ToString())) / 160;
+            return RES;
         }
         public ActionResult Pdf()
         {
