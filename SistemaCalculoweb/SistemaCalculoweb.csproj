@@ -277,6 +277,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\mas.png" />
+    <Content Include="Images\menos.png" />
     <Content Include="Images\pm.png" />
     <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts1\bootstrap.js" />
