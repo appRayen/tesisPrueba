@@ -26,6 +26,7 @@ else
     <td>@Html.DropDownList("Id_Servicio", null, htmlAttributes: new { @class = "form-control" })</td>
     <td><input type="submit" id ="Actualizar" value="Actualizar" class="btn btn-primary btn-sm" /></td>
         <td><a href="@Url.Action("Pdf", "CalculoHoras")" class="btn btn-success" target="_blank">Exportar</a></td>
+        @*<td><input type="button" id="Exportar" class="btm btn-success" />Exportar</td>*@
     </tr>
     </table>
     <table class="table" id="tablaResultado">
@@ -95,6 +96,19 @@ else
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">  
+        @*$("#Exportar").click(function () {
+            var iden = $("#ID").val();
+            var ser = $("#Id_Servicio").val();
+            $.get('@Url.Action("Pdf", "CalculoHoras")',
+                { id: iden, servicio: ser }
+               ).success(function (data) {
+               }).error(function (ex) {
+                   var url = '@Url.Action("Pdf", "CalculoHoras")';
+                   console.log(url);
+                   window.location.href = url;
+               });
+
+        })*@
         $("#Actualizar").click(function () {
             var iden=$("#ID").val();
             var ser = $("#Id_Servicio").val();
