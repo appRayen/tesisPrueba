@@ -40,35 +40,36 @@ else
     }
 </style>
 
-
-<div id="main" class="table">
-    @grid.GetHtml(
+<div class="container col-md-8 col-md-offset-2">
+    <div id="main" class="table">
+        @grid.GetHtml(
         htmlAttributes: new { id = "gridT" },
         columns: grid.Columns(
                 grid.Column("calculoPrincipal.Id_calculo", "Calculo"),
                 grid.Column(header: "Fecha", format: (item) => string.Format("{0:dd-MM-yyyy}", item.calculoPrincipal.fecha)),
                 grid.Column(format: (item) =>
                 {
-                WebGrid subGrid = new WebGrid(source: item.calculoDetalle);
-                return subGrid.GetHtml(
-                    htmlAttributes: new { id = "subT" },
-                    columns: subGrid.Columns(
-                            subGrid.Column("servicio", "Servicio"),
-                            subGrid.Column("dispositivo", "Dispsitivo"),
-                            subGrid.Column("cantDispositivo", "Cantidad Dispositivo"),
-                            subGrid.Column("requerimiento", "Requerimiento"),
-                            subGrid.Column("cantRequerimiento", "Cantidad Requerimiento"),
-                            subGrid.Column("tipoOperacion", "Tipo Operación"),
-                            subGrid.Column("resutado", "TFH"),
-                            subGrid.Column("", "", format: (item1) =>   Html.ActionLink(" ", "Edit", new { id = item1.Id }, new { @class = "glyphicon glyphicon-pencil" })),
-                            subGrid.Column("", "", format: (item1) => Html.ActionLink(" ", "Delete", new { id = item1.Id }, new { @class = "glyphicon glyphicon-remove" }))
-                            )
-                        );
+                    WebGrid subGrid = new WebGrid(source: item.calculoDetalle);
+                    return subGrid.GetHtml(
+                        htmlAttributes: new { id = "subT" },
+                        columns: subGrid.Columns(
+                                subGrid.Column("servicio", "Servicio"),
+                                subGrid.Column("dispositivo", "Dispsitivo"),
+                                subGrid.Column("cantDispositivo", "Cantidad Dispositivo"),
+                                subGrid.Column("requerimiento", "Requerimiento"),
+                                subGrid.Column("cantRequerimiento", "Cantidad Requerimiento"),
+                                subGrid.Column("tipoOperacion", "Tipo Operación"),
+                                subGrid.Column("resutado", "TFH"),
+                                subGrid.Column("", "", format: (item1) => Html.ActionLink(" ", "Edit", new { id = item1.Id }, new { @class = "glyphicon glyphicon-pencil" })),
+                                subGrid.Column("", "", format: (item1) => Html.ActionLink(" ", "Delete", new { id = item1.Id }, new { @class = "glyphicon glyphicon-remove" }))
+                                )
+                            );
                 })
 
             )
         )
 
+    </div>
 </div>
 
 @* Here I will add some jquery code for make this nested grid collapsible *@
