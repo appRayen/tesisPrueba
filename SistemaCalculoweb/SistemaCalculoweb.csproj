@@ -200,7 +200,6 @@
     <Compile Include="Controllers\EmpresasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\NesterGridCalculoController.cs" />
     <Compile Include="Controllers\ServiciosController.cs" />
     <Compile Include="Controllers\Servicio_DescripcionController.cs" />
     <Compile Include="Controllers\TipoOperacionsController.cs" />
@@ -215,6 +214,7 @@
     </Compile>
     <Compile Include="GMailer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CalculoReporte.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Perfil.cs">
@@ -258,7 +258,7 @@
     <Compile Include="Usuarios.cs">
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
-    <Compile Include="VistaVM.cs" />
+    <Compile Include="Models\VistaVM.cs" />
     <Compile Include="Volumen_Ticket.cs">
       <DependentUpon>SlaCalculo.tt</DependentUpon>
     </Compile>
@@ -507,7 +507,6 @@
     <Content Include="Views\CalculoHoras\Reporte.cshtml" />
     <Content Include="Views\CalculoHoras\Pdf.cshtml" />
     <Content Include="Views\CalculoHoras\Impresion.cshtml" />
-    <Content Include="Views\NesterGridCalculo\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

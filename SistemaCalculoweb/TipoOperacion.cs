@@ -20,7 +20,7 @@ namespace SistemaCalculoweb
         {
             this.CalculoHoras = new HashSet<CalculoHoras>();
         }
-    
+
         public int idTipoOperacion { get; set; }
         [DisplayName("Descripción")]
         public string descripcion { get; set; }
@@ -28,7 +28,7 @@ namespace SistemaCalculoweb
         [DisplayName("Referencia")]
         public string Referencia { get; set; }
         public Nullable<int> HH { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CalculoHoras> CalculoHoras { get; set; }
     }

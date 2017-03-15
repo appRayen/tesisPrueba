@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using SistemaCalculoweb;
 using Rotativa;
+using SistemaCalculoweb.Models;
 
 namespace SistemaCalculoweb.Controllers
 {
@@ -88,7 +89,39 @@ namespace SistemaCalculoweb.Controllers
         }
         public ActionResult Index()
         {
-            return View(db.selectCal());
+            //return View(db.selectCal());
+            List<VistaVM> allOrder = new List<VistaVM>();
+
+            // here MyDatabaseEntities is our data context
+
+            using (CalculoEntities dc = new CalculoEntities())
+            {
+                var o = dc.Calculo.OrderByDescending(a => a.Id_calculo);
+                foreach (var i in o)
+                {
+                    var od = dc.CalculoHoras.Where(a => a.Id_calculo == i.Id_calculo).ToList();
+                    List<CalculoReporte> repo = new List<CalculoReporte> { new CalculoReporte { id = "1" } };
+                    foreach (var d in od)
+                    {
+                        List<CalculoReporte> rep = new List<CalculoReporte> { new CalculoReporte { id = "1" } };
+                        rep[0].id = d.Id.ToString();
+                        int se = int.Parse(d.Id_servicio.ToString());
+                        List<Servicios> ser = dc.Servicios.Where(s => s.Id == se).ToList();
+                        rep[0].servicio = ser[0].Decripcion.ToString();
+                        rep[0].dispositivo = d.Servicio_Descripcion.Descripcion.ToString();
+                        rep[0].cantDispositivo = d.cantidad_Servicio.ToString();
+                        rep[0].tipoOperacion = d.TipoOperacion.descripcion.ToString();
+                        rep[0].requerimiento = d.Volumen_Ticket.Descripcion.ToString();
+                        rep[0].cantRequerimiento = d.Cantidad_Volumen_Ticket.ToString();
+                        rep[0].resutado = d.Resultado.ToString();
+                        repo.Add(rep[0]);
+                       
+                    }
+                    allOrder.Add(new VistaVM { calculoPrincipal = i, calculoDetalle = repo });
+
+                }
+            }
+            return View(allOrder);
         }
         public JsonResult LlenarServicio(int id)
         {

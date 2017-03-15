@@ -1,7 +1,8 @@
-﻿@model IEnumerable<SistemaCalculoweb.SelectCalculos_Result>
+﻿@model IEnumerable<SistemaCalculoweb.VistaVM>
 
 @{
-    ViewBag.Title = "Editar";
+    ViewBag.Title = "Order List";
+    WebGrid grid = new WebGrid(source: Model, canSort: false);
 }
 @if (Session["Usuario"] == null)
 {
@@ -12,74 +13,99 @@
 }
 else
 {
-<br />
-<br />
-<br />
+<h2>Calculo</h2>
+<hr />
 <p>
     @(Html.ActionLink("Nuevo", "Create", new { id = 1 }, new { @class = "btn btn-primary" }))
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Servicio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Dispocitivo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cantidad_Dispocitivos)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Volumen_Ticket)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cantidad_Ticket)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tipo_de_Operación)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Resultado)
-        </th>
-        <th></th>
-    </tr>
+<style>
+    /*Here I will write some css for looks good*/
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Servicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dispocitivo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cantidad_Dispocitivos)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Volumen_Ticket)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cantidad_Ticket)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tipo_de_Operación)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Resultado)
-        </td>
-        <td>
-            @Html.ActionLink(" ", "Edit", new { id = item.IDBUSQUEDA }, new { @class = "glyphicon glyphicon-pencil" }) |
-            @Html.ActionLink(" ", "Delete", new { id = item.IDBUSQUEDA }, new { @class = "glyphicon glyphicon-remove" })
-        </td>
-    </tr>
+    .hoverEff {
+        cursor: pointer;
+    }
+
+        .hoverEff:hover {
+            background-color: rgb(248, 242, 242);
+        }
+
+    .cc {
+        background-image: url(/Images/menos.png);
+        background-repeat: no-repeat;
+    }
+
+    .dd {
+        background-image: url(/Images/mas.png);
+        background-repeat: no-repeat;
+    }
+</style>
+
+
+<div id="main" class="table">
+    @grid.GetHtml(
+        htmlAttributes: new { id = "gridT" },
+        columns: grid.Columns(
+                grid.Column("calculoPrincipal.Id_calculo", "Calculo"),
+                grid.Column(header: "Fecha", format: (item) => string.Format("{0:dd-MM-yyyy}", item.calculoPrincipal.fecha)),
+                grid.Column(format: (item) =>
+                {
+                WebGrid subGrid = new WebGrid(source: item.calculoDetalle);
+                return subGrid.GetHtml(
+                    htmlAttributes: new { id = "subT" },
+                    columns: subGrid.Columns(
+                            subGrid.Column("servicio", "Servicio"),
+                            subGrid.Column("dispositivo", "Dispsitivo"),
+                            subGrid.Column("cantDispositivo", "Cantidad Dispositivo"),
+                            subGrid.Column("requerimiento", "Requerimiento"),
+                            subGrid.Column("cantRequerimiento", "Cantidad Requerimiento"),
+                            subGrid.Column("tipoOperacion", "Tipo Operación"),
+                            subGrid.Column("resutado", "TFH"),
+                            subGrid.Column("", "", format: (item1) =>   Html.ActionLink(" ", "Edit", new { id = item1.Id }, new { @class = "glyphicon glyphicon-pencil" })),
+                            subGrid.Column("", "", format: (item1) => Html.ActionLink(" ", "Delete", new { id = item1.Id }, new { @class = "glyphicon glyphicon-remove" }))
+                            )
+                        );
+                })
+
+            )
+        )
+
+</div>
+
+@* Here I will add some jquery code for make this nested grid collapsible *@
+
+@section Scripts{
+    <script>
+    $(document).ready(function () {
+        var size = $("#main #gridT > thead > tr >th").size(); // get total column
+        $("#main #gridT > thead > tr >th").last().remove(); // remove last column
+        $("#main #gridT > thead > tr").prepend("<th></th>"); // add one column at first for collapsible column
+        $("#main #gridT > tbody > tr").each(function (i, el) {
+            $(this).prepend(
+                    $("<td></td>")
+                    .addClass("cc")
+                    .addClass("hoverEff")
+                    .attr('title',"click for show/hide")
+                );
+
+            //Now get sub table from last column and add this to the next new added row
+            var table = $("table", this).parent().html();
+            //add new row with this subtable
+            $(this).after("<tr><td></td><td>" + table + "</td></tr>");
+            $("table", this).parent().remove();
+
+            // ADD CLICK EVENT FOR MAKE COLLAPSIBLE
+            $(".hoverEff", this).on("click", function () {
+                $(this).parent().closest("tr").next().slideToggle(100);
+                $(this).toggleClass("cc dd");
+            });
+        });
+
+        //by default make all subgrid in collapse mode
+        $("#main #gridT > tbody > tr td.cc").each(function (i, el) {
+            $(this).toggleClass("cc dd");
+            $(this).parent().closest("tr").next().slideToggle(100);
+        });
+    });
+    </script>
 }
-
-</table>
 }
