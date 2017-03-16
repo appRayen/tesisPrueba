@@ -46,6 +46,7 @@ else
         htmlAttributes: new { id = "gridT" },
         columns: grid.Columns(
                 grid.Column("calculoPrincipal.Id_calculo", "Calculo"),
+                 grid.Column("calculoPrincipal.descripcion", "Descripción"),
                 grid.Column(header: "Fecha", format: (item) => string.Format("{0:dd-MM-yyyy}", item.calculoPrincipal.fecha)),
                 grid.Column(format: (item) =>
                 {

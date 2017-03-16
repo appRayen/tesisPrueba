@@ -21,13 +21,14 @@ namespace SistemaCalculoweb.Controllers
             if (usuarios.Correo != null && usuarios.Correo != "")
             {
                 List<Usuarios> us = db.Usuarios.Where(i => i.Correo == usuarios.Correo).ToList();
-                    GMailer.GmailUsername = "sacp.noreply@gmail.com";
+                GMailer.GmailUsername = "sacp.noreply@gmail.com";
                     GMailer.GmailPassword = "sacpnoreply$";
 
                     GMailer mailer = new GMailer();
                     mailer.ToEmail = us[0].Correo.ToString();
                     mailer.Subject = "Recuperacion de contraseña";
-                    mailer.Body = "Su contraseña es <br>" + us[0].Contrasenia.ToString();
+                mailer.Body = "Estimado(a) " + us[0].Nombre + " " + us[0].ApellidoP + " " + us[0].ApellidoM + "<br /><br /><br />" +
+                "Te recordamos la clave secreta para ingresar SACP </br><br/>" + us[0].Contrasenia.ToString() ;
                     mailer.IsHtml = true;
                     mailer.Send();
                 return RedirectToAction("Index", "Home");

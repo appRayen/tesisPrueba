@@ -29,16 +29,23 @@ namespace SistemaCalculoweb.Controllers
             int RES = (hhDis+hhReq+int.Parse(to[0].HH.ToString())) / 160;
             return RES;
         }
+        private List<SelectCalculosPar_Result> lista;
         public ActionResult Pdf()
         {
-            List<SelectCalculosPar_Result> lista = db.SelectCalculosPar(0, 0).ToList();
-            //return Rotativa.MVC.ViewAsPdf("",lista);
-            return new Rotativa.MVC.ViewAsPdf("Impresion", lista);
+            if (Session[""] == null)
+            { lista = (List<SelectCalculosPar_Result>)(Session["lista"]); }
+            else
+            { lista = db.SelectCalculosPar(0, 0).ToList(); }
+                return new Rotativa.MVC.ViewAsPdf("Impresion", lista); 
+        }
+        public ActionResult Impresion()
+        {
+            return View("Impresion"); 
         }
         public ActionResult Reporte(string id, string servicio)
         {
             ViewBag.Id_Servicio = new SelectList(db.Servicios, "Id", "Decripcion");
-            ViewBag.ID = new SelectList(db.CalculoHoras, "Id_calculo", "Id_calculo");
+            ViewBag.ID = new SelectList(db.CalculoHoras.Distinct(), "Id_calculo", "Id_calculo");
 
             if (id !=null && id!="" && servicio!=null && servicio!="")
             {
@@ -53,13 +60,17 @@ namespace SistemaCalculoweb.Controllers
         }
         public JsonResult grillaFiltrada(string id, string servicio)
         {
+            lista = db.SelectCalculosPar(int.Parse(id.ToString()), int.Parse(servicio.ToString())).ToList();
+            Session["lista"] = null;
+            Session["lista"] = lista;
             return Json(db.SelectCalculosPar(int.Parse(id.ToString()), int.Parse(servicio.ToString())).ToList());
          }
-        public ActionResult ProcesoGuardado(List<String> values)
+        public ActionResult ProcesoGuardado(List<String> values,string desc)
         {
             //guardar el registro en la tabla calculo y obteren el ID
             Calculo cal = new Calculo();
             cal.fecha = DateTime.Now;
+            cal.descripcion = desc.ToString();
             db.Calculo.Add(cal);
             db.SaveChanges();
             int IdCalculo = cal.Id_calculo;

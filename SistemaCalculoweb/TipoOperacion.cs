@@ -28,7 +28,7 @@ namespace SistemaCalculoweb
         [DisplayName("Referencia")]
         public string Referencia { get; set; }
         public Nullable<int> HH { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CalculoHoras> CalculoHoras { get; set; }
     }
