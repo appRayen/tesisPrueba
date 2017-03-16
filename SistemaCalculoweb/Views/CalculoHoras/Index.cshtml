@@ -38,12 +38,28 @@ else
         background-image: url(/Images/mas.png);
         background-repeat: no-repeat;
     }
+       th, td {
+        padding: 5px;
+    }
+
+    #SubGrid {
+        margin: 0px 0px 0px 10px;
+        padding: 5px;
+        width: 95%;
+    }
+
+        #SubGrid th {
+            font-size: 12px;
+        }
+
+
+    }
 </style>
 
-<div class="container col-md-8 col-md-offset-2">
-    <div id="main" class="table">
+<div id="main" class="padding:25px; background-color:white;">
+    @*<div id="main" class="table">*@
         @grid.GetHtml(
-        htmlAttributes: new { id = "gridT" },
+        htmlAttributes: new { id = "gridT", width = "700px" },
         columns: grid.Columns(
                 grid.Column("calculoPrincipal.Id_calculo", "Calculo"),
                  grid.Column("calculoPrincipal.descripcion", "Descripción"),
@@ -52,7 +68,7 @@ else
                 {
                     WebGrid subGrid = new WebGrid(source: item.calculoDetalle);
                     return subGrid.GetHtml(
-                        htmlAttributes: new { id = "subT" },
+                        htmlAttributes: new { id = "SubGrid" },
                         columns: subGrid.Columns(
                                 subGrid.Column("servicio", "Servicio"),
                                 subGrid.Column("dispositivo", "Dispsitivo"),
@@ -70,7 +86,7 @@ else
             )
         )
 
-    </div>
+    @*</div>*@
 </div>
 
 @* Here I will add some jquery code for make this nested grid collapsible *@

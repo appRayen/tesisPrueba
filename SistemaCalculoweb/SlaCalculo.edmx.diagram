@@ -10,10 +10,8 @@
         <EntityTypeShape EntityType="CalculoModel.Servicio_Descripcion" Width="1.5" PointX="0.625" PointY="0.5" />
         <EntityTypeShape EntityType="CalculoModel.Servicios" Width="1.5" PointX="0.5" PointY="3.375" />
         <EntityTypeShape EntityType="CalculoModel.TipoOperacion" Width="1.5" PointX="0.5" PointY="5.5" />
-        <EntityTypeShape EntityType="CalculoModel.Volumen_Ticket" Width="1.5" PointX="1.25" PointY="8" />
         <AssociationConnector Association="CalculoModel.FK_CalculoHoras_Servicio_descripcion" />
         <AssociationConnector Association="CalculoModel.FK_CalculoHoras_TipoOperacion" />
-        <AssociationConnector Association="CalculoModel.FK_CalculoHoras_VolumenTicket" />
         <AssociationConnector Association="CalculoModel.FK_Servicio_Descripcion_ToTable" />
         <EntityTypeShape EntityType="CalculoModel.Calculo" Width="1.5" PointX="4.75" PointY="7.625" />
         <AssociationConnector Association="CalculoModel.FK_CalculoHoras_Calculo" />
@@ -22,6 +20,8 @@
         <EntityTypeShape EntityType="CalculoModel.TipoTicket" Width="1.5" PointX="5.375" PointY="4.75" />
         <EntityTypeShape EntityType="CalculoModel.Usuarios" Width="1.5" PointX="7.625" PointY="1" />
         <AssociationConnector Association="CalculoModel.FK_Usuarios_Perfil" />
+        <EntityTypeShape EntityType="CalculoModel.Volumen_Ticket" Width="1.5" PointX="7.375" PointY="4.875" />
+        <AssociationConnector Association="CalculoModel.FK_CalculoHoras_VolumenTicket" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

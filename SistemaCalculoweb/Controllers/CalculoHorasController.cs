@@ -24,10 +24,12 @@ namespace SistemaCalculoweb.Controllers
             List<Servicio_Descripcion> ser = db.Servicio_Descripcion.Where(i => i.Id == dis).ToList();
             List<Volumen_Ticket> vol = db.Volumen_Ticket.Where(i => i.Id == req).ToList();
             List<TipoOperacion> to = db.TipoOperacion.Where(i => i.idTipoOperacion == tope).ToList();
-            int hhDis = int.Parse(cantdis.ToString()) * int.Parse(ser[0].HH.ToString());
-            int hhReq = int.Parse(cantreq.ToString()) * int.Parse(vol[0].HH.ToString());
-            int RES = (hhDis+hhReq+int.Parse(to[0].HH.ToString())) / 160;
-            return RES;
+            int hhDispocitivo = int.Parse(cantdis.ToString()) * int.Parse(ser[0].HH.ToString());
+            decimal hhRequerimiento = int.Parse(cantreq.ToString()) * decimal.Parse(vol[0].HH.ToString());
+            int tipoOperacion = int.Parse(to[0].HH.ToString());
+            decimal RES = (tipoOperacion - (hhDispocitivo + hhRequerimiento)) / 160;
+            int resultado=decimal.ToInt32( Math.Round(RES, MidpointRounding.AwayFromZero));
+            return resultado;
         }
         private List<SelectCalculosPar_Result> lista;
         public ActionResult Pdf()

@@ -104,7 +104,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Sugerencia" Type="varchar(max)" />
           <Property Name="Descripcion" Type="varchar(max)" />
-          <Property Name="HH" Type="int" />
+          <Property Name="HH" Type="decimal" Precision="18" Scale="1" />
         </EntityType>
         <Association Name="FK_CalculoHoras_Calculo">
           <End Role="Calculo" Type="Self.Calculo" Multiplicity="0..1" />
@@ -248,17 +248,12 @@
           <EntitySet Name="Servicio_Descripcion" EntityType="CalculoModel.Servicio_Descripcion" />
           <EntitySet Name="Servicios" EntityType="CalculoModel.Servicios" />
           <EntitySet Name="TipoOperacion" EntityType="CalculoModel.TipoOperacion" />
-          <EntitySet Name="Volumen_Ticket" EntityType="CalculoModel.Volumen_Ticket" />
           <AssociationSet Name="FK_CalculoHoras_Servicio_descripcion" Association="CalculoModel.FK_CalculoHoras_Servicio_descripcion">
             <End Role="Servicio_Descripcion" EntitySet="Servicio_Descripcion" />
             <End Role="CalculoHoras" EntitySet="CalculoHoras" />
           </AssociationSet>
           <AssociationSet Name="FK_CalculoHoras_TipoOperacion" Association="CalculoModel.FK_CalculoHoras_TipoOperacion">
             <End Role="TipoOperacion" EntitySet="TipoOperacion" />
-            <End Role="CalculoHoras" EntitySet="CalculoHoras" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CalculoHoras_VolumenTicket" Association="CalculoModel.FK_CalculoHoras_VolumenTicket">
-            <End Role="Volumen_Ticket" EntitySet="Volumen_Ticket" />
             <End Role="CalculoHoras" EntitySet="CalculoHoras" />
           </AssociationSet>
           <AssociationSet Name="FK_Servicio_Descripcion_ToTable" Association="CalculoModel.FK_Servicio_Descripcion_ToTable">
@@ -301,6 +296,11 @@
           <FunctionImport Name="grillaId" ReturnType="Collection(CalculoModel.SelectCalculosPar_Result)">
           <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="Volumen_Ticket" EntityType="CalculoModel.Volumen_Ticket" />
+          <AssociationSet Name="FK_CalculoHoras_VolumenTicket" Association="CalculoModel.FK_CalculoHoras_VolumenTicket">
+            <End Role="Volumen_Ticket" EntitySet="Volumen_Ticket" />
+            <End Role="CalculoHoras" EntitySet="CalculoHoras" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="CalculoHoras">
           <Key>
@@ -315,11 +315,11 @@
           <Property Name="Resultado" Type="Int32" />
           <NavigationProperty Name="Servicio_Descripcion" Relationship="CalculoModel.FK_CalculoHoras_Servicio_descripcion" FromRole="CalculoHoras" ToRole="Servicio_Descripcion" />
           <NavigationProperty Name="TipoOperacion" Relationship="CalculoModel.FK_CalculoHoras_TipoOperacion" FromRole="CalculoHoras" ToRole="TipoOperacion" />
-          <NavigationProperty Name="Volumen_Ticket" Relationship="CalculoModel.FK_CalculoHoras_VolumenTicket" FromRole="CalculoHoras" ToRole="Volumen_Ticket" />
           <Property Name="Id_servicio" Type="Int32" />
           <Property Name="Id_calculo" Type="Int32" />
           <NavigationProperty Name="Calculo" Relationship="CalculoModel.FK_CalculoHoras_Calculo" FromRole="CalculoHoras" ToRole="Calculo" />
           <NavigationProperty Name="Servicios" Relationship="CalculoModel.FK_CalculoHoras_Servicios" FromRole="CalculoHoras" ToRole="Servicios" />
+          <NavigationProperty Name="Volumen_Ticket" Relationship="CalculoModel.FK_CalculoHoras_VolumenTicket" FromRole="CalculoHoras" ToRole="Volumen_Ticket" />
         </EntityType>
         <EntityType Name="Empresa">
           <Key>
@@ -365,16 +365,6 @@
           <Property Name="Referencia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="HH" Type="Int32" />
         </EntityType>
-        <EntityType Name="Volumen_Ticket">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Sugerencia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CalculoHoras" Relationship="CalculoModel.FK_CalculoHoras_VolumenTicket" FromRole="Volumen_Ticket" ToRole="CalculoHoras" />
-          <Property Name="HH" Type="Int32" />
-        </EntityType>
         <Association Name="FK_CalculoHoras_Servicio_descripcion">
           <End Type="CalculoModel.Servicio_Descripcion" Role="Servicio_Descripcion" Multiplicity="0..1" />
           <End Type="CalculoModel.CalculoHoras" Role="CalculoHoras" Multiplicity="*" />
@@ -396,18 +386,6 @@
             </Principal>
             <Dependent Role="CalculoHoras">
               <PropertyRef Name="Id_Tipo_Operacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CalculoHoras_VolumenTicket">
-          <End Type="CalculoModel.Volumen_Ticket" Role="Volumen_Ticket" Multiplicity="0..1" />
-          <End Type="CalculoModel.CalculoHoras" Role="CalculoHoras" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Volumen_Ticket">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CalculoHoras">
-              <PropertyRef Name="Id_Volumen_Ticket" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -523,6 +501,28 @@
           <Property Type="Int32" Name="Resultado" Nullable="true" />
           <Property Type="Int32" Name="IDBUSQUEDA" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Volumen_Ticket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sugerencia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="HH" Type="Decimal" Precision="18" Scale="1" />
+          <NavigationProperty Name="CalculoHoras" Relationship="CalculoModel.FK_CalculoHoras_VolumenTicket" FromRole="Volumen_Ticket" ToRole="CalculoHoras" />
+        </EntityType>
+        <Association Name="FK_CalculoHoras_VolumenTicket">
+          <End Type="CalculoModel.Volumen_Ticket" Role="Volumen_Ticket" Multiplicity="0..1" />
+          <End Type="CalculoModel.CalculoHoras" Role="CalculoHoras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volumen_Ticket">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CalculoHoras">
+              <PropertyRef Name="Id_Volumen_Ticket" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -584,16 +584,6 @@
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="idTipoOperacion" ColumnName="idTipoOperacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Volumen_Ticket">
-            <EntityTypeMapping TypeName="CalculoModel.Volumen_Ticket">
-              <MappingFragment StoreEntitySet="Volumen_Ticket">
-                <ScalarProperty Name="HH" ColumnName="HH" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Sugerencia" ColumnName="Sugerencia" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -722,6 +712,16 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Volumen_Ticket">
+            <EntityTypeMapping TypeName="CalculoModel.Volumen_Ticket">
+              <MappingFragment StoreEntitySet="Volumen_Ticket">
+                <ScalarProperty Name="HH" ColumnName="HH" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Sugerencia" ColumnName="Sugerencia" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
