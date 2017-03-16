@@ -28,7 +28,15 @@ namespace SistemaCalculoweb.Controllers
             decimal hhRequerimiento = int.Parse(cantreq.ToString()) * decimal.Parse(vol[0].HH.ToString());
             int tipoOperacion = int.Parse(to[0].HH.ToString());
             decimal RES = (tipoOperacion - (hhDispocitivo + hhRequerimiento)) / 160;
-            int resultado=decimal.ToInt32( Math.Round(RES, MidpointRounding.AwayFromZero));
+            int resultado;
+            if (RES < 0)
+            {
+                resultado = (decimal.ToInt32(Math.Floor(RES))*-1)+1;
+            }
+            else
+            {
+                resultado = decimal.ToInt32(Math.Ceiling(RES));
+            }
             return resultado;
         }
         private List<SelectCalculosPar_Result> lista;
