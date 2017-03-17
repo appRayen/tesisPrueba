@@ -22,10 +22,10 @@ namespace SistemaCalculoweb
         }
 
         public int idTipoOperacion { get; set; }
-        [DisplayName("Descripción")]
+        [DisplayName("Tipo")]
         public string descripcion { get; set; }
         public short estado { get; set; }
-        [DisplayName("Referencia")]
+        [DisplayName("Descripción")]
         public string Referencia { get; set; }
         public Nullable<int> HH { get; set; }
 

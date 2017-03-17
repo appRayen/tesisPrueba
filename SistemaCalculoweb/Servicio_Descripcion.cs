@@ -24,9 +24,9 @@ namespace SistemaCalculoweb
         public int Id { get; set; }
         [DisplayName("Dispositivos")]
         public Nullable<int> Id_Servicio { get; set; }
-        [DisplayName("Descripción")]
+        [DisplayName("Nombre")]
         public string Descripcion { get; set; }
-        [DisplayName("Referencia")]
+        [DisplayName("Descrpción")]
         public string Referencia { get; set; }
         public Nullable<int> HH { get; set; }
 

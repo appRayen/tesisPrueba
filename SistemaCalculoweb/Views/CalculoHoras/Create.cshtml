@@ -16,14 +16,25 @@ else
 {
 using (Html.BeginForm())
 {
-
+<style>
+    .tex {
+        width:30px;
+    }
+</style>
     @Html.AntiForgeryToken()
-        <h2>Nuevo Calculo</h2>
+        <h2>Calculo</h2>
         <hr />
         <div class="well well-lg">
             <div class="panel-body">
                 <div class="col-md-8 col-md-offset-2">
                     <table>
+                        <tr>
+                            <td><label>Descripción</label></td>
+                            <td><input type="text" class="form-control" id="txtDes" /></td>
+                            
+                            <td></td>
+                            <td></td>
+                        </tr>
                         <tr>
                             <td>
                                 <label>Servicio</label>
@@ -32,8 +43,8 @@ using (Html.BeginForm())
                                 @Html.DropDownList("Id_servicios", null, "Seleccione Opción", htmlAttributes: new { @class = "form-control" })
                                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             </td>
-                            <td><label>Descripción</label></td>
-                            <td><input type="text" class = "form-control" id="txtDes" /></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>
@@ -127,7 +138,7 @@ using (Html.BeginForm())
                             Cantidad
                         </td>
                         <td class="col-md-2">
-                            Volumen Ticket
+                            Tipo Requerimiento
                         </td>
                         <td class="col-md-2">
                             Cantidad
@@ -136,13 +147,23 @@ using (Html.BeginForm())
                             Tipo de Operación
                         </td>
                         <td class="col-md-2">
-                            Resultado
+                            FTE
                         </td>
                         <td class="col-md-2">
                             Acción
                         </td>
                     </tr>
                 </thead>
+                <tfoot>
+                    <tr><td>Total</td>
+                    <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><input type="text" id="totalGrila" disabled class="tex" /></td>
+                    </tr>
+                </tfoot>
             </table>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-4">
@@ -224,7 +245,7 @@ using (Html.BeginForm())
                 myTableArray.push(arrayOfThisRow);
             }
         });
-        console.log(myTableArray);
+        //console.log(myTableArray);
         var d = $("#txtDes").val();
         var postData = { values: myTableArray, desc :d};
         $.ajax({
@@ -234,7 +255,7 @@ using (Html.BeginForm())
             success: function (data) {
 
                 var url = '@Url.Action("Index", "CalculoHoras", new { id = 1 })';
-                console.log(url);
+                //console.log(url);
                // window.location.href = url;
             },error: function (ex) {
                 var url = '@Url.Action("Index", "CalculoHoras", new { id = 1 })';
@@ -248,6 +269,12 @@ using (Html.BeginForm())
     });
     function delete_user(row) {
         row.closest('tr').remove();
+        var suma = 0;
+        $('#tResultado >tbody >tr').each(function () { //filas con clase 'dato', especifica una clase, asi no tomas el nombre de las columnas
+            suma += parseInt($(this).find('td').eq(6).text() || 0, 10) //numero de la celda 3
+            console.log(suma);
+            $("#totalGrila").val(suma);
+        })
         if ($('#miTabla >tbody >tr').length == 1) {
             $("#Grilla").hide();
         }
@@ -269,7 +296,7 @@ using (Html.BeginForm())
                 ser = $(this).find("td").eq(0).html();
                 des = $(this).find("td").eq(1).html();
                 req = $(this).find("td").eq(3).html();
-                console.log(req);
+               // console.log(req);
                 if (ser == $("#Id_servicios option:selected").text() && req == $("#Id_Volumen_Ticket option:selected").text() && des == $("#Id_Servicio_Descripcion1 option:selected").text())
                 {
                     repetido = 1;
@@ -299,7 +326,14 @@ using (Html.BeginForm())
                 nuevaFila1 += "<td class='col-md-2'>" + $("#Resultado").val(); + "</td>";
                 nuevaFila1 += "</tr>";
                 $("#tResultado1").append(nuevaFila1);
-                console.log(nuevaFila1);
+               // console.log(nuevaFila1);
+                //totalizar grilla
+                var suma = 0;
+                $('#tResultado >tbody >tr').each(function () { //filas con clase 'dato', especifica una clase, asi no tomas el nombre de las columnas
+                    suma += parseInt($(this).find('td').eq(6).text() || 0, 10) //numero de la celda 3
+                    console.log(suma);
+                    $("#totalGrila").val(suma);
+                })
             }
             else
             {
@@ -316,7 +350,7 @@ using (Html.BeginForm())
             var cantReq = $("#Cantidad_Volumen_Ticket").val();
             var TipoOpe = $("#Id_Tipo_Operacion").val();
             var res= "dis: "+dispositivo+", cantdis: "+cantDis+", req: "+requerimiento+", cantreq: "+cantReq+", tope: "+TipoOpe;
-            console.log(res);
+           // console.log(res);
             $.get('@Url.Action("CalculosResultados", "CalculoHoras")',
                 { dis: dispositivo, cantdis: cantDis, req: requerimiento, cantreq: cantReq, tope: TipoOpe }
                ).success(function (data) {
@@ -338,7 +372,7 @@ using (Html.BeginForm())
             $("#Id_servicios").change(function () {
                 var valor
                 valor = $('#Id_servicios option:selected').val();
-                console.log(valor);
+              //  console.log(valor);
                 $("#Id_Servicio_Descripcion1").empty();
                 $.ajax({
                     type: 'POST',

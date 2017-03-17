@@ -22,9 +22,9 @@ namespace SistemaCalculoweb
             this.CalculoHoras = new HashSet<CalculoHoras>();
         }
         public int Id { get; set; }
-        [DisplayName("Descripción")]
+        [DisplayName("Nombre")]
         public string Decripcion { get; set; }
-        [DisplayName("Referencia")]
+        [DisplayName("Descripción")]
         public string Referencia { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

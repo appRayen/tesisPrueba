@@ -37,31 +37,26 @@ else
     .dd {
         background-image: url(/Images/mas.png);
         background-repeat: no-repeat;
-    }
-       th, td {
+    }     
+     th, td {
         padding: 5px;
     }
 
     #SubGrid {
         margin: 0px 0px 0px 10px;
-        padding: 5px;
+         padding: 5px;
         width: 95%;
     }
-
-        #SubGrid th {
-            font-size: 12px;
-        }
-
 
     }
 </style>
 
-<div id="main" class="padding:25px; background-color:white;">
-    @*<div id="main" class="table">*@
+<div id="main" class="col-md-8 col-md-offset-2">
+    <div id="main" class="table">
         @grid.GetHtml(
         htmlAttributes: new { id = "gridT", width = "700px" },
         columns: grid.Columns(
-                grid.Column("calculoPrincipal.Id_calculo", "Calculo"),
+                grid.Column("calculoPrincipal.Id_calculo", "Caso"),
                  grid.Column("calculoPrincipal.descripcion", "Descripción"),
                 grid.Column(header: "Fecha", format: (item) => string.Format("{0:dd-MM-yyyy}", item.calculoPrincipal.fecha)),
                 grid.Column(format: (item) =>
@@ -86,7 +81,7 @@ else
             )
         )
 
-    @*</div>*@
+    </div>
 </div>
 
 @* Here I will add some jquery code for make this nested grid collapsible *@

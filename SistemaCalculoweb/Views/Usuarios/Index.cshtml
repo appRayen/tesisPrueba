@@ -38,9 +38,9 @@ else
                 @Html.DisplayNameFor(model => model.Telefono)
             </th>
 
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Perfil.Descripcion)
-            </th>
+            </th>*@
             <th></th>
         </tr>
 
@@ -66,9 +66,9 @@ else
                 @Html.DisplayFor(modelItem => item.Telefono)
             </td>
 
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Perfil.Descripcion)
-            </td>
+            </td>*@
             <td>
                 @Html.ActionLink(" ", "Edit", new { id = item.IdUsuario }, new { @class = "glyphicon glyphicon-pencil" }) |
                 @Html.ActionLink(" ", "Delete", new { id = item.IdUsuario }, new { @class = "glyphicon glyphicon-remove" })

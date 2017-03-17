@@ -22,10 +22,11 @@ namespace SistemaCalculoweb
         }
     
         public int Id { get; set; }
-        [DisplayName("Referencia")]
-        public string Sugerencia { get; set; }
         [DisplayName("Descripción")]
+        public string Sugerencia { get; set; }
+        [DisplayName("Tipo")]
         public string Descripcion { get; set; }
+        [DisplayName("Tiempo base de administración")]
         public Nullable<decimal> HH { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
